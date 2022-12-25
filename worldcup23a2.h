@@ -16,9 +16,13 @@
 #define WORLDCUP23A2_H_
 
 #include "wet2util.h"
+#include "team.h"
+#include <memory>
 
 class world_cup_t {
 private:
+    int m_num_teams;
+    AvlTree<team><int> m_all_teams_id;
 	//
 	// Here you may add anything you want
 	//

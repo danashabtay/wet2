@@ -17,6 +17,7 @@
 
 #include "wet2util.h"
 #include "team.h"
+#include <memory>
 
 class world_cup_t {
 private:

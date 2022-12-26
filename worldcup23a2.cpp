@@ -35,8 +35,16 @@ StatusType world_cup_t::remove_team(int teamId)
     if (teamId<=0){
         return StatusType::INVALID_INPUT;
     }
-	// TODO: Your code goes here
-	return StatusType::FAILURE;
+    std::shared_ptr<team> team1 = m_all_teams.find_by_key(teamId);
+    if(team1 == nullptr){
+        return StatusType::FAILURE;
+    }
+    m_all_teams.remove(teamId);
+    ///to do: add valid teams tree and remove from it, mark as deleted from hashtable
+        team1 = nullptr;
+        m_num_teams--;
+        return StatusType::SUCCESS;
+    }
 }
 
 StatusType world_cup_t::add_player(int playerId, int teamId,

@@ -17,12 +17,13 @@
 
 #include "wet2util.h"
 #include "team.h"
+#include "Avltree.h"
 #include <memory>
 
 class world_cup_t {
 private:
     int m_num_teams;
-    AvlTree<team><int> m_all_teams_id;
+    AvlTree<team,int> m_all_teams_id;
 	//
 	// Here you may add anything you want
 	//

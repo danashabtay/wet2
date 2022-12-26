@@ -2,7 +2,8 @@
 
 world_cup_t::world_cup_t()
 {
-	// TODO: Your code goes here
+	m_num_teams=0;
+    m_all_teams_id = AvlTree<team, int>();
 }
 
 world_cup_t::~world_cup_t()
@@ -15,8 +16,18 @@ StatusType world_cup_t::add_team(int teamId)
     if(teamId<=0){
         return StatusType::INVALID_INPUT;
     }
-	// TODO: Your code goes here
-	return StatusType::SUCCESS;
+
+    std::shared_ptr<team> tmp = m_all_teams.find_by_key(teamId);
+    if(tmp != nullptr){
+        tmp=nullptr;
+        return StatusType::FAILURE;
+    }
+
+    std::shared_ptr<team> team1 (new team(teamId));
+    m_all_teams.insert(team1, teamId);
+    tmp = nullptr;
+    m_num_teams++;
+    return StatusType::SUCCESS;
 }
 
 StatusType world_cup_t::remove_team(int teamId)

@@ -36,7 +36,8 @@ class AvlTree {
         int height(node<T,K> *N);
         node<T,K> * minValueNode(node<T,K>* root);
         node<T,K> * removeHelper(node<T,K>* root, K key);
-        std::shared_ptr<T>find_by_key(node<T,K>* root,K key);
+        std::shared_ptr<T>find_by_key_helper(node<T,K>* root,K key);
+        std::shared_ptr<T>find_by_key(K key);
         node<T,K>* newNode(std::shared_ptr<T> data, K key);
         node<T,K> *rightRotate(node<T,K> *y);
         node<T,K> *leftRotate(node<T,K> *x);
@@ -185,7 +186,7 @@ node<T,K> * AvlTree<T,K>::removeHelper(node<T,K>* root,K key) {
 }
 
 template<class T, class K>
-std::shared_ptr<T> AvlTree<T,K>::find_by_key(node<T,K>* root,K key) {
+std::shared_ptr<T> AvlTree<T,K>::find_by_key_helper(node *root, K key) {
     if(root== nullptr){
         return nullptr;
     }
@@ -203,6 +204,11 @@ std::shared_ptr<T> AvlTree<T,K>::find_by_key(node<T,K>* root,K key) {
             return nullptr;
         }
     }
+}
+
+template<class T, class K>
+std::shared_ptr<T> AvlTree<T,K>::find_by_key(K key) {
+    return find_by_key_helper(m_root,key);
 }
 
 template<class T, class K>

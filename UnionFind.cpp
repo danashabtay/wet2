@@ -42,10 +42,10 @@ void UnionFind::addSinglePlayer(shared_ptr<player> newData ,int playerId, int te
 
 
 void UnionFind::UniteTeams(int owner, int added){
-    Node node1 = players_hashTable.findNode(owner);
-    Node node2 = players_hashTable.findNode(added);
-    Node ownerParent = find(node1);
-    Node addedParent = find(node2);
+    playerNode node1 = players_hashTable.findNode(owner);
+    playerNode node2 = players_hashTable.findNode(added);
+    playerNode ownerParent = find(node1);
+    playerNode addedParent = find(node2);
     //if they are part of same set do nothing
     if (parent1.data == parent2.data) {
         return;
@@ -77,17 +77,28 @@ void UnionFind::UniteTeams(int owner, int added){
     return;
 }
 
-Node UnionFind::find(Node data) {
+playerNode UnionFind::find(playerNode data) {
     while(data.parent!= nullptr){
         data=data.parent;
     }
 }
 
 int UnionFind::findNumGames(int playerId){
-
+    playerNode node = players_hashTable.findNode(playerId);
+    playerNode parent = find(node1);
+    int sum=0;
+    while(node!=parent){
+        sum+=node.rg;
+        node=node.parent;
+    }
+    return sum;
 }
-bool UnionFind::isActive(int playerId){
 
+bool UnionFind::isActive(int playerId){
+    playerNode node = players_hashTable.findNode(playerId);
+    playerNode parent = find(node);
+    int teamId = parent.data->getId();
+    return teams_hashTable.isDeleted(teamId);
 }
 
 void UnionFind::connectTeam(Node data, std::shared_ptr<team> teamPtr){

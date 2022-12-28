@@ -19,6 +19,12 @@ public:
         this->key = key;
         this->isDeleted= false;
     }
+    bool isDeleted() {
+    return isDeleted;
+    }
+    void setAsdDeleted() {
+    isDeleted=true;
+    }
 };
 
 template <class V>
@@ -128,7 +134,7 @@ void markDeleted(int key){
         if (counter++ > capacity)
             return;
         if (HashTable[hashIndex]->key == key){
-            HashTable[hashIndex]->isDeleted = true;
+            HashTable[hashIndex]->setAsDeleted();
         return;
     }
         hashIndex++;
@@ -136,5 +142,24 @@ void markDeleted(int key){
     }
     return;
 }
+
+void isDeleted(int key){
+    int hashIndex = hashFunc(key);
+    int counter = 0;
+    // finding the node with given key
+    while (HashTable[hashIndex] != nullptr) {
+        if (counter++ > capacity)
+            return true;
+        if (HashTable[hashIndex]->key == key){
+            return HashTable[hashIndex]->isDeleted();
+
+        }
+        hashIndex++;
+        hashIndex %= capacity;
+    }
+    return true;
+}
+
+
 
 #endif //WET2_HASHTABLE_H

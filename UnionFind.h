@@ -10,10 +10,10 @@
 class UnionFind {
 class playerNode{
     std::shared_ptr<player> data;
-    Node* parent;
+    playerNode* parent;
     int rg;
     permutation_t rs;
-    std::shared_ptr<team> team;
+    teamNode* team;
 };
 
 class teamNode{

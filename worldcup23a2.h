@@ -18,12 +18,15 @@
 #include "wet2util.h"
 #include "team.h"
 #include "Avltree.h"
+#include "AvlRankTree.h"
 #include <memory>
 
 class world_cup_t {
 private:
     int m_num_teams;
     AvlTree<team,int> m_all_teams_id;
+    AVLRankTree<team, int> m_all_teams_ability;
+    AvlTree<team,int> m_all_eligible_teams;
 	//
 	// Here you may add anything you want
 	//

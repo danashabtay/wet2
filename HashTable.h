@@ -34,7 +34,7 @@ public:
     int hashFunc(int key);
     void reHash();
     void insertNode(int key, V value);
-    V& findNode(int key);
+    V* findNode(int key);
     void markDeleted(int key);
 };
 
@@ -103,7 +103,7 @@ void insertNode(int key, V value) {
     }
 }
 
-V& findNode(int key)
+V* findNode(int key)
 {
     int hashIndex = hashFunc(key);
     int counter = 0;

@@ -12,10 +12,9 @@ class team {
         int m_team_id;
         int m_points;
         bool m_has_goalkeeper;
-        std::shared_ptr<permutation_t> m_team_spirit;
+        std::shared_ptr<permutation_t> m_team_spirit; ///why shared ptr?
         int m_total_ability;
         int m_games_played;
-        //int m_num_players;
 
     public:
         bool hasKeeper() const;
@@ -23,9 +22,10 @@ class team {
         int getTeamAbility() const;
         void addPoints(int points_to_add);
         void addGame();
+        int getAbility();
         std::shared_ptr<permutation_t> getPermutation() const;
         team(int teamId) : m_team_id(teamId), m_points(0), m_has_goalkeeper(false),
-                            m_team_spirit(nullptr), m_total_ability(0), m_games_played(0){}
+                            m_team_spirit(m_team_spirit->neutral()), m_total_ability(0), m_games_played(0){}
 };
 
 

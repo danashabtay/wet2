@@ -14,6 +14,9 @@ class player {
         int ability;
         const permutation_t& m_spirit;
         int m_team_id;
+
+public:
+
 };
 
 

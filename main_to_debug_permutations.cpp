@@ -53,7 +53,7 @@ int main() {
 
 
 
-    print(/* Enter here spirit (e.g.: with the function "get_partial_spirit", or another method)*/  tmp_player39_->getSpirit());
+ //todo:remove the //   print(/* Enter here spirit (e.g.: with the function "get_partial_spirit", or another method)*/  tmp_player39_->getSpirit());
 
     /*----------------------
      * Choose the permutations that you want to multiply and compare with the spirit that you chose before:
@@ -74,7 +74,8 @@ int main() {
 
 void print (const permutation_t& permut) {
     for (int i=0; i<5 ; i++) {
-        std::cout << permut.a[i] << ", ";
+        //std::cout << permut.a[i] << ", ";//todo: the top is theirs
+        std::cout << permut.getIthPlace(i) << ", ";
     }
     std::cout << std::endl;
 }

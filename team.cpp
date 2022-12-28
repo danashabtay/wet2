@@ -23,6 +23,6 @@ void team::addPoints(int points_to_add){
 void team::addGame(){
     m_games_played++;
 }
-permutation_t team::getPermutation() const{
+std::shared_ptr<permutation_t> team::getPermutation() const{
     return m_team_spirit;
 }

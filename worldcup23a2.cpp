@@ -17,14 +17,14 @@ StatusType world_cup_t::add_team(int teamId)
         return StatusType::INVALID_INPUT;
     }
 
-    std::shared_ptr<team> tmp = m_all_teams.find_by_key(teamId);
+    std::shared_ptr<team> tmp = m_all_teams_id.find_by_key(teamId);
     if(tmp != nullptr){
         tmp=nullptr;
         return StatusType::FAILURE;
     }
 
     std::shared_ptr<team> team1 (new team(teamId));
-    m_all_teams.insert(team1, teamId);
+    m_all_teams_id.insert(team1, teamId);
     tmp = nullptr;
     m_num_teams++;
     return StatusType::SUCCESS;
@@ -35,16 +35,15 @@ StatusType world_cup_t::remove_team(int teamId)
     if (teamId<=0){
         return StatusType::INVALID_INPUT;
     }
-    std::shared_ptr<team> team1 = m_all_teams.find_by_key(teamId);
+    std::shared_ptr<team> team1 = m_all_teams_id.find_by_key(teamId);
     if(team1 == nullptr){
         return StatusType::FAILURE;
     }
-    m_all_teams.remove(teamId);
+    m_all_teams_id.remove(teamId);
     ///to do: add valid teams tree and remove from it, mark as deleted from hashtable
-        team1 = nullptr;
-        m_num_teams--;
-        return StatusType::SUCCESS;
-    }
+    team1 = nullptr;
+    m_num_teams--;
+    return StatusType::SUCCESS;
 }
 
 StatusType world_cup_t::add_player(int playerId, int teamId,
@@ -65,12 +64,12 @@ output_t<int> world_cup_t::play_match(int teamId1, int teamId2)
         output_t<int> out(StatusType::INVALID_INPUT);
         return out;
     }
-    std::shared_ptr<team> team1 = m_all_teams.findByKey(teamId1);
+    std::shared_ptr<team> team1 = m_all_teams_id.find_by_key(teamId1);
     if(team1 == nullptr || !team1->hasKeeper()){
         output_t<int> out(StatusType::FAILURE);
         return out;
     }
-    std::shared_ptr<team> team2 = m_all_teams.findByKey(teamId2);
+    std::shared_ptr<team> team2 = m_all_teams_id.find_by_key(teamId2);
     if(team2 == nullptr || !team2->hasKeeper()){
         output_t<int> out(StatusType::FAILURE);
         return out;
@@ -92,8 +91,8 @@ output_t<int> world_cup_t::play_match(int teamId1, int teamId2)
         return out;
     }
     else{
-        int team1_strength = team1->getPermutation().strength();
-        int team2_strength = team2->getPermutation().strength();
+        int team1_strength = team1->getPermutation()->strength();
+        int team2_strength = team2->getPermutation()->strength();
         if(team1_strength > team2_strength){
             team1->addPoints(3);
             team1->addGame();
@@ -155,7 +154,7 @@ output_t<int> world_cup_t::get_team_points(int teamId)
         output_t<int> out(StatusType::INVALID_INPUT);
         return out;
     }
-    std::shared_ptr<team> team1 = m_all_teams.findByKey(teamId);
+    std::shared_ptr<team> team1 = m_all_teams_id.find_by_key(teamId);
     if(team1 == nullptr){
         output_t<int> out(StatusType::FAILURE);
         return out;

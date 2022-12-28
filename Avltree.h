@@ -7,28 +7,36 @@
 #include <iostream>
 #include <memory>
 
-template<class T, class K>
-class AvlTree {
-    class node
-    {
-    public:
-        K key;
-        std::shared_ptr<T> data;
-        node *left;
-        node *right;
-        int height;
-        node(std::shared_ptr<T> data, K key);
-        ~node(){
-            delete left;
-            delete right;
-        }
-    };
 
-    node<T, K>::node(std::shared_ptr<T> m_data, K m_key) : key(m_key), data(m_data), right(nullptr), left(nullptr), height(1){
+template<class T, class K>
+class node {
+public:
+    K key;
+    std::shared_ptr<T> data;
+    node *left;
+    node *right;
+    int height;
+
+   // node(std::shared_ptr<T> data, K key);
+
+    ~node() {
+        delete left;
+        delete right;
     }
 
+    node<T,K>(std::shared_ptr<T> m_data, K m_key) : key(m_key), data(m_data), right(nullptr), left(nullptr),
+                                                           height(1) {
+    }
+};
+
+
+
+template<class T, class K>
+class AvlTree {
+
+
     private:
-        node<T,K> *m_root;
+        node<T,K>* m_root;
 
     public:
         AvlTree();
@@ -46,6 +54,7 @@ class AvlTree {
         node<T,K>* insertHelper(node<T,K>* root, std::shared_ptr<T> data, K key);
         void deleteTree(node<T,K> *r);
         void remove(K key);
+        node<T,K>* getRoot() const;
         int max2(int a, int b)
         {
             return (a > b)? a : b;
@@ -186,7 +195,7 @@ node<T,K> * AvlTree<T,K>::removeHelper(node<T,K>* root,K key) {
 }
 
 template<class T, class K>
-std::shared_ptr<T> AvlTree<T,K>::find_by_key_helper(node *root, K key) {
+std::shared_ptr<T> AvlTree<T,K>::find_by_key_helper(node<T,K> *root, K key) {
     if(root== nullptr){
         return nullptr;
     }
@@ -195,10 +204,10 @@ std::shared_ptr<T> AvlTree<T,K>::find_by_key_helper(node *root, K key) {
     }
     else{
         if (key < root->key){
-            return find_by_key(root->left,key);
+            return find_by_key_helper(root->left,key);
         }
         else if (key > root->key){
-            return find_by_key(root->right,key);
+            return find_by_key_helper(root->right,key);
         }
         else {
             return nullptr;
@@ -360,6 +369,10 @@ template<class T, class K>
 void AvlTree<T, K>::insert(std::shared_ptr<T> data, K key) {
     m_root = insertHelper(m_root, data, key);
     return;
+}
+template<class T, class K>
+node<T,K>* AvlTree<T,K>::getRoot() const{
+    return m_root;
 }
 
 

@@ -31,42 +31,48 @@ void UnionFind::addSinglePlayer(shared_ptr<player> newData ,int playerId, int te
     team.rank++;
     //if team is empty
     if(team->rep==nullptr){
-        team->rep=player;
-        player.team=team;
+        team->rep=node;
+        node.team=team;
     }
     //else need to join to other set
-    player.parent=team.rep;
-    player.rg=player.rg-parent.rg;
-    player.rs=parent.rs.inv()*player.rs;
+    node.parent=team.rep;
+    node.rg=node.rg-parent.rg;
+    node.rs=parent.rs.inv()*node.rs;
 }
 
 
-void UnionFind::UniteTeams(int id1, int id2){
-    Node node1 = players_hashTable.findNode(id1);
-    Node node2 = players_hashTable.findNode(id2);
-
-    Node parent1 = find(node1);
-    Node parent2 = find(node2);
-
+void UnionFind::UniteTeams(int owner, int added){
+    Node node1 = players_hashTable.findNode(owner);
+    Node node2 = players_hashTable.findNode(added);
+    Node ownerParent = find(node1);
+    Node addedParent = find(node2);
     //if they are part of same set do nothing
     if (parent1.data == parent2.data) {
         return;
     }
-
     //else whoever rank is higher becomes parent of other
-    if (parent1.rank >= parent2.rank) {
-
+    if (ownerParent.team.rank >= addedParent.team.rank) { // add added team to owner team
+        teams_HashTable.markDeleted(added);
         /// change rank
-
+        ownerParent.team.rank+=addedParent.team.rank;
         ///change rs
-        parent2.rs=parent1.rs.inv()*parent2.rs*///player1team.total_spirit
+        addedParent.rs=ownerParent.rs.inv()*addedParent.rs;
         ///change rg
-
-
-        parent2.parent = parent1;
-
-    } else {
-        parent1.parent = parent2;
+        addedParent.rg=ownerParent.rg-addedParent.rg;
+        addedParent.parent = ownerParent;
+    } else { // add owner team to added team
+        teamNode ownerTeamNode = teams_HashTable.findNode(owner);
+        teamNode addedTeamNode = teams_HashTable.findNode(added);
+        ownerTeamNode.rep=addedTeamNode.rep;
+        addedParent.team=ownerParent.team;
+        teams_HashTable.markDeleted(added);
+        /// change rank
+        addedParent.team.rank+=ownerParent.team.rank;
+        ///change rs
+        ownerParent.rs=addedParent.rs.inv()*ownerParent.rs;
+        ///change rg
+        ownerParent.rg=ownerParent.rg-addedParent.rg;
+        ownerParent.parent = addedParent;
     }
     return;
 }

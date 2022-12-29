@@ -4,12 +4,11 @@
 
 include "UnionFind.h"
 
-UnionFind::UnionFind(){
-
-}
+UnionFind::UnionFind() : players_hashTable(new HashTable<shared_ptr<player>>()), teams_hashTable(new HashTable<shared_ptr<team>>()) {}
 
 UnionFind::~UnionFind(){
-
+    players_hashTable.deleteTable():
+    teams_hashTable.deleteTable():
 }
 
 void UnionFind::addTeam(int teamId, shared_ptr<team> newData){
@@ -77,21 +76,39 @@ void UnionFind::UniteTeams(int owner, int added){
     return;
 }
 
-playerNode UnionFind::find(playerNode data) {
-    while(data.parent!= nullptr){
-        data=data.parent;
+/**
+    * Find the representative recursively and does path compression as well.
+    */
+playerNode UnionFind::find(playerNode node) {
+    playerNode parent = node.parent;
+    if (parent == node) {
+        return parent;
     }
+    node.parent = findSet(node.parent);
+    return node.parent;
+
 }
 
 int UnionFind::findNumGames(int playerId){
     playerNode node = players_hashTable.findNode(playerId);
-    playerNode parent = find(node1);
+    playerNode parent = find(node);
     int sum=0;
     while(node!=parent){
         sum+=node.rg;
         node=node.parent;
     }
     return sum;
+}
+
+permutation_t UnionFind::findSpirit(int playerId){
+    playerNode node = players_hashTable.findNode(playerId);
+    playerNode parent = find(node);
+    permutation_t spiritSum= spiritSum.neutral();
+    while(node!=parent){
+        spiritSum=node.rs.inv()*spiritSum;
+        node=node.parent;
+    }
+    return spiritSum;
 }
 
 bool UnionFind::isActive(int playerId){
@@ -101,6 +118,3 @@ bool UnionFind::isActive(int playerId){
     return teams_hashTable.isDeleted(teamId);
 }
 
-void UnionFind::connectTeam(Node data, std::shared_ptr<team> teamPtr){
-    data.team=teamPtr;
-}

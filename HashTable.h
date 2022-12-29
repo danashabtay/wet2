@@ -36,17 +36,20 @@ private:
     HashNode<V> *dummy; // dummy node
 
 public:
-    HashTable();
+    HashTable<V>();
+    ~HashTable<V>();
     int hashFunc(int key);
     void reHash();
     void insertNode(int key, V value);
     V* findNode(int key);
     void markDeleted(int key);
+    void deleteTable();
 };
 
 /////////////////////////////////implementation///////////////////////////////////////////////////////////////////
 
-HashTable()
+<class v>
+HashTable<V>::HashTable<V>()
     {
         HashTable = new HashNode<V>*[capacity]; ///parameters for initializer?
         capacity = 16;
@@ -58,13 +61,19 @@ HashTable()
         dummy = new HashNode<V>(-1, nullptr); ///????????
     }
 
-    int hashFunc(int key)
+    <class v>
+    int HashTable<V>::hashFunc(int key)
     {
         return key % capacity;
     }
+
+<class v>
+HashTable<V>::~HashTable<V>(){
+    deleteTable();
 }
 
-void reHash()
+<class v>
+void HashTable<V>::reHash()
 {
     int oldCapacity = capacity;
     capacity = oldCapacity * 2 + 1;
@@ -83,7 +92,8 @@ void reHash()
     HashTable = newHashTable;
 }
 
-void insertNode(int key, V value) {
+<class v>
+void HashTable<V>::insertNode(int key, V value) {
     HashNode<V>* temp = new HashNode<V>(key, value);
 
     // Apply hash function to find index for given key
@@ -109,7 +119,8 @@ void insertNode(int key, V value) {
     }
 }
 
-V* findNode(int key)
+<class v>
+V* HashTable<V>::findNode(int key)
 {
     int hashIndex = hashFunc(key);
     int counter = 0;
@@ -126,7 +137,8 @@ V* findNode(int key)
     return nullptr;
 }
 
-void markDeleted(int key){
+<class v>
+void HashTable<V>::markDeleted(int key){
     int hashIndex = hashFunc(key);
     int counter = 0;
     // finding the node with given key
@@ -143,7 +155,8 @@ void markDeleted(int key){
     return;
 }
 
-void isDeleted(int key){
+<class v>
+void HashTable<V>::isDeleted(int key){
     int hashIndex = hashFunc(key);
     int counter = 0;
     // finding the node with given key
@@ -159,6 +172,16 @@ void isDeleted(int key){
     }
     return true;
 }
+
+<class v>
+void HashTable<V>::deleteTable() {
+    for (int i = 0; i < cap; ++i)
+    {
+        delete hashTable[i];
+    }
+    delete[] hashTable;
+}
+
 
 
 

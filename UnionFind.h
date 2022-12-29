@@ -6,14 +6,15 @@
 #define WET2_UNIONFIND_H
 #include "HashTable.h"
 #include "player.h"
+#include "team.h"
 
 class UnionFind {
 class playerNode{
     std::shared_ptr<player> data;
-    playerNode* parent;
+    playerNode* parent; ///unique ptr?
     int rg;
     permutation_t rs;
-    teamNode* team;
+    teamNode* team; ///unique ptr?
 };
 
 class teamNode{
@@ -33,8 +34,8 @@ public:
     void UniteTeams(int id1, int id2));
     Node find(Node data);
     int findNumGames(int playerId);
+    permutation_t findSpirit(int playerId);
     bool isActive(int playerId);
-    void connectTeam(Node data, std::shared_ptr<team> teamPtr);
 };
 
 

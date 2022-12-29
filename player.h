@@ -11,9 +11,10 @@ class player {
         int m_player_id;
         int m_cards;
         int m_games_played;
-        int ability;
+        int m_ability;
         const permutation_t& m_spirit;
         int m_team_id;
+        bool m_isGoalKeeper;
 
 public:
 

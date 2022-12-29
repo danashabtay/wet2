@@ -14,7 +14,7 @@ class team {
         bool m_has_goalkeeper;
         std::shared_ptr<permutation_t> m_team_spirit; ///why shared ptr?
         int m_total_ability;
-        int m_games_played;
+        int m_games_played; ///probably don't need;
 
     public:
         bool hasKeeper() const;

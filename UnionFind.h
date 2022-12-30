@@ -21,6 +21,14 @@ class teamNode{
     std::shared_ptr<team> data;
     std::shared_ptr<player> rep;
     int rank;
+    permutation_t team_spirit;
+
+    teamNode(){
+        data=nullptr;
+        rep= nullptr;
+        rank=0;
+        team_spirit=permutation_t::neutral();
+    }
 };
 
 HashTable<playerNode> players_hashTable;

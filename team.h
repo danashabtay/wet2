@@ -26,8 +26,7 @@ class team {
         int getId();
         std::shared_ptr<permutation_t> getPermutation() const;
         team(int teamId) : m_team_id(teamId), m_points(0), m_has_goalkeeper(false),
-                            m_team_spirit(new permutation_t()), m_total_ability(0), m_games_played(0){
-            m_team_spirit=m_team_spirit.neutral();
+                            m_team_spirit(permutation::neutral()), m_total_ability(0), m_games_played(0){
         }
         void addPlayerStats(int ability, permutation_t spirit, bool isKeeper);
 };

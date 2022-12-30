@@ -4,7 +4,7 @@
 
 include "UnionFind.h"
 
-UnionFind::UnionFind() : players_hashTable(new HashTable<playerNode*>()), teams_hashTable(new HashTable<teamNode*>()) {}
+UnionFind::UnionFind() : players_hashTable(new HashTable<playerNode>()), teams_hashTable(new HashTable<teamNode>()) {}
 
 UnionFind::~UnionFind(){
     players_hashTable.deleteTable():
@@ -12,34 +12,37 @@ UnionFind::~UnionFind(){
 }
 
 void UnionFind::addTeam(int teamId, shared_ptr<team> newData){
-   teamNode* node = new teamNode();
+    std::shared_ptr<teamNode> node (new teamNode());
    node->rep=nullptr;
    node->data=newData;
    node->rank = 0;
-   teams_hashTable.insertNode(teamId, newData);
+   node->team_spirit=permutation_t::neutral();
+   teams_hashTable.insertNode(teamId, node);
 }
 
 void UnionFind::addSinglePlayer(shared_ptr<player> newData ,int playerId, int teamId){
-    playerNode* node = new playerNode();
+    std::shared_ptr<playerNode> node (new playerNode());
     node->data = newData;
     node->parent = node;
     node->rs=newData->getSpirit;
     node->rg=newData->getNumGames;
-    players_hashTable.insertNode(playerId, newData);
-    teamNode team = teams_HashTable.findNode(teamId);
-    team.rank++;
+    players_hashTable.insertNode(playerId, node);
+    std::shared_ptr<teamNode> team = teams_HashTable.findNode(teamId);
+    team->rank++;
+
     //if team is empty
     if(team->rep==nullptr){
         team->rep=node;
         node->team=team;
     }
     //else need to join to other set
-    node->parent=team.rep;
-    node->rg=node.rg-parent.rg;
-    node->rs=parent.rs.inv()*node.rs;
+    node->parent=team->rep;
+    node->rg=node->rg-parent->rg;
+    node->rs=(parent->rs->inv())*(team->team_spirit)*(node->rs);
+    team->team_spirit=(team->team_spirit)*(newData->getSpirit);
 }
 
-///update here
+///update here rs and rg
 void UnionFind::UniteTeams(int owner, int added){
     playerNode* node1 = players_hashTable.findNode(owner);
     playerNode* node2 = players_hashTable.findNode(added);

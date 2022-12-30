@@ -5,7 +5,8 @@ world_cup_t::world_cup_t()
 	m_num_teams=0;
     m_all_teams_id = AvlTree<team, int>();
     m_all_teams_ability = AVLRankTree<team, int>();
-    m_all_eligible_teams = AvlTree<team, int>();;
+    m_all_eligible_teams = AvlTree<team, int>();
+    m_game = UnionFind::UnionFind();
 }
 
 world_cup_t::~world_cup_t()
@@ -20,7 +21,7 @@ StatusType world_cup_t::add_team(int teamId)
     }
 
     std::shared_ptr<team> tmp_id = m_all_teams_id.find_by_key(teamId);
-    std::shared_ptr<team> tmp_ability = m_all_teams_ability.getByKey(teamId);
+    std::shared_ptr<team> tmp_ability = m_all_teams_ability.getByKey(teamId); /// need to check rank tree?
     if(tmp_id != nullptr || tmp_ability != nullptr){
         tmp_id=nullptr;
         tmp_ability= nullptr;
@@ -30,6 +31,7 @@ StatusType world_cup_t::add_team(int teamId)
     std::shared_ptr<team> team1 (new team(teamId));
     m_all_teams_id.insert(team1, teamId);
     m_all_teams_ability.Insert(teamId, team1);
+    m_game.addTeam(team1);
     tmp_id=nullptr;
     tmp_ability= nullptr;
     m_num_teams++;
@@ -42,13 +44,20 @@ StatusType world_cup_t::remove_team(int teamId)
         return StatusType::INVALID_INPUT;
     }
     std::shared_ptr<team> team1 = m_all_teams_id.find_by_key(teamId);
-    std::shared_ptr<team> team1_ability = m_all_teams_ability.getByKey(teamId);
+    std::shared_ptr<team> team1_ability = m_all_teams_ability.getByKey(teamId); /// need to check rank tree?
     if(team1 == nullptr || team1_ability == nullptr){
         return StatusType::FAILURE;
     }
+    //remove from id all trees:
     m_all_teams_id.remove(teamId);
     m_all_teams_ability.Remove(teamId);
-    ///to do: add valid teams tree and remove from it, mark as deleted from hashtable
+    if(team1.hasKeeper()){
+        m_all_eligible_teams.remove(teamId);
+    }
+
+    // mark team as deleted in teams hashtable:
+    m_game.markDeleted(teamId);
+
     team1 = nullptr;
     m_num_teams--;
     return StatusType::SUCCESS;
@@ -62,10 +71,22 @@ StatusType world_cup_t::add_player(int playerId, int teamId,
         return StatusType::INVALID_INPUT;
     }
 
-	// TODO: Your code goes here
-	return StatusType::SUCCESS;
+    std::shared_ptr<team> team = m_all_teams_id.find_by_key(teamId);
+    if(team == nullptr){
+        return StatusType::FAILURE;
+    }
+    if(m_game.doesExist(playerId)){
+        return StatusType::FAILURE;
+    }
+
+    std::shared_ptr<player> newPlayer (new player(playerId,cards,gamesPlayed,ability,spirit,teamId,goalKeeper);
+
+    team->addPlayerStats(ability, spirit);
+    m_game.addSinglePlayer(newPlayer, playerId, teamId);
+
+    return StatusType::SUCCESS;
 }
-//updated
+
 output_t<int> world_cup_t::play_match(int teamId1, int teamId2)
 {
     if(teamId1<=0 || teamId2<=0 ||teamId1==teamId2){
@@ -82,19 +103,25 @@ output_t<int> world_cup_t::play_match(int teamId1, int teamId2)
         output_t<int> out(StatusType::FAILURE);
         return out;
     }
+
     int total_power_team1 = team1->getNumPoints() + team1->getTeamAbility();
     int total_power_team2 = team2->getNumPoints() + team2->getTeamAbility();
+
     if(total_power_team1 > total_power_team2){
         team1->addPoints(3);
-        team1->addGame();
-        team2->addGame();
+        /*team1->addGame();
+        team2->addGame();*/
+        m_game.addGame(teamId1,teamId2);
         output_t<int> out(1);
         return out;
     }
     else if(total_power_team2 > total_power_team1){
         team2->addPoints(3);
+/*
         team1->addGame();
         team2->addGame();
+*/
+        m_game.addGame(teamId1,teamId2);
         output_t<int> out(3);
         return out;
     }
@@ -103,23 +130,26 @@ output_t<int> world_cup_t::play_match(int teamId1, int teamId2)
         int team2_strength = team2->getPermutation()->strength();
         if(team1_strength > team2_strength){
             team1->addPoints(3);
-            team1->addGame();
-            team2->addGame();
+            /*team1->addGame();
+            team2->addGame();*/
+            m_game.addGame(teamId1,teamId2);
             output_t<int> out(2);
             return out;
         }
         else if(team2_strength > team1_strength){
             team2->addPoints(3);
-            team1->addGame();
-            team2->addGame();
+            /*team1->addGame();
+            team2->addGame();*/
+            m_game.addGame(teamId1,teamId2);
             output_t<int> out(4);
             return out;
         }
         else{
             team1->addPoints(1);
             team2->addPoints(1);
-            team1->addGame();
-            team2->addGame();
+            /*team1->addGame();
+            team2->addGame();*/
+            m_game.addGame(teamId1,teamId2);
             output_t<int> out(0);
             return out;
         }
@@ -133,8 +163,11 @@ output_t<int> world_cup_t::num_played_games_for_player(int playerId)
         output_t<int> out(StatusType::INVALID_INPUT);
         return out;
     }
-	// TODO: Your code goes here
-	return 22;
+    if(!m_game.doesExist(playerId)){
+        return StatusType::FAILURE;
+    }
+    int numGames=m_game.findNumGames(playerId);
+	return numGames;
 }
 
 StatusType world_cup_t::add_player_cards(int playerId, int cards)
@@ -142,7 +175,14 @@ StatusType world_cup_t::add_player_cards(int playerId, int cards)
     if(playerId<=0 || cards<0){
         return StatusType::INVALID_INPUT;
     }
-	// TODO: Your code goes here
+    if(m_game.doesExist(playerId)){
+        return StatusType::FAILURE;
+    }
+    if(!m_game.isActive(playerId)){
+        return StatusType::FAILURE;
+    }
+    std::shared_ptr<player> player = m_game.findById(playerId);
+    player.addCards(cards);
 	return StatusType::SUCCESS;
 }
 

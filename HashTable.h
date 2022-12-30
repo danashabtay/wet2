@@ -4,16 +4,17 @@
 
 #ifndef WET2_HASHTABLE_H
 #define WET2_HASHTABLE_H
+#include "UnionFind.cpp"
 
 template <class V>
 class HashNode {
 public:
-    V value;
+    std::shared_ptr<V> value;
     int key;
     bool isDeleted;
 
     // Constructor of hashnode
-    HashNode(int key, V value)
+    HashNode<V>(int key, std::shared_ptr<V> value)
     {
         this->value = value;
         this->key = key;
@@ -30,25 +31,25 @@ public:
 template <class V>
 class HashTable {
 private:
-    HashNode<V> **HashTable;
+    HashNode<std::shared_ptr<V>> **HashTable;
     int capacity; // current size
     int size;
-    HashNode<V> *dummy; // dummy node
+    HashNode<std::shared_ptr<V>> *dummy; // dummy node
 
 public:
     HashTable<V>();
     ~HashTable<V>();
     int hashFunc(int key);
     void reHash();
-    void insertNode(int key, V value);
-    V* findNode(int key);
+    void insertNode(int key, std::shared_ptr<V> value);
+    std::shared_ptr<V> findNode(int key);
     void markDeleted(int key);
     void deleteTable();
 };
 
 /////////////////////////////////implementation///////////////////////////////////////////////////////////////////
 
-<class v>
+<class V>
 HashTable<V>::HashTable<V>()
     {
         HashTable = new HashNode<V>*[capacity]; ///parameters for initializer?
@@ -56,23 +57,23 @@ HashTable<V>::HashTable<V>()
         size = 0;
 
         for (int i = 0; i < capacity; i++)
-            HashTable[i] = NULL;
+            HashTable[i] = nullptr;
         // dummy node with key -1
         dummy = new HashNode<V>(-1, nullptr); ///????????
     }
 
-    <class v>
+    <class V>
     int HashTable<V>::hashFunc(int key)
     {
         return key % capacity;
     }
 
-<class v>
+<class V>
 HashTable<V>::~HashTable<V>(){
     deleteTable();
 }
 
-<class v>
+<class V>
 void HashTable<V>::reHash()
 {
     int oldCapacity = capacity;
@@ -92,8 +93,8 @@ void HashTable<V>::reHash()
     HashTable = newHashTable;
 }
 
-<class v>
-void HashTable<V>::insertNode(int key, V value) {
+<class V>
+void HashTable<V>::insertNode(int key, std::shared_ptr<V> value) {
     HashNode<V>* temp = new HashNode<V>(key, value);
 
     // Apply hash function to find index for given key
@@ -119,8 +120,8 @@ void HashTable<V>::insertNode(int key, V value) {
     }
 }
 
-<class v>
-V* HashTable<V>::findNode(int key)
+<class V>
+std::shared_ptr<V> HashTable<V>::findNode(int key)
 {
     int hashIndex = hashFunc(key);
     int counter = 0;
@@ -137,7 +138,7 @@ V* HashTable<V>::findNode(int key)
     return nullptr;
 }
 
-<class v>
+<class V>
 void HashTable<V>::markDeleted(int key){
     int hashIndex = hashFunc(key);
     int counter = 0;
@@ -155,7 +156,7 @@ void HashTable<V>::markDeleted(int key){
     return;
 }
 
-<class v>
+<class V>
 void HashTable<V>::isDeleted(int key){
     int hashIndex = hashFunc(key);
     int counter = 0;
@@ -173,7 +174,7 @@ void HashTable<V>::isDeleted(int key){
     return true;
 }
 
-<class v>
+<class V>
 void HashTable<V>::deleteTable() {
     for (int i = 0; i < cap; ++i)
     {
@@ -181,8 +182,6 @@ void HashTable<V>::deleteTable() {
     }
     delete[] hashTable;
 }
-
-
 
 
 #endif //WET2_HASHTABLE_H

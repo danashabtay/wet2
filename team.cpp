@@ -4,6 +4,11 @@
 
 #include "team.h"
 
+std::shared_ptr<permutation_t> team::getPermutation() const {
+    return m_team_spirit;
+}
+
+
 bool team::hasKeeper() const{
     return m_has_goalkeeper;
 }
@@ -31,3 +36,8 @@ int team::getId(){
 std::shared_ptr<permutation_t> team::getPermutation() const{
     return m_team_spirit;
 }
+
+void team::addPlayerStats(int ability, permutation_t spirit){
+    m_team_spirit=m_team_spirit*spirit;
+    m_total_ability+=ability;
+};

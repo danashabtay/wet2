@@ -23,8 +23,8 @@ class teamNode{
     int rank;
 };
 
-HashTable<playerNode> players_hashTable;
-HashTable<teamNode> teams_hashTable;
+HashTable<playerNode*> players_hashTable; ///unique ptr??
+HashTable<teamNode*> teams_hashTable; ///unique ptr??
 
 public:
     UnionFind();
@@ -32,10 +32,14 @@ public:
     void addSinglePlayer(shared_ptr<player> newData ,int playerId, int teamId);
     void addTeam(shared_ptr<team> newData);
     void UniteTeams(int id1, int id2));
-    Node find(Node data);
+    playerNode* find(playerNode* data);
     int findNumGames(int playerId);
     permutation_t findSpirit(int playerId);
     bool isActive(int playerId);
+    void markDeleted(int teamId);
+    bool doesExist(int playerId);
+    void addGame(int teamId1, int teamId2);
+    std::shared_ptr<player> findById(int playerId);
 };
 
 

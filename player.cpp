@@ -12,7 +12,11 @@ int player::getNumGames(){
     return m_games_played;
 }
 
-int player::addCards(int sum){
+void player::addCards(int sum){
     m_cards+=sum;
     return;
+}
+
+int player::getCards(){
+    return m_cards;
 }

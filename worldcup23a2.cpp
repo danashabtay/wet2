@@ -199,10 +199,15 @@ output_t<int> world_cup_t::get_player_cards(int playerId)
         output_t<int> out(StatusType::INVALID_INPUT);
         return out;
     }
-	// TODO: Your code goes here
-	return StatusType::SUCCESS;
+    if(m_game.doesExist(playerId)){
+        return StatusType::FAILURE;
+    }
+    std::shared_ptr<player> player = m_game.findById(playerId);
+    int cards = player->getCards();
+    output_t<int> out(cards);
+    return out;
 }
-//updated
+
 output_t<int> world_cup_t::get_team_points(int teamId)
 {
     if(teamId<=0){
@@ -225,7 +230,8 @@ output_t<int> world_cup_t::get_ith_pointless_ability(int i)
         return out;
     }
     std::shared_ptr<team> team1 = m_all_teams_ability.getByRank(i);
-    return team1->getAbility;
+    output_t<int> out(team1->getAbility());
+    return out;
 }
 
 output_t<permutation_t> world_cup_t::get_partial_spirit(int playerId)

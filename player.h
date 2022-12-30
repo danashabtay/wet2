@@ -24,6 +24,7 @@ m_team_id(teamId), m_isGoalKeeper(goalKeeper) {}
 permutation_t getSpirit():
 int getNumGames();
 void addCards(int sum);
+int getCards();
 
 };
 

@@ -29,7 +29,7 @@ class team {
                             m_team_spirit(new permutation_t()), m_total_ability(0), m_games_played(0){
             m_team_spirit=m_team_spirit.neutral();
         }
-        void addPlayerStats(int ability, permutation_t spirit);
+        void addPlayerStats(int ability, permutation_t spirit, bool isKeeper);
 };
 
 

@@ -4,7 +4,7 @@ world_cup_t::world_cup_t()
 {
 	m_num_teams=0;
     m_all_teams_id = AvlTree<team, int>();
-    m_all_teams_ability = AVLRankTree<team, int>();
+    m_all_teams_ability = AVLRankTree<int, int>();
     m_all_eligible_teams = AvlTree<team, int>();
     m_game = UnionFind::UnionFind();
 }
@@ -21,19 +21,16 @@ StatusType world_cup_t::add_team(int teamId)
     }
 
     std::shared_ptr<team> tmp_id = m_all_teams_id.find_by_key(teamId);
-    std::shared_ptr<team> tmp_ability = m_all_teams_ability.getByKey(teamId); /// need to check rank tree?
-    if(tmp_id != nullptr || tmp_ability != nullptr){
+    if(tmp_id != nullptr){
         tmp_id=nullptr;
-        tmp_ability= nullptr;
         return StatusType::FAILURE;
     }
 
     std::shared_ptr<team> team1 (new team(teamId));
     m_all_teams_id.insert(team1, teamId);
-    m_all_teams_ability.Insert(teamId, team1);
+    m_all_teams_ability.Insert(0, teamId);
     m_game.addTeam(team1);
     tmp_id=nullptr;
-    tmp_ability= nullptr;
     m_num_teams++;
     return StatusType::SUCCESS;
 }
@@ -44,13 +41,13 @@ StatusType world_cup_t::remove_team(int teamId)
         return StatusType::INVALID_INPUT;
     }
     std::shared_ptr<team> team1 = m_all_teams_id.find_by_key(teamId);
-    std::shared_ptr<team> team1_ability = m_all_teams_ability.getByKey(teamId); /// need to check rank tree?
-    if(team1 == nullptr || team1_ability == nullptr){
+    if(team1 == nullptr){
         return StatusType::FAILURE;
     }
     //remove from id all trees:
     m_all_teams_id.remove(teamId);
-    m_all_teams_ability.Remove(teamId);
+    int ability=team1->getTeamAbility();
+    m_all_teams_ability.Remove(ability,teamId);
     if(team1.hasKeeper()){
         m_all_eligible_teams.remove(teamId);
     }
@@ -81,8 +78,18 @@ StatusType world_cup_t::add_player(int playerId, int teamId,
 
     std::shared_ptr<player> newPlayer (new player(playerId,cards,gamesPlayed,ability,spirit,teamId,goalKeeper);
 
+    int old_ability=team->getTeamAbility();
+    m_all_teams_ability.Remove(old_ability,teamId);
+
+    if(goalKeeper && (!team->m_has_goalkeeper)){
+        m_all_eligible_teams.insert(team,teamId);
+    }
+
     team->addPlayerStats(ability, spirit);
     m_game.addSinglePlayer(newPlayer, playerId, teamId);
+
+    int new_ability=team->getTeamAbility();
+    m_all_teams_ability.Insert(new_ability,teamId);
 
     return StatusType::SUCCESS;
 }

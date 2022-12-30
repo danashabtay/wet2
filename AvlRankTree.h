@@ -13,15 +13,12 @@
 #include <iostream>
 #include <stdlib.h>
 
-#include "../Exceptions/AVLExceptions.h"
-
-
 template<class T, class K>
 class AVLRankTree {
 private:
     struct Node {
         K key;
-        std::shared_ptr<T> data;
+        T data;
         int height;
         int rank;
         Node<T,K>* left;
@@ -56,115 +53,32 @@ private:
     void rrRotation(Node* node);
     void rlRotation(Node* node);
     void lrRotation(Node* node);
-    Node<T,K>* getNode(K key);
+    Node<T,K>* getNode(K key, T data);
     void ParentPointTo(Node* child, Node* newChild);
-    // recursions
     void print2(Node* nodeToPrint, int level);
-    //T* getSortedArray2(T* array, Node* node);
     void destroy2(Node* node);
-    //Node<T,K>* LoadSortedArray2(K* sortedKeysArray, T* sortedArray, int length,
-                           Node* parent);
-    Node<T,K>* findClosestParentOf(K key);
-    int findLeftest(K key);
-    std::shared_ptr<T> Select(Node<T,K>* node, int k)
+
+    T Select(Node<T,K>* node, int k)
 public:
     AVLRankTree();
     virtual ~AVLRankTree();
     void Reset();
-    void LoadSortedArray(K* sortedKeysArray, T* sortedDataArray, int length);
     int GetSize();
     int getInRange(K min, K max);
-    void Insert(K key, std::shared_ptr<T> data);
-    void Remove(K key);
-    std::shared_ptr<T> getByKey(K key);
-    std::shared_ptr<T> getByRank(int i);
-    //bool DoesExist(K key);
-    //std::shared_ptr<T> getSortedArray();
-    //std::shared_ptr<T>& getSmallest();
+    void Insert(K key, T data);
+    void Remove(K key, T data);
+    T getByKey(K key, T data);
+    T getByRank(int i);
     void print();
 };
 
 /********************************* Public Functions *******************************/
+
 template<class T, class K>
 AVLRankTree<T,K>::AVLRankTree() {
     root = NULL;
     smallest = NULL;
     size = 0;
-}
-
-template<class T, class K>
-typename AVLRankTree<T,K>::Node<T,K>* AVLRankTree<T,K>::findClosestParentOf(K key) {
-    Node* currentNode = root;
-    while ((currentNode != NULL) && (currentNode->key != key)) {
-        if (key < currentNode->key) { // left subtree
-            if (currentNode->left == NULL) { //that means we wont find the exact node we need
-                return currentNode;
-            } else {
-                currentNode = currentNode->left;
-            }
-        } else if (key > currentNode->key) {
-            if (currentNode->right == NULL) { //that means we wont find the exact node we need
-                return currentNode;
-            } else {
-                currentNode = currentNode->right;
-            }
-        } else { // equal
-            return currentNode;
-        }
-    }
-    return currentNode;
-}
-
-template<class T, class K>
-int AVLRankTree<T,K>::getInRange(K min, K max) {
-
-//	int weakRank = 0;
-//	int strongRank = 0;
-
-    if (max <= min)
-        throw IllegalInput();
-    int smallerThenMax = findLeftest(max);
-    int smallerThenMin = findLeftest(min);
-    int range = smallerThenMax - smallerThenMin;
-    if (DoesExist(min))
-        range++;
-    return range;
-    // TODO count edges
-
-//	Node* currNode = weakestHero;
-//	Node* parentNode;
-//	while (currNode->parent != NULL) {
-//		parentNode = currNode->parent;
-//		if (parentNode->left == currNode) { //I was left son
-//			weakRank = currNode->rank + 1;
-//		}
-//		currNode = parentNode;
-//	}
-//
-//	currNode = strongestHero;
-//	parentNode = currNode->parent;
-//	while (currNode->parent != NULL) {
-//		parentNode = currNode->parent;
-//		if (parentNode->right == currNode) { //I was right son
-//			strongRank =
-//			//strongRank += currNode->left.rank;
-//		}
-//		currNode = parentNode;
-//	}
-
-    //int weakRankKids = 0;
-    //int strongRankKids = 0 ;
-
-    //while(weakestHero->parent != NULL) {
-    //weakRankKids += weakestHero->left.rank;
-    //}
-
-    //while(strongestHero->parent != NULL) {
-    //	strongRankKids += strongestHero->left.rank;
-    //}
-
-//	int diff = strongRank - weakRank;
-//	return diff;
 }
 
 template<class T, class K>
@@ -181,24 +95,6 @@ void AVLRankTree<T,K>::Reset() {
     root = NULL;
     return;
 }
-/*
-
-template<class T, class K>
-void AVLRankTree<T,K>::LoadSortedArray(K* sortedKeysArray, T* sortedDataArray,
-                                        int length) {
-    // verify sorted keys array
-    for (int i = 1; i < length; i++)
-        if (sortedKeysArray[i - 1] > sortedKeysArray[i])
-            throw IllegalInput();
-    Reset();
-    root = LoadSortedArray2(sortedKeysArray, sortedDataArray, length, NULL);
-    updateSmallest();
-    setAllRanks(root);
-
-    this->size = length;
-    return;
-}
-*/
 
 // Time complexity: O(1)
 template<class T, class K>
@@ -209,45 +105,59 @@ int AVLRankTree<T,K>::GetSize() {
 // Time complexity: O(log(n))
 template<class T, class K>
 void AVLRankTree<T,K>::Insert(K key, T data) {
-    if (DoesExist(key)) {
-        throw KeyAlreadyExist();
-    }
-
     // Create the node
     Node<T,K>* new_node = new Node();
     new_node->height = 1; // height of the subtree with this node as root.
     new_node->rank = 1;
-    new_node->left = NULL;
-    new_node->right = NULL;
-    new_node->parent = NULL;
+    new_node->left = nullptr;
+    new_node->right = nullptr;
+    new_node->parent = nullptr;
     new_node->key = key;
     new_node->data = data;
 
     // choose where to add the node and add it.
-    if (root == NULL) { // tree is empty
+    if (root == nullptr) { // tree is empty
         root = new_node;
         smallest = new_node;
         this->size++;
         return;
     } else { // tree is not empty.
+
         Node<T,K>* current = root;
-        Node<T,K>* parent = NULL;
+        Node<T,K>* parent = nullptr;
 
         //////////////////////////////////////////////////////
-        while ((current != NULL) && (current->key != key)) {
+        while ((current != nullptr) && (current->key != key)) {
             parent = current;
             if (key < current->key) { // left subtree
                 current = current->left;
-            } else { // right subtree
+            } else if(key > current->key)
+            { // right subtree
                 current = current->right;
+            }
+            else{ //keys are equal
+                if(data< current->data){
+                    current = current->left;
+                }
+                else{
+                    current = current->right;
+                }
             }
         }
 
         // add to tree
         if (key < parent->key)
             parent->left = new_node;
-        else
+        else if(key > parent->key)
             parent->right = new_node;
+        else{ //keys are equal
+            if(data< parent->data){
+                parent->left = new_node;
+            }
+            else{
+                parent->right = new_node;
+            }
+        }
         new_node->parent = parent;
         /////////////////////////////////////////////////////
 
@@ -263,8 +173,8 @@ void AVLRankTree<T,K>::Insert(K key, T data) {
 
 // Time complexity: O(log(n))
 template<class T, class K>
-void AVLRankTree<T,K>::Remove(K key) {
-    Node<T,K>* node = getNode(key);
+void AVLRankTree<T,K>::Remove(K key, T data) {
+    Node<T,K>* node = getNode(key, data);
     if (node)
         RemoveNode(node);
     return;
@@ -272,8 +182,8 @@ void AVLRankTree<T,K>::Remove(K key) {
 
 // Time complexity: log(n)
 template<class T, class K>
-std::shared_ptr<T> AVLRankTree<T,K>::getByKey(K key) {
-    Node<T,K>* node = getNode(key);
+T AVLRankTree<T,K>::getByKey(K key, T data) {
+    Node<T,K>* node = getNode(key, data);
     if (!node)
         return nullptr;
     return node->data;
@@ -281,36 +191,9 @@ std::shared_ptr<T> AVLRankTree<T,K>::getByKey(K key) {
 
 // Time complexity: log(n)
 template<class T, class K>
-std::shared_ptr<T> AVLRankTree<T,K>::getByRank(int i) {
+T AVLRankTree<T,K>::getByRank(int i) {
     return Select(root, i);
 }
-
-/*
-
-// Time complexity: log(n)
-template<class T, class K>
-bool AVLRankTree<T,K>::DoesExist(K key) {
-    return (getNode(key) != NULL);
-}
-
-// allocating an array that will hold the entire tree sorted.
-// Time complexity: O(n)
-template<class T, class K>
-T* AVLRankTree<T,K>::getSortedArray() {
-    T* result = new T[this->size];
-
-    getSortedArray2(result, root); // placing the tree in "result"
-    return result;
-}
-
-// return the T with the smallest key
-template<class T, class K>
-T AVLRankTree<T,K>::getSmallest() {
-    if (smallest)
-        return this->smallest->data;
-    throw KeyDoesNotExist();
-}
-*/
 
 // printing the tree. using the recursion print2
 template<class T, class K>
@@ -320,7 +203,7 @@ void AVLRankTree<T,K>::print() {
 
 /********************************* Private Functions *******************************/
 template<class T, class K>
-std::shared_ptr<T> AVLRankTree<T,K>::Select(Node<T,K>* node, int k) {
+T AVLRankTree<T,K>::Select(Node<T,K>* node, int k) {
 if(node->left->rank==k+1 || (node->left==nullptr && k==1)){
     return node->data;
 }
@@ -336,13 +219,13 @@ template<class T, class K>
 void AVLRankTree<T,K>::RemoveNode(Node<T,K>* node) {
     // if leaf
     if (!(node->left) && !(node->right)) {
-        ParentPointTo(node, NULL);
+        ParentPointTo(node, nullptr);
         if (node->parent) {
             updateHeights(node->parent);
             updateRanks(node->parent);
             this->balance(node->parent);
         } else {
-            this->smallest = NULL;
+            this->smallest = nullptr;
         }
         this->size--;
         delete node;
@@ -555,13 +438,21 @@ void AVLRankTree<T,K>::rlRotation(Node<T,K>* node) {
 }
 
 template<class T, class K>
-typename AVLRankTree<T,K>::Node<T,K>* AVLRankTree<T,K>::getNode(K key) {
+typename AVLRankTree<T,K>::Node<T,K>* AVLRankTree<T,K>::getNode(K key, T data) {
     Node<T,K>* current = root;
-    while ((current != NULL) && (current->key != key)) { // while wasn't placed yet
+    while ((current != NULL) && (current->key != key) && (current->data != data)) { // while wasn't placed yet
         if (key < current->key) { // left subtree
             current = current->left;
-        } else { // right subtree
+        } else if(key > current->key) { // right subtree
             current = current->right;
+        }
+        else{ //keys are equal
+            if(data< current->data){
+                current = current->left;
+            }
+            else{
+                current = current->right;
+            }
         }
     }
     return current;
@@ -604,17 +495,6 @@ void AVLRankTree<T,K>::print2(Node<T,K>* nodeToPrint, int level) {
         print2(nodeToPrint->left, level + 1);
     }
 }
-/*
-// placing the subtree starts with node in the array, and return pointer to the next place in the array
-template<class T, class K>
-T* AVLRankTree<T,K>::getSortedArray2(T* array, Node<T,K>* node) {
-    if (node == NULL)
-        return array;
-    array = getSortedArray2(array, node->left);
-    *array = node->data;
-    array++;
-    return getSortedArray2(array, node->right);
-}*/
 
 // destroying the array, post order
 template<class T, class K>
@@ -624,65 +504,6 @@ void AVLRankTree<T,K>::destroy2(Node<T,K>* node) {
     destroy2(node->left);
     destroy2(node->right);
     delete node;
-}
-/*
-template<class T, class K>
-typename AVLRankTree<T,K>::Node<T,K>* AVLRankTree<T,K>::LoadSortedArray2(
-        K* sortedKeysArray, T* sortedDataArray, int length, Node<T,K>* parent) {
-    if (length == 0)
-        return NULL;
-    Node<T,K>* node = new Node();
-
-    int pos = length / 2;
-    node->key = sortedKeysArray[pos];
-    node->data = sortedDataArray[pos];
-    node->parent = parent;
-    node->left = LoadSortedArray2(sortedKeysArray, sortedDataArray, pos, node);
-    node->right = LoadSortedArray2(sortedKeysArray + pos + 1,
-                                   sortedDataArray + pos + 1, length - pos - 1, node);
-
-    // find the height
-    if (!node->left && !node->right) // no childs
-        node->height = 1;
-    else if (!node->left) // right child only
-        node->height = node->right->height + 1;
-    else if (!node->right) // left child only
-        node->height = node->left->height + 1;
-    else
-        node->height =
-                (node->left->height > node->right->height) ?
-                node->left->height : node->right->height; // both children exist
-
-    return node;
-}*/
-
-template<class T, class K>
-int AVLRankTree<T,K>::findLeftest(K key) {
-    int smallerNodes = 0;
-    Node<T,K>* current = this->findClosestParentOf(key);
-    if (current == NULL) {
-        return 0;
-    }
-
-    // first iteration
-    if (current->key < key || current->key == key) { //this is the edge case of not finding the exact node.
-        smallerNodes += 1; // count parent node
-        if (current->left) // cont left childs
-            smallerNodes += current->left->rank;
-    }
-
-    while (current != root) {
-        Node<T,K>* parent = current->parent;
-        if (parent->left && parent->left->key == current->key) { // if current is left child of it's parent
-            // do nothing
-        } else { // if current is right child of it's parent
-            smallerNodes += 1; // count parent node
-            if (parent->left) // cont left childs
-                smallerNodes += parent->left->rank;
-        }
-        current = parent;
-    }
-    return smallerNodes;
 }
 
 #endif //AVLTREE_H_AVLRANKTREE_H

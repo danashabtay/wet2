@@ -37,7 +37,10 @@ std::shared_ptr<permutation_t> team::getPermutation() const{
     return m_team_spirit;
 }
 
-void team::addPlayerStats(int ability, permutation_t spirit){
+void team::addPlayerStats(int ability, permutation_t spirit, bool isKeeper){
     m_team_spirit=m_team_spirit*spirit;
     m_total_ability+=ability;
+    if(isKeeper){
+        m_has_goalkeeper=true;
+    }
 };

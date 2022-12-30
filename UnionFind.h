@@ -11,10 +11,10 @@
 class UnionFind {
 class playerNode{
     std::shared_ptr<player> data;
-    playerNode* parent; ///unique ptr?
+    std::shared_ptr<playerNode> parent;
     int rg;
     permutation_t rs;
-    teamNode* team; ///unique ptr?
+    std::shared_ptr<teamNode> team;
 };
 
 class teamNode{
@@ -23,8 +23,8 @@ class teamNode{
     int rank;
 };
 
-HashTable<playerNode*> players_hashTable; ///unique ptr??
-HashTable<teamNode*> teams_hashTable; ///unique ptr??
+HashTable<playerNode> players_hashTable;
+HashTable<teamNode> teams_hashTable;
 
 public:
     UnionFind();

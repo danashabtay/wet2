@@ -48,6 +48,7 @@ public:
     bool doesExist(int playerId);
     void addGame(int teamId1, int teamId2);
     std::shared_ptr<player> findById(int playerId);
+    permutation_t getPartialSpirit(int playerId);
 };
 
 

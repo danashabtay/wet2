@@ -240,8 +240,15 @@ output_t<permutation_t> world_cup_t::get_partial_spirit(int playerId)
         output_t<permutation_t> out(StatusType::INVALID_INPUT);
         return out;
     }
-	// TODO: Your code goes here
-	return permutation_t();
+    if(m_game.doesExist(playerId)){
+        return StatusType::FAILURE;
+    }
+    if(!m_game.isActive(playerId)){
+        return StatusType::FAILURE;
+    }
+
+    output_t<permutation_t> out(m_game.getPartialSpirit(playerId));
+    return out;
 }
 
 StatusType world_cup_t::buy_team(int teamId1, int teamId2)

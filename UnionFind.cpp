@@ -145,8 +145,19 @@ void UnionFind::addGame(int teamId1, int teamId2){
     return;
 }
 
-std::shared_ptr<player> findById(int playerId){
+std::shared_ptr<player> UnionFind::findById(int playerId){
     playerNode* node=players_hashTable.findNode(playerId);
     playerNode* parent=find(node);
     return parent->data;
+}
+
+permutation_t UnionFind::getPartialSpirit(int playerId){
+    playerNode* node=players_hashTable.findNode(playerId);
+    playerNode* parent=find(node);
+    permutation_t sum= permutation_t::neutral();
+    while(node!=parent){
+        sum=(parent->rs)*sum;
+        node=node->parent;
+    }
+    return sum;
 }

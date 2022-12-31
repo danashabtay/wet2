@@ -289,7 +289,7 @@ void AVLRankTree<T,K>::RemoveNode(Node<T,K>* node) {
 template<class T, class K>
 void AVLRankTree<T,K>::updateHeights(Node<T,K>* node) {
     Node<T,K>* current = node;
-    while (current != NULL) {
+    while (current != nullptr) {
         int leftHeight = 0, rightHeight = 0;
         if (current->left) {
             leftHeight = current->left->height;
@@ -307,7 +307,7 @@ void AVLRankTree<T,K>::updateHeights(Node<T,K>* node) {
 template<class T, class K>
 void AVLRankTree<T,K>::updateRanks(Node<T,K>* node) {
     Node<T,K>* current = node;
-    while (current != NULL) {
+    while (current != nullptr) {
         int leftRank = 0, rightRank = 0;
         if (current->left) {
             leftRank = current->left->rank;
@@ -326,10 +326,10 @@ template<class T, class K>
 void AVLRankTree<T,K>::updateSmallest() {
     Node<T,K>* current = root;
     if (!current) {
-        this->smallest = NULL;
+        this->smallest = nullptr;
         return; // empty tree
     }
-    while (current->left != NULL) {
+    while (current->left != nullptr) {
         current = current->left;
     }
     this->smallest = current;
@@ -374,7 +374,6 @@ void AVLRankTree<T,K>::balance(Node<T,K>* node) {
         balance(node->parent);
     }
 
-    //updateSmallest();
 }
 
 // node: the node with the |balance|>=2
@@ -440,7 +439,7 @@ void AVLRankTree<T,K>::rlRotation(Node<T,K>* node) {
 template<class T, class K>
 typename AVLRankTree<T,K>::Node<T,K>* AVLRankTree<T,K>::getNode(K key, T data) {
     Node<T,K>* current = root;
-    while ((current != NULL) && (current->key != key) && (current->data != data)) { // while wasn't placed yet
+    while ((current != nullptr) && (current->key != key) && (current->data != data)) { // while wasn't placed yet
         if (key < current->key) { // left subtree
             current = current->left;
         } else if(key > current->key) { // right subtree
@@ -460,7 +459,7 @@ typename AVLRankTree<T,K>::Node<T,K>* AVLRankTree<T,K>::getNode(K key, T data) {
 
 template<class T, class K>
 void AVLRankTree<T,K>::ParentPointTo(Node<T,K>* child, Node<T,K>* newChild) {
-    if (child->parent == NULL)
+    if (child->parent == nullptr)
         root = newChild;
     else {
         if (child->parent->left == child) {

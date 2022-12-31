@@ -37,10 +37,11 @@ HashTable<teamNode> teams_hashTable;
 public:
     UnionFind();
     ~UnionFind();
+    void destroy();
     void addSinglePlayer(shared_ptr<player> newData ,int playerId, int teamId);
     void addTeam(shared_ptr<team> newData);
-    void UniteTeams(int id1, int id2));
-    playerNode* find(playerNode* data);
+    void UniteTeams(int owner, int added);
+    std::shared_ptr<playerNode> find(std::shared_ptr<playerNode> data);
     int findNumGames(int playerId);
     permutation_t findSpirit(int playerId);
     bool isActive(int playerId);

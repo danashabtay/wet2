@@ -11,7 +11,10 @@ world_cup_t::world_cup_t()
 
 world_cup_t::~world_cup_t()
 {
-	// TODO: Your code goes here
+    m_all_teams_id.deleteTree(m_all_teams_id.getRoot());
+    m_all_teams_ability.Reset();
+    m_all_eligible_teams.deleteTree(m_all_eligible_teams.getRoot());
+    m_game.destroy();
 }
 
 StatusType world_cup_t::add_team(int teamId)
@@ -259,6 +262,17 @@ StatusType world_cup_t::buy_team(int teamId1, int teamId2)
     if(teamId1<=0 || teamId2<=0 || teamId1 == teamId2){
         return StatusType::INVALID_INPUT;
     }
-	// TODO: Your code goes here
-	return StatusType::SUCCESS;
+    std::shared_ptr<team> team1 = m_all_teams_id.find_by_key(teamId1);
+    if(team1 == nullptr){
+        output_t<int> out(StatusType::FAILURE);
+        return out;
+    }
+    std::shared_ptr<team> team2 = m_all_teams_id.find_by_key(teamId2);
+    if(team2 == nullptr){
+        output_t<int> out(StatusType::FAILURE);
+        return out;
+    }
+    m_game.UniteTeams(teamId1,teamId2);
+    remove_team(teamId2);
+    return StatusType::SUCCESS;
 }

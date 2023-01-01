@@ -141,7 +141,7 @@ int UnionFind::findNumGames(int playerId){
 permutation_t UnionFind::findSpirit(int playerId){
     std::shared_ptr<playerNode> node = players_hashTable.findNode(playerId);
     std::shared_ptr<playerNode> parent = find(node);
-    permutation_t spiritSum= spiritSum.neutral();
+    permutation_t spiritSum= permutation::neutral();
     while(node!=parent){
         spiritSum=node->rs.inv()*spiritSum;
         node=node->parent;

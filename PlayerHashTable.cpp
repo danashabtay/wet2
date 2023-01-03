@@ -80,7 +80,7 @@ std::shared_ptr<playerNode> PlayerHashTable::findNode(int key)
             return nullptr;
         // if node found return its value
         if (m_HashTable[hashIndex]->key == key)
-            return &m_HashTable[hashIndex]->value;
+            return m_HashTable[hashIndex]->value;
         hashIndex++;
         hashIndex %= capacity;
     }

@@ -151,7 +151,6 @@ permutation_t UnionFind::findSpirit(int playerId){
 
 bool UnionFind::isActive(int playerId){
     std::shared_ptr<playerNode> node = players_hashTable.findNode(playerId);
-
     std::shared_ptr<playerNode> parent = find(node);
     std::shared_ptr<teamNode> team = parent->team;
     int teamId = team->data->getId();
@@ -196,4 +195,13 @@ permutation_t UnionFind::getPartialSpirit(int playerId){
         node=node->parent;
     }
     return sum;
+}
+
+bool UnionFind::validTeam(int teamId) {
+    if(teams_hashTable.findNode(teamId)!=nullptr){
+        if(teams_hashTable.isItDeleted(teamId)==false){
+            return false;
+        }
+    }
+    return true;
 }

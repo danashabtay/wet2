@@ -45,6 +45,9 @@ StatusType world_cup_t::remove_team(int teamId)
     if (teamId<=0){
         return StatusType::INVALID_INPUT;
     }
+    if(!m_game.validTeam(teamId)){
+        return StatusType::FAILURE;
+    }
     std::shared_ptr<team> team1 = m_all_teams_id.find_by_key(teamId);
     if(team1 == nullptr){
         return StatusType::FAILURE;

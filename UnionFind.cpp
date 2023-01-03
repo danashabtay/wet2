@@ -168,13 +168,13 @@ bool UnionFind::doesExist(int playerId){
 }
 
 void UnionFind::addGame(int teamId1, int teamId2){
-    std::shared_ptr<teamNode> team1 = teams_HashTable.findNode(teamId1);
-    std::shared_ptr<teamNode> team2 = teams_HashTable.findNode(teamId2);
+    //findNode
+    std::shared_ptr<teamNode> team1 = teams_hashTable.findNode(teamId1);
+    std::shared_ptr<teamNode> team2 = teams_hashTable.findNode(teamId2);
     std::shared_ptr<player> rep1= team1->rep;
     std::shared_ptr<player> rep2= team2->rep;
-    rep1->rg++;
-    rep2->rg++;
-    return;
+    rep1->addGame();
+    rep2->addGame();
 }
 
 std::shared_ptr<player> UnionFind::findById(int playerId){

@@ -25,7 +25,7 @@ class player {
         int getNumGames() const;
         void addCards(int sum);
         int getCards() const;
-
+        void addGame();
 };
 
 

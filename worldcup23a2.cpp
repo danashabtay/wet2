@@ -6,7 +6,7 @@ world_cup_t::world_cup_t()
     m_all_teams_id = AvlTree<team, int>();
     m_all_teams_ability = AVLRankTree<int, int>();
     m_all_eligible_teams = AvlTree<team, int>();
-    m_game = UnionFind::UnionFind();
+    m_game = UnionFind();
 }
 
 world_cup_t::~world_cup_t()
@@ -31,7 +31,9 @@ StatusType world_cup_t::add_team(int teamId)
 
     std::shared_ptr<team> team1 (new team(teamId));
     m_all_teams_id.insert(team1, teamId);
+    //m_all_teams_ability.Insert(teamId, *team1);
     m_all_teams_ability.Insert(0, teamId);
+    //m_all_teams_ability.Insert(0, *team1);
     m_game.addTeam(teamId,team1);
     tmp_id=nullptr;
     m_num_teams++;
@@ -71,8 +73,8 @@ StatusType world_cup_t::add_player(int playerId, int teamId,
         return StatusType::INVALID_INPUT;
     }
 
-    std::shared_ptr<team> team = m_all_teams_id.find_by_key(teamId);
-    if(team == nullptr){
+    std::shared_ptr<team> team1 = m_all_teams_id.find_by_key(teamId);
+    if(team1 == nullptr){
         return StatusType::FAILURE;
     }
     if(m_game.doesExist(playerId)){
@@ -81,17 +83,17 @@ StatusType world_cup_t::add_player(int playerId, int teamId,
 
     std::shared_ptr<player> newPlayer (new player(playerId,cards,gamesPlayed,ability,spirit,teamId,goalKeeper);
 
-    int old_ability=team->getTeamAbility();
+    int old_ability=team1->getTeamAbility();
     m_all_teams_ability.Remove(old_ability,teamId);
 
-    if(goalKeeper && (!team->m_has_goalkeeper)){
-        m_all_eligible_teams.insert(team,teamId);
+    if(goalKeeper && (!team1->hasKeeper())){
+        m_all_eligible_teams.insert(team1,teamId);
     }
 
-    team->addPlayerStats(ability, spirit);
+    team1->addPlayerStats(ability, spirit);
     m_game.addSinglePlayer(newPlayer, playerId, teamId);
 
-    int new_ability=team->getTeamAbility();
+    int new_ability=team1->getTeamAbility();
     m_all_teams_ability.Insert(new_ability,teamId);
 
     return StatusType::SUCCESS;

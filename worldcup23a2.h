@@ -27,7 +27,7 @@ class world_cup_t {
 private:
     int m_num_teams;
     AvlTree<team,int> m_all_teams_id;
-    AVLRankTree<team, int> m_all_teams_ability;
+    AVLRankTree<int, int> m_all_teams_ability;
     AvlTree<team,int> m_all_eligible_teams;
     UnionFind m_game;
 	//

@@ -19,3 +19,7 @@ void player::addCards(int sum){
 int player::getCards() const{
     return m_cards;
 }
+
+void player::addGame(){
+    m_games_played++;
+}

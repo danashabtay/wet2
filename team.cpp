@@ -4,7 +4,7 @@
 
 #include "team.h"
 
-std::shared_ptr<permutation_t> team::getPermutation() const {
+permutation_t team::getPermutation() const {
     return m_team_spirit;
 }
 
@@ -40,7 +40,7 @@ int team::getAbility() const{
 
 
 void team::addPlayerStats(int ability, permutation_t spirit, bool isKeeper){
-    m_team_spirit=*m_team_spirit*spirit;//todo:figure out how to handle with no operator=
+    m_team_spirit = m_team_spirit*spirit;//todo:figure out how to handle with no operator=
     m_total_ability+=ability;
     if(isKeeper){
         m_has_goalkeeper=true;

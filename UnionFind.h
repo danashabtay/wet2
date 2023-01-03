@@ -9,6 +9,7 @@
 #include "TeamHashTable.h"
 #include "player.h"
 #include "team.h"
+#include <memory>
 
 
 class playerNode;

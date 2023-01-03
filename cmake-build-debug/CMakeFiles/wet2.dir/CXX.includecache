@@ -39,6 +39,8 @@ player.h
 C:/Users/user/Desktop/DataStructures/WET2/wet2/player.h
 team.h
 C:/Users/user/Desktop/DataStructures/WET2/wet2/team.h
+memory
+-
 
 C:/Users/user/Desktop/DataStructures/WET2/wet2/main23a2.cpp
 worldcup23a2.h
@@ -48,17 +50,9 @@ string
 iostream
 -
 
-C:/Users/user/Desktop/DataStructures/WET2/wet2/player.cpp
-player.h
-C:/Users/user/Desktop/DataStructures/WET2/wet2/player.h
-
 C:/Users/user/Desktop/DataStructures/WET2/wet2/player.h
 wet2util.h
 C:/Users/user/Desktop/DataStructures/WET2/wet2/wet2util.h
-
-C:/Users/user/Desktop/DataStructures/WET2/wet2/team.cpp
-team.h
-C:/Users/user/Desktop/DataStructures/WET2/wet2/team.h
 
 C:/Users/user/Desktop/DataStructures/WET2/wet2/team.h
 wet2util.h

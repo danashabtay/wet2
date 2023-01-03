@@ -133,9 +133,9 @@ std::shared_ptr<playerNode> UnionFind::find(std::shared_ptr<playerNode> node) {
 
 int UnionFind::findNumGames(int playerId){
     std::shared_ptr<playerNode> node = players_hashTable.findNode(playerId);
-    std::shared_ptr<playerNode> parent = find(node);
+    std::shared_ptr<playerNode> parentNode = find(node);
     int sum=0;
-    while(node!=parent){
+    while(node!=parentNode){
         sum+=node->rg;
         node=node->parent;
     }

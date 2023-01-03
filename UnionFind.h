@@ -7,7 +7,10 @@
 #include "HashTable.h"
 #include "player.h"
 #include "team.h"
+#include <memory>
 
+
+class UnionFind;
 
 class playerNode;
 
@@ -35,13 +38,14 @@ class UnionFind {
             int rg;
             permutation_t rs;
             std::shared_ptr<teamNode> team;
-            playerNode operator=(const playerNode& n){
+            playerNode& operator=(const playerNode& n){
                 data = n.data;
                 parent = n.parent;
                 rg = n.rg;
                 rs = n.rs;
                 team = n.team;
             }
+
     };
 
 

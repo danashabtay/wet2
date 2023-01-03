@@ -6,21 +6,17 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/user/Desktop/DataStructures/WET2/wet2/AvlRankTree.h
-iostream
--
-stdlib.h
--
-
-C:/Users/user/Desktop/DataStructures/WET2/wet2/Avltree.h
-iostream
--
-memory
--
+C:/Users/user/Desktop/DataStructures/WET2/wet2/PlayerHashTable.cpp
+PlayerHashTable.h
+C:/Users/user/Desktop/DataStructures/WET2/wet2/PlayerHashTable.h
 
 C:/Users/user/Desktop/DataStructures/WET2/wet2/PlayerHashTable.h
 UnionFind.cpp
 C:/Users/user/Desktop/DataStructures/WET2/wet2/UnionFind.cpp
+
+C:/Users/user/Desktop/DataStructures/WET2/wet2/TeamHashTable.cpp
+TeamHashTable.h
+C:/Users/user/Desktop/DataStructures/WET2/wet2/TeamHashTable.h
 
 C:/Users/user/Desktop/DataStructures/WET2/wet2/TeamHashTable.h
 UnionFind.cpp
@@ -42,14 +38,6 @@ C:/Users/user/Desktop/DataStructures/WET2/wet2/team.h
 memory
 -
 
-C:/Users/user/Desktop/DataStructures/WET2/wet2/main23a2.cpp
-worldcup23a2.h
-C:/Users/user/Desktop/DataStructures/WET2/wet2/worldcup23a2.h
-string
--
-iostream
--
-
 C:/Users/user/Desktop/DataStructures/WET2/wet2/player.h
 wet2util.h
 C:/Users/user/Desktop/DataStructures/WET2/wet2/wet2util.h
@@ -67,24 +55,4 @@ stdexcept
 -
 ostream
 -
-
-C:/Users/user/Desktop/DataStructures/WET2/wet2/worldcup23a2.cpp
-worldcup23a2.h
-C:/Users/user/Desktop/DataStructures/WET2/wet2/worldcup23a2.h
-
-C:/Users/user/Desktop/DataStructures/WET2/wet2/worldcup23a2.h
-wet2util.h
-C:/Users/user/Desktop/DataStructures/WET2/wet2/wet2util.h
-team.h
-C:/Users/user/Desktop/DataStructures/WET2/wet2/team.h
-Avltree.h
-C:/Users/user/Desktop/DataStructures/WET2/wet2/Avltree.h
-AvlRankTree.h
-C:/Users/user/Desktop/DataStructures/WET2/wet2/AvlRankTree.h
-UnionFind.h
-C:/Users/user/Desktop/DataStructures/WET2/wet2/UnionFind.h
-memory
--
-player.h
-C:/Users/user/Desktop/DataStructures/WET2/wet2/player.h
 

@@ -9,4 +9,4 @@ add_executable(wet2
         main23a2.cpp
         wet2util.h
         worldcup23a2.cpp
-        worldcup23a2.h team.cpp team.h player.cpp player.h Avltree.h HashTable.h UnionFind.cpp UnionFind.h)
+        worldcup23a2.h team.cpp team.h player.cpp player.h Avltree.h PlayerHashTable.cpp PlayerHashTable.h TeamHashTable.cpp TeamHashTable.h UnionFind.cpp UnionFind.h)

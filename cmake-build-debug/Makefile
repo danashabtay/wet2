@@ -128,6 +128,54 @@ wet2/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\wet2.dir\build.make CMakeFiles/wet2.dir/build
 .PHONY : wet2/fast
 
+PlayerHashTable.obj: PlayerHashTable.cpp.obj
+.PHONY : PlayerHashTable.obj
+
+# target to build an object file
+PlayerHashTable.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\wet2.dir\build.make CMakeFiles/wet2.dir/PlayerHashTable.cpp.obj
+.PHONY : PlayerHashTable.cpp.obj
+
+PlayerHashTable.i: PlayerHashTable.cpp.i
+.PHONY : PlayerHashTable.i
+
+# target to preprocess a source file
+PlayerHashTable.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\wet2.dir\build.make CMakeFiles/wet2.dir/PlayerHashTable.cpp.i
+.PHONY : PlayerHashTable.cpp.i
+
+PlayerHashTable.s: PlayerHashTable.cpp.s
+.PHONY : PlayerHashTable.s
+
+# target to generate assembly for a file
+PlayerHashTable.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\wet2.dir\build.make CMakeFiles/wet2.dir/PlayerHashTable.cpp.s
+.PHONY : PlayerHashTable.cpp.s
+
+TeamHashTable.obj: TeamHashTable.cpp.obj
+.PHONY : TeamHashTable.obj
+
+# target to build an object file
+TeamHashTable.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\wet2.dir\build.make CMakeFiles/wet2.dir/TeamHashTable.cpp.obj
+.PHONY : TeamHashTable.cpp.obj
+
+TeamHashTable.i: TeamHashTable.cpp.i
+.PHONY : TeamHashTable.i
+
+# target to preprocess a source file
+TeamHashTable.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\wet2.dir\build.make CMakeFiles/wet2.dir/TeamHashTable.cpp.i
+.PHONY : TeamHashTable.cpp.i
+
+TeamHashTable.s: TeamHashTable.cpp.s
+.PHONY : TeamHashTable.s
+
+# target to generate assembly for a file
+TeamHashTable.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\wet2.dir\build.make CMakeFiles/wet2.dir/TeamHashTable.cpp.s
+.PHONY : TeamHashTable.cpp.s
+
 UnionFind.obj: UnionFind.cpp.obj
 .PHONY : UnionFind.obj
 
@@ -257,6 +305,12 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... wet2
+	@echo ... PlayerHashTable.obj
+	@echo ... PlayerHashTable.i
+	@echo ... PlayerHashTable.s
+	@echo ... TeamHashTable.obj
+	@echo ... TeamHashTable.i
+	@echo ... TeamHashTable.s
 	@echo ... UnionFind.obj
 	@echo ... UnionFind.i
 	@echo ... UnionFind.s

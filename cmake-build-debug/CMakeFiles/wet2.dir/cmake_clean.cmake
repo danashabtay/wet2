@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/wet2.dir/PlayerHashTable.cpp.obj"
+  "CMakeFiles/wet2.dir/TeamHashTable.cpp.obj"
   "CMakeFiles/wet2.dir/UnionFind.cpp.obj"
   "CMakeFiles/wet2.dir/main23a2.cpp.obj"
   "CMakeFiles/wet2.dir/player.cpp.obj"

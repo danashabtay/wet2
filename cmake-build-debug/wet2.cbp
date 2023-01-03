@@ -85,7 +85,16 @@
 		<Unit filename="C:/Users/user/Desktop/DataStructures/WET2/wet2/Avltree.h">
 			<Option target="wet2"/>
 		</Unit>
-		<Unit filename="C:/Users/user/Desktop/DataStructures/WET2/wet2/HashTable.h">
+		<Unit filename="C:/Users/user/Desktop/DataStructures/WET2/wet2/PlayerHashTable.cpp">
+			<Option target="wet2"/>
+		</Unit>
+		<Unit filename="C:/Users/user/Desktop/DataStructures/WET2/wet2/PlayerHashTable.h">
+			<Option target="wet2"/>
+		</Unit>
+		<Unit filename="C:/Users/user/Desktop/DataStructures/WET2/wet2/TeamHashTable.cpp">
+			<Option target="wet2"/>
+		</Unit>
+		<Unit filename="C:/Users/user/Desktop/DataStructures/WET2/wet2/TeamHashTable.h">
 			<Option target="wet2"/>
 		</Unit>
 		<Unit filename="C:/Users/user/Desktop/DataStructures/WET2/wet2/UnionFind.cpp">

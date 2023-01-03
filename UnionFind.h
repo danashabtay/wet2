@@ -28,21 +28,21 @@ public:
     }
 };
 
-class playerNode{
-public:
-    std::shared_ptr<player> data;
-    std::shared_ptr<playerNode> parent;
-    int rg;
-    permutation_t rs;
-    std::shared_ptr<teamNode> team;
-    playerNode operator=(const playerNode& n){
-        data = n.data;
-        parent = n.parent;
-        rg = n.rg;
-        rs = n.rs;
-        team = n.team;
-    }
-};
+    class playerNode{
+        public:
+            std::shared_ptr<player> data;
+            std::shared_ptr<playerNode> parent;
+            int rg;
+            permutation_t rs;
+            std::shared_ptr<teamNode> team;
+            playerNode operator=(const playerNode& n){
+                data = n.data;
+                parent = n.parent;
+                rg = n.rg;
+                rs = n.rs;
+                team = n.team;
+            }
+    };
 
 class UnionFind {
 

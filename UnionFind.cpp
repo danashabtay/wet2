@@ -43,8 +43,8 @@ void UnionFind::addSinglePlayer(std::shared_ptr<player> newData ,int playerId, i
     //else need to join to other set
     node->parent=team1->rep;
     node->rg=(node->rg)-(node->parent->rg);
-    node->rs=(node->parent->rs->inv())*(team1->team_spirit)*(node->rs);
-    team1->team_spirit=(team1->team_spirit)*(newData->getSpirit);
+    node->rs=(node->parent->rs.inv())*(team1->team_spirit)*(node->rs);
+    team1->team_spirit=(team1->team_spirit)*(newData->getSpirit());
 }
 
 ///update here rs and rg
@@ -54,7 +54,7 @@ void UnionFind::UniteTeams(int owner, int added){
     std::shared_ptr<playerNode> ownerParent = find(node1);
     std::shared_ptr<playerNode> addedParent = find(node2);
     //if they are part of same set do nothing
-    if (parent1->data == parent2->data) {
+    if (node1->parent->data == node2->parent->data) {
         return;
     }
     //else whoever rank is higher becomes parent of other
@@ -148,6 +148,7 @@ permutation_t UnionFind::findSpirit(int playerId){
 
 bool UnionFind::isActive(int playerId){
     std::shared_ptr<playerNode> node = players_hashTable.findNode(playerId);
+
     std::shared_ptr<playerNode> parent = find(node);
     std::shared_ptr<teamNode> team = parent->team;
     int teamId = team->data->getId();
@@ -168,6 +169,7 @@ bool UnionFind::doesExist(int playerId){
 
 void UnionFind::addGame(int teamId1, int teamId2){
     //findNode
+
     std::shared_ptr<teamNode> team1 = teams_hashTable.findNode(teamId1);
     std::shared_ptr<teamNode> team2 = teams_hashTable.findNode(teamId2);
     std::shared_ptr<player> rep1= team1->rep;

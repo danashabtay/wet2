@@ -16,14 +16,14 @@ public:
     // Constructor of hashnode
     HashNode<V>() = default;
     HashNode<V>(std::shared_ptr<V> value){
-        this->value = value;
-        this->isDeleted = false;
+        value = value;
+        isDeleted = false;
     }
     HashNode<V>(int key, std::shared_ptr<V> value)
     {
-        this->value = value;
-        this->key = key;
-        this->isDeleted= false;
+        value = value;
+        key = key;
+        isDeleted= false;
     }
     bool isItDeleted() {
         return isDeleted;
@@ -42,11 +42,11 @@ class HashTable {
         HashNode<std::shared_ptr<V>> *dummy; // dummy node
 
     public:
+        void insertNode(int key, std::shared_ptr<V> value);
         HashTable();
         ~HashTable();
         int hashFunc(int key);
         void reHash();
-        void insertNode(int key, std::shared_ptr<V> value);
         std::shared_ptr<V> findNode(int key);
         void markDeleted(int key);
         void deleteTable();

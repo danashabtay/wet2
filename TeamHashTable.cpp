@@ -1,105 +1,50 @@
 //
-// Created by user on 25/12/2022.
+// Created by user on 03/01/2023.
 //
 
-#ifndef WET2_HASHTABLE_H
-#define WET2_HASHTABLE_H
-#include "UnionFind.cpp"
-
-template <class V>
-class HashNode {
-private:
-    std::shared_ptr<V> m_value;
-    int m_key;
-    bool isDeleted;
-public:
-    // Constructor of hashnode
-    /*HashNode<V>(std::shared_ptr<V> value){
-        value = value;
-        isDeleted = false;
-    }*/
-    HashNode<V>(int key, std::shared_ptr<V> value)
-    {
-        m_value = value;
-        m_key = key;
-        isDeleted= false;
-    }
-    bool isItDeleted() {
-        return isDeleted;
-    }
-    void setAsdDeleted() {
-        isDeleted=true;
-    }
-};
-
-template <class V>
-class HashTable {
-    private:
-        HashNode<V> **m_HashTable;
-        int capacity; // current size
-        int size;
-        HashNode<std::shared_ptr<V>> *dummy; // dummy node
-
-    public:
-        void insertNode(int key, std::shared_ptr<V> value);
-        HashTable();
-        ~HashTable();
-        int hashFunc(int key);
-        void reHash();
-        std::shared_ptr<V> findNode(int key);
-        void markDeleted(int key);
-        void deleteTable();
-        bool isItDeleted(int key);
-};
-
-/////////////////////////////////implementation///////////////////////////////////////////////////////////////////
-
-template<class V>
-HashTable<V>::HashTable()
+#include "TeamHashTable.h"
+TeamHashTable::TeamHashTable()
 {
-    m_HashTable = new HashNode<V>*[capacity]; ///parameters for initializer?
     capacity = 16;
     size = 0;
+    m_HashTable = new TeamHashNode*[capacity]; ///parameters for initializer?
     for (int i = 0; i < capacity; i++)
         m_HashTable[i] = nullptr;
-        // dummy node with key -1
-    dummy = new HashNode<V>(-1, nullptr); ///????????
+    // dummy node with key -1
+    dummy = new TeamHashNode(-1, nullptr); ///????????
 }
 
-template<class V>
-int HashTable<V>::hashFunc(int key)
+int TeamHashTable::hashFunc(int key)
 {
     return key % capacity;
 }
 
-template<class V>
-HashTable<V>::~HashTable<V>(){
+TeamHashTable::~TeamHashTable(){
     deleteTable();
 }
 
-template<class V>
-void HashTable<V>::reHash()
+void TeamHashTable::reHash()
 {
     int oldCapacity = capacity;
     capacity = oldCapacity * 2 + 1;
 
-    HashNode<V>** newHashTable = new HashNode<V>*[capacity]; ///parameters for initializer?
+    TeamHashNode** newHashTable = new TeamHashNode*[capacity]; ///parameters for initializer?
 
     //fill in the new temp table with old info
     for (int i = 0; i < oldCapacity; ++i)
     {
-        HashNode<V> *oldNode = m_HashTable[i];
-        HashNode<V> *tmp = oldNode;
-        HashNode<V> *bucket = newHashTable[HashFunc(tmp->key) % capacity];
+        TeamHashNode *oldNode = m_HashTable[i];
+        TeamHashNode *tmp = oldNode;
+        TeamHashNode *bucket = newHashTable[HashFunc(tmp->key) % capacity];
         bucket = tmp;
     }
     delete [] m_HashTable;
     m_HashTable = newHashTable;
 }
 
-template<class V>
-void HashTable<V>::insertNode(int key, std::shared_ptr<V> value) {
-    HashNode<V>* temp = new HashNode<V>(key, value);
+
+void TeamHashTable::insertNode(int key, std::shared_ptr<teamNode> value) {
+    TeamHashNode* temp = new HashNode(key, value);
 
     // Apply hash function to find index for given key
     int hashIndex = hashFunc(key);
@@ -124,8 +69,7 @@ void HashTable<V>::insertNode(int key, std::shared_ptr<V> value) {
     }
 }
 
-template<class V>
-std::shared_ptr<V> HashTable<V>::findNode(int key)
+std::shared_ptr<teamNode> TeamHashTable::findNode(int key)
 {
     int hashIndex = hashFunc(key);
     int counter = 0;
@@ -142,8 +86,8 @@ std::shared_ptr<V> HashTable<V>::findNode(int key)
     return nullptr;
 }
 
-template<class V>
-void HashTable<V>::markDeleted(int key){
+
+void TeamHashTable::markDeleted(int key){
     int hashIndex = hashFunc(key);
     int counter = 0;
     // finding the node with given key
@@ -159,8 +103,8 @@ void HashTable<V>::markDeleted(int key){
     }
 }
 
-template<class V>
-bool HashTable<V>::isItDeleted(int key){
+
+bool TeamHashTable::isItDeleted(int key){
     int hashIndex = hashFunc(key);
     int counter = 0;
     // finding the node with given key
@@ -177,14 +121,11 @@ bool HashTable<V>::isItDeleted(int key){
     return true;
 }
 
-template<class V>
-void HashTable<V>::deleteTable() {
+
+void TeamHashTable::deleteTable() {
     for (int i = 0; i < capacity; ++i)
     {
         delete m_HashTable[i];
     }
     delete[] m_HashTable;
 }
-
-
-#endif //WET2_HASHTABLE_H

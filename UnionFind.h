@@ -4,49 +4,50 @@
 
 #ifndef WET2_UNIONFIND_H
 #define WET2_UNIONFIND_H
-#include "HashTable.h"
+
+#include "PlayerHashTable.h"
+#include "TeamHashTable.h"
 #include "player.h"
 #include "team.h"
 
 
 class playerNode;
 
+class teamNode{
+public:
+    std::shared_ptr<team> data;
+    std::shared_ptr<playerNode> rep;
+    int rank;
+    permutation_t team_spirit;
+
+    teamNode(){
+        data=nullptr;
+        rep= nullptr;
+        rank=0;
+        team_spirit=permutation_t::neutral();
+    }
+};
+
+class playerNode{
+public:
+    std::shared_ptr<player> data;
+    std::shared_ptr<playerNode> parent;
+    int rg;
+    permutation_t rs;
+    std::shared_ptr<teamNode> team;
+    playerNode operator=(const playerNode& n){
+        data = n.data;
+        parent = n.parent;
+        rg = n.rg;
+        rs = n.rs;
+        team = n.team;
+    }
+};
+
 class UnionFind {
 
-    class teamNode{
-    public:
-        std::shared_ptr<team> data;
-        std::shared_ptr<playerNode> rep;
-        int rank;
-        permutation_t team_spirit;
-
-        teamNode(){
-            data=nullptr;
-            rep= nullptr;
-            rank=0;
-            team_spirit=permutation_t::neutral();
-        }
-    };
-
-    class playerNode{
-        public:
-            std::shared_ptr<player> data;
-            std::shared_ptr<playerNode> parent;
-            int rg;
-            permutation_t rs;
-            std::shared_ptr<teamNode> team;
-            playerNode operator=(const playerNode& n){
-                data = n.data;
-                parent = n.parent;
-                rg = n.rg;
-                rs = n.rs;
-                team = n.team;
-            }
-    };
-
-
-    HashTable<playerNode> players_hashTable;
-    HashTable<teamNode> teams_hashTable;
+    PlayerHashTable players_hashTable;
+    TeamHashTable teams_hashTable;
 
     public:
         UnionFind();

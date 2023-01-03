@@ -26,6 +26,12 @@ public:
     void setAsDeleted() {
         isDeleted=true;
     }
+    void setKey(int k){
+        m_key = k;
+    }
+    int getKey() const{
+        return m_key;
+    }
 };
 
 class PlayerHashTable {

@@ -112,7 +112,7 @@ bool PlayerHashTable::isItDeleted(int key){
     while (m_HashTable[hashIndex] != nullptr) {
         if (counter++ > capacity)
             return true;
-        if (m_HashTable[hashIndex]->m_key == key){
+        if (m_HashTable[hashIndex]->getKey() == key){
             return m_HashTable[hashIndex]->isItDeleted();
 
         }

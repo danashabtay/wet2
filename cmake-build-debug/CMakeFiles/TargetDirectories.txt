@@ -1,0 +1,3 @@
+C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/cmake-build-debug/CMakeFiles/wet2.dir
+C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/cmake-build-debug/CMakeFiles/rebuild_cache.dir

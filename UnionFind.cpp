@@ -29,6 +29,10 @@ void UnionFind::addTeam(int teamId, std::shared_ptr<team> newData){
 }
 
 void UnionFind::addSinglePlayer(std::shared_ptr<player> newData ,int playerId, int teamId){
+    std::shared_ptr<playerNode> tmp = players_hashTable.findNode(playerId);
+    if(tmp != nullptr){
+        return;
+    }
     std::shared_ptr<playerNode> node (new playerNode());
     node->data = newData;
     node->parent = node;

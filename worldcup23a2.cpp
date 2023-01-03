@@ -81,7 +81,7 @@ StatusType world_cup_t::add_player(int playerId, int teamId,
         return StatusType::FAILURE;
     }
 
-    std::shared_ptr<player> newPlayer (new player(playerId,cards,gamesPlayed,ability,spirit,teamId,goalKeeper);
+    std::shared_ptr<player> newPlayer (new player(playerId,cards,gamesPlayed,ability,spirit,teamId,goalKeeper));
 
     int old_ability=team1->getTeamAbility();
     m_all_teams_ability.Remove(old_ability,teamId);
@@ -90,7 +90,7 @@ StatusType world_cup_t::add_player(int playerId, int teamId,
         m_all_eligible_teams.insert(team1,teamId);
     }
 
-    team1->addPlayerStats(ability, spirit);
+    team1->addPlayerStats(ability, spirit, goalKeeper);
     m_game.addSinglePlayer(newPlayer, playerId, teamId);
 
     int new_ability=team1->getTeamAbility();
@@ -138,8 +138,8 @@ output_t<int> world_cup_t::play_match(int teamId1, int teamId2)
         return out;
     }
     else{
-        int team1_strength = team1->getPermutation()->strength();
-        int team2_strength = team2->getPermutation()->strength();
+        int team1_strength = team1->getPermutation().strength();
+        int team2_strength = team2->getPermutation().strength();
         if(team1_strength > team2_strength){
             team1->addPoints(3);
             /*team1->addGame();
@@ -194,7 +194,7 @@ StatusType world_cup_t::add_player_cards(int playerId, int cards)
         return StatusType::FAILURE;
     }
     std::shared_ptr<player> player = m_game.findById(playerId);
-    player.addCards(cards);
+    player->addCards(cards);
 	return StatusType::SUCCESS;
 }
 
@@ -266,16 +266,13 @@ StatusType world_cup_t::buy_team(int teamId1, int teamId2)
     }
     std::shared_ptr<team> team1 = m_all_teams_id.find_by_key(teamId1);
     if(team1 == nullptr){
-        output_t<int> out(StatusType::FAILURE);
-        return out;
+        return StatusType::FAILURE;
     }
     std::shared_ptr<team> team2 = m_all_teams_id.find_by_key(teamId2);
     if(team2 == nullptr){
-        output_t<int> out(StatusType::FAILURE);
-        return out;
+        return StatusType::FAILURE;
     }
     m_game.UniteTeams(teamId1,teamId2);
     remove_team(teamId2);
     return StatusType::SUCCESS;
 };
-}

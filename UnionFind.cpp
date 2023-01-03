@@ -32,19 +32,19 @@ void UnionFind::addSinglePlayer(std::shared_ptr<player> newData ,int playerId, i
     node->rs=newData->getSpirit();
     node->rg=newData->getNumGames();
     players_hashTable.insertNode(playerId, node);
-    std::shared_ptr<teamNode> team = teams_HashTable.findNode(teamId);
-    team->rank++;
+    std::shared_ptr<teamNode> team1 = teams_HashTable.findNode(teamId);
+    team1->rank++;
 
     //if team is empty
-    if(team->rep==nullptr){
-        team->rep=node;
-        node->team=team;
+    if(team1->rep==nullptr){
+        team1->rep=node;
+        node->team=team1;
     }
     //else need to join to other set
-    node->parent=team->rep;
-    node->rg=node->rg-parent->rg;
-    node->rs=(parent->rs->inv())*(team->team_spirit)*(node->rs);
-    team->team_spirit=(team->team_spirit)*(newData->getSpirit);
+    node->parent=team1->rep;
+    node->rg=(node->rg)-(node->parent->rg);
+    node->rs=(node->parent->rs->inv())*(team1->team_spirit)*(node->rs);
+    team1->team_spirit=(team1->team_spirit)*(newData->getSpirit);
 }
 
 ///update here rs and rg
@@ -83,7 +83,6 @@ void UnionFind::UniteTeams(int owner, int added){
         ownerParent->rg=ownerParent->rg-addedParent->rg;
         ownerParent->parent = addedParent;
     }
-    return;
 }
 
 /**
@@ -139,7 +138,7 @@ int UnionFind::findNumGames(int playerId){
 permutation_t UnionFind::findSpirit(int playerId){
     std::shared_ptr<playerNode> node = players_hashTable.findNode(playerId);
     std::shared_ptr<playerNode> parent = find(node);
-    permutation_t spiritSum= permutation::neutral();
+    permutation_t spiritSum= permutation_t::neutral();
     while(node!=parent){
         spiritSum=node->rs.inv()*spiritSum;
         node=node->parent;

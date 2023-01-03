@@ -37,7 +37,6 @@ class UnionFind {
     };
 
 
-
     HashTable<playerNode> players_hashTable;
     HashTable<teamNode> teams_hashTable;
 

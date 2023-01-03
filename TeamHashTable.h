@@ -45,7 +45,6 @@ class TeamHashTable {
         void markDeleted(int key);
         void deleteTable();
         bool isItDeleted(int key);
-        bool DoesExist(int key);
     };
 
 

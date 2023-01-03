@@ -14,7 +14,7 @@ public:
     bool isDeleted;
 
     // Constructor of hashnode
-    HashNode<V>() = default;
+    //HashNode<V>() = default;
     HashNode<V>(std::shared_ptr<V> value){
         value = value;
         isDeleted = false;

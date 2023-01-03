@@ -237,7 +237,8 @@ output_t<int> world_cup_t::get_ith_pointless_ability(int i)
     if(m_num_teams==0 || i<0 || m_num_teams<=i){
         return StatusType::FAILURE;
     }
-    std::shared_ptr<team> team1 = m_all_teams_ability.getByRank(i);
+    int teamId = m_all_teams_ability.getByRank(i);
+    std::shared_ptr<team> team1 = m_all_teams_id.find_by_key(teamId);
     output_t<int> out(team1->getAbility());
     return out;
 }

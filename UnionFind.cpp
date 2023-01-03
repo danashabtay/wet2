@@ -6,6 +6,8 @@
 
 UnionFind::UnionFind() = default;
 
+
+
 UnionFind::~UnionFind(){
     destroy();
 }
@@ -32,7 +34,7 @@ void UnionFind::addSinglePlayer(std::shared_ptr<player> newData ,int playerId, i
     node->rs=newData->getSpirit();
     node->rg=newData->getNumGames();
     players_hashTable.insertNode(playerId, node);
-    std::shared_ptr<teamNode> team1 = teams_HashTable.findNode(teamId);
+    std::shared_ptr<teamNode> team1 = teams_hashTable.findNode(teamId);
     team1->rank++;
 
     //if team is empty
@@ -59,7 +61,7 @@ void UnionFind::UniteTeams(int owner, int added){
     }
     //else whoever rank is higher becomes parent of other
     if (ownerParent->team->rank >= addedParent->team->rank) { // add added team to owner team
-        teams_HashTable.markDeleted(added);
+        teams_hashTable.markDeleted(added);
         /// change rank
         ownerParent->team->rank+=addedParent->team->rank;
         ///change rs
@@ -68,11 +70,11 @@ void UnionFind::UniteTeams(int owner, int added){
         addedParent->rg=addedParent->rg-ownerParent->rg;
         addedParent->parent = ownerParent;
     } else { // add owner team to added team
-        std::shared_ptr<teamNode> ownerTeamNode = teams_HashTable.findNode(owner);
-        std::shared_ptr<teamNode> addedTeamNode = teams_HashTable.findNode(added);
+        std::shared_ptr<teamNode> ownerTeamNode = teams_hashTable.findNode(owner);
+        std::shared_ptr<teamNode> addedTeamNode = teams_hashTable.findNode(added);
         ownerTeamNode->rep=addedTeamNode->rep;
         addedParent->team=ownerParent->team;
-        teams_HashTable.markDeleted(added);
+        teams_hashTable.markDeleted(added);
         /// change rank
         addedParent->team->rank+=ownerParent->team->rank;
         ///change rs

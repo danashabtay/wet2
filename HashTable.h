@@ -14,17 +14,22 @@ public:
     bool isDeleted;
 
     // Constructor of hashnode
+    HashNode<V>() = default;
+    HashNode<V>(std::shared_ptr<V> value){
+        this->value = value;
+        this->isDeleted = false;
+    }
     HashNode<V>(int key, std::shared_ptr<V> value)
     {
         this->value = value;
         this->key = key;
         this->isDeleted= false;
     }
-    bool isDeleted() {
-    return isDeleted;
+    bool isItDeleted() {
+        return isDeleted;
     }
     void setAsdDeleted() {
-    isDeleted=true;
+        isDeleted=true;
     }
 };
 
@@ -49,31 +54,30 @@ public:
 
 /////////////////////////////////implementation///////////////////////////////////////////////////////////////////
 
-<class V>
+template<class V>
 HashTable<V>::HashTable<V>()
-    {
-        HashTable = new HashNode<V>*[capacity]; ///parameters for initializer?
-        capacity = 16;
-        size = 0;
-
-        for (int i = 0; i < capacity; i++)
-            HashTable[i] = nullptr;
+{
+    HashTable = new HashNode<V>*[capacity]; ///parameters for initializer?
+    capacity = 16;
+    size = 0;
+    for (int i = 0; i < capacity; i++)
+        HashTable[i] = nullptr;
         // dummy node with key -1
-        dummy = new HashNode<V>(-1, nullptr); ///????????
-    }
+    dummy = new HashNode<V>(-1, nullptr); ///????????
+}
 
-    <class V>
-    int HashTable<V>::hashFunc(int key)
-    {
-        return key % capacity;
-    }
+template<class V>
+int HashTable<V>::hashFunc(int key)
+{
+    return key % capacity;
+}
 
-<class V>
+template<class V>
 HashTable<V>::~HashTable<V>(){
     deleteTable();
 }
 
-<class V>
+template<class V>
 void HashTable<V>::reHash()
 {
     int oldCapacity = capacity;
@@ -93,7 +97,7 @@ void HashTable<V>::reHash()
     HashTable = newHashTable;
 }
 
-<class V>
+template<class V>
 void HashTable<V>::insertNode(int key, std::shared_ptr<V> value) {
     HashNode<V>* temp = new HashNode<V>(key, value);
 
@@ -120,7 +124,7 @@ void HashTable<V>::insertNode(int key, std::shared_ptr<V> value) {
     }
 }
 
-<class V>
+template<class V>
 std::shared_ptr<V> HashTable<V>::findNode(int key)
 {
     int hashIndex = hashFunc(key);
@@ -138,7 +142,7 @@ std::shared_ptr<V> HashTable<V>::findNode(int key)
     return nullptr;
 }
 
-<class V>
+template<class V>
 void HashTable<V>::markDeleted(int key){
     int hashIndex = hashFunc(key);
     int counter = 0;
@@ -156,8 +160,8 @@ void HashTable<V>::markDeleted(int key){
     return;
 }
 
-<class V>
-void HashTable<V>::isDeleted(int key){
+template<class V>
+void HashTable<V>::isItDeleted(int key){
     int hashIndex = hashFunc(key);
     int counter = 0;
     // finding the node with given key
@@ -165,7 +169,7 @@ void HashTable<V>::isDeleted(int key){
         if (counter++ > capacity)
             return true;
         if (HashTable[hashIndex]->key == key){
-            return HashTable[hashIndex]->isDeleted();
+            return HashTable[hashIndex]->isItDeleted();
 
         }
         hashIndex++;
@@ -174,7 +178,7 @@ void HashTable<V>::isDeleted(int key){
     return true;
 }
 
-<class V>
+template<class V>
 void HashTable<V>::deleteTable() {
     for (int i = 0; i < cap; ++i)
     {

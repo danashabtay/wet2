@@ -32,7 +32,7 @@ StatusType world_cup_t::add_team(int teamId)
     std::shared_ptr<team> team1 (new team(teamId));
     m_all_teams_id.insert(team1, teamId);
     m_all_teams_ability.Insert(0, teamId);
-    m_game.addTeam(team1);
+    m_game.addTeam(teamId,team1);
     tmp_id=nullptr;
     m_num_teams++;
     return StatusType::SUCCESS;
@@ -51,7 +51,7 @@ StatusType world_cup_t::remove_team(int teamId)
     m_all_teams_id.remove(teamId);
     int ability=team1->getTeamAbility();
     m_all_teams_ability.Remove(ability,teamId);
-    if(team1.hasKeeper()){
+    if(team1->hasKeeper()){
         m_all_eligible_teams.remove(teamId);
     }
 
@@ -275,4 +275,5 @@ StatusType world_cup_t::buy_team(int teamId1, int teamId2)
     m_game.UniteTeams(teamId1,teamId2);
     remove_team(teamId2);
     return StatusType::SUCCESS;
+};
 }

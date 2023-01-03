@@ -29,18 +29,20 @@ void team::addGame(){
     m_games_played++;
 }
 
-int team::getId(){
+int team::getId() const{
     return m_team_id;
 }
 
-std::shared_ptr<permutation_t> team::getPermutation() const{
-    return m_team_spirit;
+
+int team::getAbility() const{
+    return m_total_ability;
 }
 
+
 void team::addPlayerStats(int ability, permutation_t spirit, bool isKeeper){
-    m_team_spirit=m_team_spirit*spirit;
+    m_team_spirit=*m_team_spirit*spirit;//todo:figure out how to handle with no operator=
     m_total_ability+=ability;
     if(isKeeper){
         m_has_goalkeeper=true;
     }
-};
+}

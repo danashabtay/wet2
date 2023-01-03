@@ -21,6 +21,7 @@
 #include "AvlRankTree.h"
 #include "UnionFind.h"
 #include <memory>
+#include "player.h"
 
 class world_cup_t {
 private:

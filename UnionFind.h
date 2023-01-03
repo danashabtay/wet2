@@ -8,16 +8,10 @@
 #include "player.h"
 #include "team.h"
 
-class UnionFind {
-class playerNode{
-    std::shared_ptr<player> data;
-    std::shared_ptr<playerNode> parent;
-    int rg;
-    permutation_t rs;
-    std::shared_ptr<teamNode> team;
-};
+class UnionFind;
 
 class teamNode{
+public:
     std::shared_ptr<team> data;
     std::shared_ptr<player> rep;
     int rank;
@@ -31,25 +25,38 @@ class teamNode{
     }
 };
 
-HashTable<playerNode> players_hashTable;
-HashTable<teamNode> teams_hashTable;
 
-public:
-    UnionFind();
-    ~UnionFind();
-    void destroy();
-    void addSinglePlayer(shared_ptr<player> newData ,int playerId, int teamId);
-    void addTeam(shared_ptr<team> newData);
-    void UniteTeams(int owner, int added);
-    std::shared_ptr<playerNode> find(std::shared_ptr<playerNode> data);
-    int findNumGames(int playerId);
-    permutation_t findSpirit(int playerId);
-    bool isActive(int playerId);
-    void markDeleted(int teamId);
-    bool doesExist(int playerId);
-    void addGame(int teamId1, int teamId2);
-    std::shared_ptr<player> findById(int playerId);
-    permutation_t getPartialSpirit(int playerId);
+class UnionFind {
+    class playerNode{
+        public:
+            std::shared_ptr<player> data;
+            std::shared_ptr<playerNode> parent;
+            int rg;
+            permutation_t rs;
+            std::shared_ptr<teamNode> team;
+    };
+
+
+
+    HashTable<playerNode> players_hashTable;
+    HashTable<teamNode> teams_hashTable;
+
+    public:
+        UnionFind();
+        ~UnionFind();
+        void destroy();
+        void addSinglePlayer(std::shared_ptr<player> newData ,int playerId, int teamId);
+        void addTeam(int teamId, std::shared_ptr<team> newData);
+        void UniteTeams(int owner, int added);
+        std::shared_ptr<playerNode> find(std::shared_ptr<playerNode> data);
+        int findNumGames(int playerId);
+        permutation_t findSpirit(int playerId);
+        bool isActive(int playerId);
+        void markDeleted(int teamId);
+        bool doesExist(int playerId);
+        void addGame(int teamId1, int teamId2);
+        std::shared_ptr<player> findById(int playerId);
+        permutation_t getPartialSpirit(int playerId);
 };
 
 

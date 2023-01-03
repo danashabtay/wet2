@@ -2,23 +2,21 @@
 // Created by user on 25/12/2022.
 //
 
-include "UnionFind.h"
+#include "UnionFind.h"
 
-UnionFind::UnionFind() : players_hashTable(new HashTable<playerNode>()), teams_hashTable(new HashTable<teamNode>()) {}
+UnionFind::UnionFind() = default;
 
 UnionFind::~UnionFind(){
     destroy();
-    return;
 }
 
 void UnionFind::destroy(){
-    players_hashTable.deleteTable():
-    teams_hashTable.deleteTable():
-    return;
+    players_hashTable.deleteTable();
+    teams_hashTable.deleteTable();
 }
 
-
-void UnionFind::addTeam(int teamId, shared_ptr<team> newData){
+//        void addTeam(std::shared_ptr<team> newData);
+void UnionFind::addTeam(int teamId, std::shared_ptr<team> newData){
     std::shared_ptr<teamNode> node (new teamNode());
    node->rep=nullptr;
    node->data=newData;
@@ -27,12 +25,12 @@ void UnionFind::addTeam(int teamId, shared_ptr<team> newData){
    teams_hashTable.insertNode(teamId, node);
 }
 
-void UnionFind::addSinglePlayer(shared_ptr<player> newData ,int playerId, int teamId){
+void UnionFind::addSinglePlayer(std::shared_ptr<player> newData ,int playerId, int teamId){
     std::shared_ptr<playerNode> node (new playerNode());
     node->data = newData;
     node->parent = node;
-    node->rs=newData->getSpirit;
-    node->rg=newData->getNumGames;
+    node->rs=newData->getSpirit();
+    node->rg=newData->getNumGames();
     players_hashTable.insertNode(playerId, node);
     std::shared_ptr<teamNode> team = teams_HashTable.findNode(teamId);
     team->rank++;
@@ -154,7 +152,7 @@ bool UnionFind::isActive(int playerId){
     std::shared_ptr<playerNode> parent = find(node);
     std::shared_ptr<teamNode> team = parent->team;
     int teamId = team->data->getId();
-    return teams_hashTable.isDeleted(teamId);
+    return teams_hashTable.isItDeleted(teamId);
 }
 
 void UnionFind::markDeleted(int teamId){

@@ -22,14 +22,15 @@ class team {
         int getTeamAbility() const;
         void addPoints(int points_to_add);
         void addGame();
-        int getAbility();
-        int getId();
+        int getAbility() const;
+        int getId() const;
         std::shared_ptr<permutation_t> getPermutation() const;
         team(int teamId) : m_team_id(teamId), m_points(0), m_has_goalkeeper(false),
-                            m_team_spirit(permutation::neutral()), m_total_ability(0), m_games_played(0){
-        }
+                            m_team_spirit(&(permutation::neutral()), m_total_ability(0), m_games_played(0){}
         void addPlayerStats(int ability, permutation_t spirit, bool isKeeper);
 };
+
+
 
 
 #endif //WET2_TEAM_H

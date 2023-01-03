@@ -16,15 +16,15 @@ class player {
         int m_team_id;
         bool m_isGoalKeeper;
 
-public:
-player(int playerId, int cards, int gamesPlayed, int ability, const permutation_t& spirit, int teamId, bool goalKeeper)
-: m_player_id(playerId), m_cards(cards), m_games_played(gamesPlayed), m_ability(ability), m_spirit(spirit),
-m_team_id(teamId), m_isGoalKeeper(goalKeeper) {}
+    public:
+        player(int playerId, int cards, int gamesPlayed, int ability, const permutation_t& spirit, int teamId, bool goalKeeper)
+        : m_player_id(playerId), m_cards(cards), m_games_played(gamesPlayed), m_ability(ability), m_spirit(spirit),
+        m_team_id(teamId), m_isGoalKeeper(goalKeeper) {}
 
-permutation_t getSpirit():
-int getNumGames();
-void addCards(int sum);
-int getCards();
+        permutation_t getSpirit();
+        int getNumGames() const;
+        void addCards(int sum);
+        int getCards() const;
 
 };
 

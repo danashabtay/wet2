@@ -19,9 +19,7 @@ public:
 };
 
 template <class V>
-HashTable<V>::HashTable(int size){
-    m_max_size=size;
-    m_curr_size= 0;
+HashTable<V>::HashTable(int size) : m_max_size(size), m_curr_size(0), m_hashtable(){
     m_hashtable=new V*[size*sizeof(V*)];
     for(int i=0;i<size;i=i+1){
         std::cout<<i;

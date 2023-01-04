@@ -7,6 +7,7 @@
 
 #include "player.h"
 #include "team.h"
+#include "HashTable.h"
 
 class WorldCupManager {
     class teamNode;
@@ -18,9 +19,12 @@ class WorldCupManager {
         permutation_t m_rs;
        teamNode* m_team;
     public:
-        explicit playerNode() : m_key(-1) ,m_data(nullptr), m_parent(nullptr), m_rg(0), m_rs(permutation_t::neutral()), m_team(
-                nullptr) {}
+        explicit playerNode() : m_key(-1) ,m_data(NULL), m_parent(NULL), m_rg(0), m_rs(permutation_t::neutral()), m_team(
+                NULL) {}
         ~playerNode() = default;
+        int getKey(){
+            return m_key;
+        }
         friend class WorldCupManager;
         friend class teamNode;
 
@@ -34,18 +38,17 @@ class WorldCupManager {
         permutation_t m_team_spirit;
         bool m_isDeleted;
     public:
-        explicit teamNode() : m_key(-1) ,m_data(nullptr), m_rep(nullptr), m_rank(0), m_team_spirit(permutation_t::neutral()), m_isDeleted(
+        explicit teamNode() : m_key(-1) ,m_data(NULL), m_rep(NULL), m_rank(0), m_team_spirit(permutation_t::neutral()), m_isDeleted(
                 false) {}
         ~teamNode() = default;
+        int getKey(){
+            return m_key;
+        }
         friend class WorldCupManager;
         friend class playerNode;
     };
-    teamNode** teams_table;
-    playerNode** players_table;
-    int max_size_team;
-    int curr_size_team;
-    int max_size_player;
-    int curr_size_player;
+    HashTable<teamNode> teams_table;
+    HashTable<playerNode> players_table;
     WorldCupManager::playerNode* findRep(playerNode* player);
 
 public:
@@ -53,8 +56,6 @@ public:
     ~WorldCupManager();
     void AddTeam(int teamId, team* data);
     void AddPlayer(int playerId, player* data, int teamId);
-    void insertTeam(teamNode** table, teamNode* newTeam);
-    void insertPlayer(playerNode** table, playerNode* newPlayer);
     WorldCupManager::playerNode* FindPlayer(int playerId);
     player* findPlayer(int playerId);
     WorldCupManager::teamNode* FindTeam(int teamId);

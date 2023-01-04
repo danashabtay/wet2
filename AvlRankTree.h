@@ -122,12 +122,11 @@ void AVLRankTree<T,K>::Insert(K key, T data) {
         this->size++;
         return;
     } else { // tree is not empty.
-
         Node* current = root;
         Node* parent = nullptr;
 
         //////////////////////////////////////////////////////
-        while ((current != nullptr) && (current->key != key)) {
+        while ((current != nullptr)) {
             parent = current;
             if (key < current->key) { // left subtree
                 current = current->left;

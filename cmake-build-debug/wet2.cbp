@@ -88,6 +88,9 @@
 		<Unit filename="C:/Users/user/Desktop/DataStructures/WET2/wet2/Avltree.h">
 			<Option target="wet2"/>
 		</Unit>
+		<Unit filename="C:/Users/user/Desktop/DataStructures/WET2/wet2/HashTable.h">
+			<Option target="wet2"/>
+		</Unit>
 		<Unit filename="C:/Users/user/Desktop/DataStructures/WET2/wet2/WorldCupManager.cpp">
 			<Option target="wet2"/>
 		</Unit>

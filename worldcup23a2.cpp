@@ -27,11 +27,14 @@ StatusType world_cup_t::add_team(int teamId)
         tmp_id=nullptr;
         return StatusType::FAILURE;
     }
-
+    std::cout<<"1";
     team* team1 = (new team(teamId));
     m_all_teams_id.insert(team1, teamId);
+    std::cout<<"2";
     m_all_teams_ability.Insert(0, teamId);
+    std::cout<<"3";
     m_game.AddTeam(teamId, team1);
+    std::cout<<"4";
     tmp_id=nullptr;
     m_num_teams++;
     return StatusType::SUCCESS;
@@ -53,7 +56,6 @@ StatusType world_cup_t::remove_team(int teamId)
     if(team1->hasKeeper()){
         m_all_eligible_teams.remove(teamId);
     }
-
     // mark team as deleted in teams hashtable:
     m_game.markDeleted(teamId);
     team1 = nullptr;

@@ -5,23 +5,10 @@
 #define TOTAL 2
 #include "WorldCupManager.h"
 
-WorldCupManager::WorldCupManager() : teams_table(new teamNode*[TOTAL*sizeof(teamNode*)]), players_table(new playerNode*[TOTAL*sizeof(playerNode*)]), max_size_team(TOTAL),max_size_player(TOTAL), curr_size_player(0), curr_size_team(0) {
-    for(int i = 0; i < TOTAL; i++){
-        teams_table[i] = nullptr;
-        players_table[i] = nullptr;
-    }
+WorldCupManager::WorldCupManager() : teams_table(HashTable<teamNode>(TOTAL)), players_table(HashTable<playerNode>(TOTAL)) {
 }
 
-WorldCupManager::~WorldCupManager() {
-    for(int i = 0; i < max_size_team; i++){
-        delete teams_table[i];
-    }
-    for(int i = 0; i < max_size_player; i++){
-        delete players_table[i];
-    }
-    delete [] teams_table;
-    delete [] players_table;
-}
+WorldCupManager::~WorldCupManager() = default;
 
 WorldCupManager::playerNode *WorldCupManager::findRep(WorldCupManager::playerNode *player) {
     while(player->m_parent!=player){
@@ -31,48 +18,20 @@ WorldCupManager::playerNode *WorldCupManager::findRep(WorldCupManager::playerNod
 }
 
 void WorldCupManager::AddTeam(int teamId, team* data) {
-    if (curr_size_team == max_size_team) {
-        // No more place in array so make it bigger
-        max_size_team *= 2;
-        teamNode **new_team_table = new teamNode *[max_size_team * sizeof(teamNode*)];
-        for(int i = 0; i < max_size_team; i++) {
-            new_team_table[i] = nullptr;
-            if (teams_table[i]!= nullptr) {
-                insertTeam(new_team_table, teams_table[i]);
-            }
-        }
-        delete[] teams_table;
-        teams_table = new_team_table;
-    }
-
     teamNode *newTeam = new teamNode();
     newTeam->m_key=teamId;
     newTeam->m_data=data;
-    insertTeam(teams_table,newTeam);
-    curr_size_team++;
+    teams_table.insert(newTeam,newTeam->m_key);
 }
 
 void WorldCupManager::AddPlayer(int playerId, player* data, int teamId) {
-    if (curr_size_player == max_size_player) {
-        // No more place in array so make it bigger
-        max_size_player *= 2;
-        playerNode **new_player_table = new playerNode *[max_size_player * sizeof(playerNode*)];
-        for(int i = 0; i < max_size_team; i++) {
-            new_player_table[i] = nullptr;
-            if (teams_table[i]!= nullptr) {
-                insertPlayer(new_player_table, players_table[i]);
-            }
-        }
-        delete[] players_table;
-        players_table = new_player_table;
-    }
-
     playerNode *newPlayer = new playerNode();
     newPlayer->m_key=playerId;
     newPlayer->m_data=data;
-
+    ///////////////find team
     teamNode* team1 = FindTeam(teamId);
-    if(team1->m_rep== nullptr){
+    //////////////////////////
+    if(team1->m_rep== NULL){
         newPlayer->m_team=team1;
         newPlayer->m_parent=newPlayer;
         newPlayer->m_rg=data->getNumGames();
@@ -85,24 +44,11 @@ void WorldCupManager::AddPlayer(int playerId, player* data, int teamId) {
     }
     team1->m_team_spirit=team1->m_team_spirit*data->getSpirit();
     team1->m_rank++;
-    insertPlayer(players_table,newPlayer);
-    curr_size_player++;
+    players_table.insert(newPlayer,newPlayer->m_key);
 }
 
 WorldCupManager::playerNode *WorldCupManager::FindPlayer(int playerId) {
-    int key=playerId;
-    int hashIndex = key%max_size_player;
-    int counter = 0;
-    while (players_table[hashIndex] != nullptr) {
-        if (counter++ > max_size_player)
-            return nullptr;
-        // if node found return its value
-        if (players_table[hashIndex]->m_key == key)
-            return players_table[hashIndex];
-        hashIndex++;
-        hashIndex %= max_size_player;
-    }
-    return nullptr;
+    return players_table.find(playerId);
 }
 
 permutation_t WorldCupManager::getPartialSpirit(int playerId) {
@@ -117,19 +63,7 @@ playerNode* playerParent = findRep(player1);
 }
 
 WorldCupManager::teamNode *WorldCupManager::FindTeam(int teamId) {
-    int key=teamId;
-    int hashIndex = key%max_size_team;
-    int counter = 0;
-    while (teams_table[hashIndex] != nullptr) {
-        if (counter++ > max_size_team)
-            return nullptr;
-        // if node found return its value
-        if (teams_table[hashIndex]->m_key == key)
-            return teams_table[hashIndex];
-        hashIndex++;
-        hashIndex %= max_size_team;
-    }
-    return nullptr;
+    return teams_table.find(teamId);
 }
 
 void WorldCupManager::UniteTeams(int teamId1, int teamId2) {
@@ -192,7 +126,7 @@ team1->m_isDeleted= true;
 
 bool WorldCupManager::doesExist(int playerId) {
     playerNode* player1 = FindPlayer(playerId);
-    if(player1== nullptr){
+    if(player1== NULL){
         return true;
     }
     return false;
@@ -206,39 +140,25 @@ void WorldCupManager::addGame(int teamId1, int teamId2) {
     rep1->m_rg++;
     rep2->m_rg++;
 }
-
-void WorldCupManager::insertTeam(teamNode** table, teamNode* newTeam) {
-    int key=newTeam->m_key;
-    int hashIndex = key%max_size_team;
-
-    // find next free space
-    while (table[hashIndex] != nullptr
-           && table[hashIndex]->m_key != key
-           && table[hashIndex]->m_key != -1) {
-        hashIndex++;
-        hashIndex %= max_size_team;
-    }
-    table[hashIndex] = newTeam;
-}
+/*
 
 void WorldCupManager::insertPlayer(playerNode** table, playerNode *newPlayer) {
     int key=newPlayer->m_key;
-    int hashIndex = key%max_size_player;
-
+    int counter=0;
+    int hashIndex = ((key%max_size_player) + (counter * (1 + (key%(max_size_player-1)))))%max_size_player;
     // find next free space
-    while (table[hashIndex] != nullptr
-           && table[hashIndex]->m_key != key
-           && table[hashIndex]->m_key != -1) {
-        hashIndex++;
-        hashIndex %= max_size_player;
+    while (table[hashIndex] != NULL && table[hashIndex]->m_key != -1) {
+        counter++;
+        hashIndex =((key%max_size_player) + (counter * (1 + (key%(max_size_player-1)))))%max_size_player;
     }
     table[hashIndex] = newPlayer;
 }
+*/
 
 player *WorldCupManager::findPlayer(int playerId) {
     playerNode* node = FindPlayer(playerId);
     if(node){
         return node->m_data;
     }
-    return nullptr;
+    return NULL;
 }

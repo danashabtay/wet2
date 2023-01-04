@@ -91,16 +91,16 @@ void WorldCupManager::AddPlayer(int playerId, player* data, int teamId) {
 
 WorldCupManager::playerNode *WorldCupManager::FindPlayer(int playerId) {
     int key=playerId;
-    int hashIndex = key%max_size_player;
     int counter = 0;
+    int hashIndex = ( key%max_size_player + (counter * 1 + key%(max_size_player-1)) );
     while (players_table[hashIndex] != nullptr) {
         if (counter++ > max_size_player)
             return nullptr;
         // if node found return its value
         if (players_table[hashIndex]->m_key == key)
             return players_table[hashIndex];
-        hashIndex++;
-        hashIndex %= max_size_player;
+        counter++;
+        hashIndex =( key%max_size_team + (counter * 1 + key%(max_size_team-1)) );
     }
     return nullptr;
 }
@@ -118,16 +118,18 @@ playerNode* playerParent = findRep(player1);
 
 WorldCupManager::teamNode *WorldCupManager::FindTeam(int teamId) {
     int key=teamId;
-    int hashIndex = key%max_size_team;
     int counter = 0;
+
+    int hashIndex = ( key%max_size_team + (counter * 1 + key%(max_size_team-1)) );
+
     while (teams_table[hashIndex] != nullptr) {
         if (counter++ > max_size_team)
             return nullptr;
         // if node found return its value
         if (teams_table[hashIndex]->m_key == key)
             return teams_table[hashIndex];
-        hashIndex++;
-        hashIndex %= max_size_team;
+        counter++;
+        hashIndex =( key%max_size_team + (counter * 1 + key%(max_size_team-1)) );
     }
     return nullptr;
 }
@@ -209,28 +211,24 @@ void WorldCupManager::addGame(int teamId1, int teamId2) {
 
 void WorldCupManager::insertTeam(teamNode** table, teamNode* newTeam) {
     int key=newTeam->m_key;
-    int hashIndex = key%max_size_team;
-
+    int counter=0;
+    int hashIndex = ( key%max_size_team + (counter * 1 + key%(max_size_team-1)) );
     // find next free space
-    while (table[hashIndex] != nullptr
-           && table[hashIndex]->m_key != key
-           && table[hashIndex]->m_key != -1) {
-        hashIndex++;
-        hashIndex %= max_size_team;
+    while (table[hashIndex] != nullptr && table[hashIndex]->m_key != -1) {
+        counter++;
+        hashIndex =( key%max_size_team + (counter * 1 + key%(max_size_team-1)) );
     }
     table[hashIndex] = newTeam;
 }
 
 void WorldCupManager::insertPlayer(playerNode** table, playerNode *newPlayer) {
     int key=newPlayer->m_key;
-    int hashIndex = key%max_size_player;
-
+    int counter=0;
+    int hashIndex = ( key%max_size_player + (counter * 1 + key%(max_size_player-1)) );
     // find next free space
-    while (table[hashIndex] != nullptr
-           && table[hashIndex]->m_key != key
-           && table[hashIndex]->m_key != -1) {
-        hashIndex++;
-        hashIndex %= max_size_player;
+    while (table[hashIndex] != nullptr && table[hashIndex]->m_key != -1) {
+        counter++;
+        hashIndex =( key%max_size_player + (counter * 1 + key%(max_size_player-1)) );
     }
     table[hashIndex] = newPlayer;
 }

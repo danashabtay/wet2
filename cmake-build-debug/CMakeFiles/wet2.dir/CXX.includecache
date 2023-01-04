@@ -6,18 +6,6 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/user/Desktop/DataStructures/WET2/wet2/AvlRankTree.h
-iostream
--
-stdlib.h
--
-
-C:/Users/user/Desktop/DataStructures/WET2/wet2/Avltree.h
-iostream
--
-memory
--
-
 C:/Users/user/Desktop/DataStructures/WET2/wet2/WorldCupManager.cpp
 iostream
 -
@@ -29,14 +17,6 @@ player.h
 C:/Users/user/Desktop/DataStructures/WET2/wet2/player.h
 team.h
 C:/Users/user/Desktop/DataStructures/WET2/wet2/team.h
-
-C:/Users/user/Desktop/DataStructures/WET2/wet2/main23a2.cpp
-worldcup23a2.h
-C:/Users/user/Desktop/DataStructures/WET2/wet2/worldcup23a2.h
-string
--
-iostream
--
 
 C:/Users/user/Desktop/DataStructures/WET2/wet2/player.h
 wet2util.h
@@ -55,24 +35,4 @@ stdexcept
 -
 ostream
 -
-
-C:/Users/user/Desktop/DataStructures/WET2/wet2/worldcup23a2.cpp
-worldcup23a2.h
-C:/Users/user/Desktop/DataStructures/WET2/wet2/worldcup23a2.h
-
-C:/Users/user/Desktop/DataStructures/WET2/wet2/worldcup23a2.h
-wet2util.h
-C:/Users/user/Desktop/DataStructures/WET2/wet2/wet2util.h
-team.h
-C:/Users/user/Desktop/DataStructures/WET2/wet2/team.h
-Avltree.h
-C:/Users/user/Desktop/DataStructures/WET2/wet2/Avltree.h
-AvlRankTree.h
-C:/Users/user/Desktop/DataStructures/WET2/wet2/AvlRankTree.h
-WorldCupManager.h
-C:/Users/user/Desktop/DataStructures/WET2/wet2/WorldCupManager.h
-memory
--
-player.h
-C:/Users/user/Desktop/DataStructures/WET2/wet2/player.h
 

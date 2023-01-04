@@ -213,6 +213,7 @@ T AVLRankTree<T,K>::Select(Node* node, int k) {
     if(node->left->rank<k+1){
         return Select(node->left,k-(node->left->rank)-1);
     }
+    return -1;
 }
 
 template<class T, class K>

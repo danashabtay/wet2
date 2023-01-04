@@ -53,7 +53,6 @@ StatusType world_cup_t::remove_team(int teamId)
     if(team1->hasKeeper()){
         m_all_eligible_teams.remove(teamId);
     }
-
     // mark team as deleted in teams hashtable:
     m_game.markDeleted(teamId);
     team1 = nullptr;

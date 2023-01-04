@@ -18,7 +18,8 @@ class WorldCupManager {
         permutation_t m_rs;
        teamNode* m_team;
     public:
-        explicit playerNode();
+        explicit playerNode() : m_key(-1) ,m_data(nullptr), m_parent(nullptr), m_rg(0), m_rs(permutation_t::neutral()), m_team(
+                nullptr) {}
         ~playerNode() = default;
         friend class WorldCupManager;
         friend class teamNode;
@@ -33,7 +34,8 @@ class WorldCupManager {
         permutation_t m_team_spirit;
         bool m_isDeleted;
     public:
-        explicit teamNode();
+        explicit teamNode() : m_key(-1) ,m_data(nullptr), m_rep(nullptr), m_rank(0), m_team_spirit(permutation_t::neutral()), m_isDeleted(
+                false) {}
         ~teamNode() = default;
         friend class WorldCupManager;
         friend class playerNode;
@@ -64,12 +66,6 @@ public:
     void addGame(int teamId1, int teamId2);
     permutation_t getPartialSpirit(int playerId);
 };
-
-WorldCupManager::teamNode::teamNode() : m_key(-1) ,m_data(nullptr), m_rep(nullptr), m_rank(0), m_team_spirit(permutation_t::neutral()), m_isDeleted(
-        false) {}
-
-WorldCupManager::playerNode::playerNode() : m_key(-1) ,m_data(nullptr), m_parent(nullptr), m_rg(0), m_rs(permutation_t::neutral()), m_team(
-        nullptr) {}
 
 
 #endif //WET2TEST_WORLDCUPMANAGER_H

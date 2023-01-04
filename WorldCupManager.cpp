@@ -6,8 +6,6 @@
 #include "WorldCupManager.h"
 
 WorldCupManager::WorldCupManager() : teams_table(HashTable<teamNode>(TOTAL)), players_table(HashTable<playerNode>(TOTAL)) {
-    teams_table= HashTable<teamNode>(2);
-    players_table = HashTable<playerNode>(2);
 }
 
 WorldCupManager::~WorldCupManager() = default;

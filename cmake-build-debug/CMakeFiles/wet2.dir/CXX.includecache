@@ -38,17 +38,9 @@ string
 iostream
 -
 
-C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/player.cpp
-player.h
-C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/player.h
-
 C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/player.h
 wet2util.h
 C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/wet2util.h
-
-C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/team.cpp
-team.h
-C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/team.h
 
 C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/team.h
 wet2util.h
@@ -77,8 +69,8 @@ Avltree.h
 C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/Avltree.h
 AvlRankTree.h
 C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/AvlRankTree.h
-UnionFind.h
-C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/UnionFind.h
+WorldCupManager.h
+C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/WorldCupManager.h
 memory
 -
 player.h

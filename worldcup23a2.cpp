@@ -105,13 +105,15 @@ output_t<int> world_cup_t::play_match(int teamId1, int teamId2)
         output_t<int> out(StatusType::INVALID_INPUT);
         return out;
     }
-    std::shared_ptr<team> team1 = m_all_teams_id.find_by_key(teamId1);
+    team* team1 = m_all_teams_id.find_by_key(teamId1);
     if(team1 == nullptr || !team1->hasKeeper()){
+        delete team1;
         output_t<int> out(StatusType::FAILURE);
         return out;
     }
-    std::shared_ptr<team> team2 = m_all_teams_id.find_by_key(teamId2);
+    team* team2 = m_all_teams_id.find_by_key(teamId2);
     if(team2 == nullptr || !team2->hasKeeper()){
+        delete team2;
         output_t<int> out(StatusType::FAILURE);
         return out;
     }

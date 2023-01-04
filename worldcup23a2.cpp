@@ -6,7 +6,7 @@ world_cup_t::world_cup_t()
     m_all_teams_id = AvlTree<team, int>();
     m_all_teams_ability = AVLRankTree<int, int>();
     m_all_eligible_teams = AvlTree<team, int>();
-    m_game = WorldCupManager();
+    m_game=WorldCupManager();
 }
 
 world_cup_t::~world_cup_t()
@@ -27,14 +27,10 @@ StatusType world_cup_t::add_team(int teamId)
         tmp_id=nullptr;
         return StatusType::FAILURE;
     }
-    std::cout<<"1";
     team* team1 = (new team(teamId));
     m_all_teams_id.insert(team1, teamId);
-    std::cout<<"2";
     m_all_teams_ability.Insert(0, teamId);
-    std::cout<<"3";
     m_game.AddTeam(teamId, team1);
-    std::cout<<"4";
     tmp_id=nullptr;
     m_num_teams++;
     return StatusType::SUCCESS;

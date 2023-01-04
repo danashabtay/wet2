@@ -121,47 +121,19 @@ CMakeFiles/wet2.dir/player.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/wet2.dir/player.cpp.s"
 	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\user\Desktop\DataStructures\WET2\wet2\player.cpp -o CMakeFiles\wet2.dir\player.cpp.s
 
-CMakeFiles/wet2.dir/PlayerHashTable.cpp.obj: CMakeFiles/wet2.dir/flags.make
-CMakeFiles/wet2.dir/PlayerHashTable.cpp.obj: CMakeFiles/wet2.dir/includes_CXX.rsp
-CMakeFiles/wet2.dir/PlayerHashTable.cpp.obj: ../PlayerHashTable.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\user\Desktop\DataStructures\WET2\wet2\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/wet2.dir/PlayerHashTable.cpp.obj"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\wet2.dir\PlayerHashTable.cpp.obj -c C:\Users\user\Desktop\DataStructures\WET2\wet2\PlayerHashTable.cpp
+CMakeFiles/wet2.dir/WorldCupManager.cpp.obj: CMakeFiles/wet2.dir/flags.make
+CMakeFiles/wet2.dir/WorldCupManager.cpp.obj: CMakeFiles/wet2.dir/includes_CXX.rsp
+CMakeFiles/wet2.dir/WorldCupManager.cpp.obj: ../WorldCupManager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\user\Desktop\DataStructures\WET2\wet2\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/wet2.dir/WorldCupManager.cpp.obj"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\wet2.dir\WorldCupManager.cpp.obj -c C:\Users\user\Desktop\DataStructures\WET2\wet2\WorldCupManager.cpp
 
-CMakeFiles/wet2.dir/PlayerHashTable.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/wet2.dir/PlayerHashTable.cpp.i"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\user\Desktop\DataStructures\WET2\wet2\PlayerHashTable.cpp > CMakeFiles\wet2.dir\PlayerHashTable.cpp.i
+CMakeFiles/wet2.dir/WorldCupManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/wet2.dir/WorldCupManager.cpp.i"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\user\Desktop\DataStructures\WET2\wet2\WorldCupManager.cpp > CMakeFiles\wet2.dir\WorldCupManager.cpp.i
 
-CMakeFiles/wet2.dir/PlayerHashTable.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/wet2.dir/PlayerHashTable.cpp.s"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\user\Desktop\DataStructures\WET2\wet2\PlayerHashTable.cpp -o CMakeFiles\wet2.dir\PlayerHashTable.cpp.s
-
-CMakeFiles/wet2.dir/TeamHashTable.cpp.obj: CMakeFiles/wet2.dir/flags.make
-CMakeFiles/wet2.dir/TeamHashTable.cpp.obj: CMakeFiles/wet2.dir/includes_CXX.rsp
-CMakeFiles/wet2.dir/TeamHashTable.cpp.obj: ../TeamHashTable.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\user\Desktop\DataStructures\WET2\wet2\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/wet2.dir/TeamHashTable.cpp.obj"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\wet2.dir\TeamHashTable.cpp.obj -c C:\Users\user\Desktop\DataStructures\WET2\wet2\TeamHashTable.cpp
-
-CMakeFiles/wet2.dir/TeamHashTable.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/wet2.dir/TeamHashTable.cpp.i"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\user\Desktop\DataStructures\WET2\wet2\TeamHashTable.cpp > CMakeFiles\wet2.dir\TeamHashTable.cpp.i
-
-CMakeFiles/wet2.dir/TeamHashTable.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/wet2.dir/TeamHashTable.cpp.s"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\user\Desktop\DataStructures\WET2\wet2\TeamHashTable.cpp -o CMakeFiles\wet2.dir\TeamHashTable.cpp.s
-
-CMakeFiles/wet2.dir/UnionFind.cpp.obj: CMakeFiles/wet2.dir/flags.make
-CMakeFiles/wet2.dir/UnionFind.cpp.obj: CMakeFiles/wet2.dir/includes_CXX.rsp
-CMakeFiles/wet2.dir/UnionFind.cpp.obj: ../UnionFind.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\user\Desktop\DataStructures\WET2\wet2\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/wet2.dir/UnionFind.cpp.obj"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\wet2.dir\UnionFind.cpp.obj -c C:\Users\user\Desktop\DataStructures\WET2\wet2\UnionFind.cpp
-
-CMakeFiles/wet2.dir/UnionFind.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/wet2.dir/UnionFind.cpp.i"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\user\Desktop\DataStructures\WET2\wet2\UnionFind.cpp > CMakeFiles\wet2.dir\UnionFind.cpp.i
-
-CMakeFiles/wet2.dir/UnionFind.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/wet2.dir/UnionFind.cpp.s"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\user\Desktop\DataStructures\WET2\wet2\UnionFind.cpp -o CMakeFiles\wet2.dir\UnionFind.cpp.s
+CMakeFiles/wet2.dir/WorldCupManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/wet2.dir/WorldCupManager.cpp.s"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\user\Desktop\DataStructures\WET2\wet2\WorldCupManager.cpp -o CMakeFiles\wet2.dir\WorldCupManager.cpp.s
 
 # Object files for target wet2
 wet2_OBJECTS = \
@@ -169,9 +141,7 @@ wet2_OBJECTS = \
 "CMakeFiles/wet2.dir/worldcup23a2.cpp.obj" \
 "CMakeFiles/wet2.dir/team.cpp.obj" \
 "CMakeFiles/wet2.dir/player.cpp.obj" \
-"CMakeFiles/wet2.dir/PlayerHashTable.cpp.obj" \
-"CMakeFiles/wet2.dir/TeamHashTable.cpp.obj" \
-"CMakeFiles/wet2.dir/UnionFind.cpp.obj"
+"CMakeFiles/wet2.dir/WorldCupManager.cpp.obj"
 
 # External object files for target wet2
 wet2_EXTERNAL_OBJECTS =
@@ -180,14 +150,12 @@ wet2.exe: CMakeFiles/wet2.dir/main23a2.cpp.obj
 wet2.exe: CMakeFiles/wet2.dir/worldcup23a2.cpp.obj
 wet2.exe: CMakeFiles/wet2.dir/team.cpp.obj
 wet2.exe: CMakeFiles/wet2.dir/player.cpp.obj
-wet2.exe: CMakeFiles/wet2.dir/PlayerHashTable.cpp.obj
-wet2.exe: CMakeFiles/wet2.dir/TeamHashTable.cpp.obj
-wet2.exe: CMakeFiles/wet2.dir/UnionFind.cpp.obj
+wet2.exe: CMakeFiles/wet2.dir/WorldCupManager.cpp.obj
 wet2.exe: CMakeFiles/wet2.dir/build.make
 wet2.exe: CMakeFiles/wet2.dir/linklibs.rsp
 wet2.exe: CMakeFiles/wet2.dir/objects1.rsp
 wet2.exe: CMakeFiles/wet2.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\user\Desktop\DataStructures\WET2\wet2\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable wet2.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\user\Desktop\DataStructures\WET2\wet2\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable wet2.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\wet2.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

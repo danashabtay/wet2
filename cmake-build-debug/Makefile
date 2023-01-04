@@ -128,77 +128,29 @@ wet2/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\wet2.dir\build.make CMakeFiles/wet2.dir/build
 .PHONY : wet2/fast
 
-PlayerHashTable.obj: PlayerHashTable.cpp.obj
-.PHONY : PlayerHashTable.obj
+WorldCupManager.obj: WorldCupManager.cpp.obj
+.PHONY : WorldCupManager.obj
 
 # target to build an object file
-PlayerHashTable.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\wet2.dir\build.make CMakeFiles/wet2.dir/PlayerHashTable.cpp.obj
-.PHONY : PlayerHashTable.cpp.obj
+WorldCupManager.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\wet2.dir\build.make CMakeFiles/wet2.dir/WorldCupManager.cpp.obj
+.PHONY : WorldCupManager.cpp.obj
 
-PlayerHashTable.i: PlayerHashTable.cpp.i
-.PHONY : PlayerHashTable.i
-
-# target to preprocess a source file
-PlayerHashTable.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\wet2.dir\build.make CMakeFiles/wet2.dir/PlayerHashTable.cpp.i
-.PHONY : PlayerHashTable.cpp.i
-
-PlayerHashTable.s: PlayerHashTable.cpp.s
-.PHONY : PlayerHashTable.s
-
-# target to generate assembly for a file
-PlayerHashTable.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\wet2.dir\build.make CMakeFiles/wet2.dir/PlayerHashTable.cpp.s
-.PHONY : PlayerHashTable.cpp.s
-
-TeamHashTable.obj: TeamHashTable.cpp.obj
-.PHONY : TeamHashTable.obj
-
-# target to build an object file
-TeamHashTable.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\wet2.dir\build.make CMakeFiles/wet2.dir/TeamHashTable.cpp.obj
-.PHONY : TeamHashTable.cpp.obj
-
-TeamHashTable.i: TeamHashTable.cpp.i
-.PHONY : TeamHashTable.i
+WorldCupManager.i: WorldCupManager.cpp.i
+.PHONY : WorldCupManager.i
 
 # target to preprocess a source file
-TeamHashTable.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\wet2.dir\build.make CMakeFiles/wet2.dir/TeamHashTable.cpp.i
-.PHONY : TeamHashTable.cpp.i
+WorldCupManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\wet2.dir\build.make CMakeFiles/wet2.dir/WorldCupManager.cpp.i
+.PHONY : WorldCupManager.cpp.i
 
-TeamHashTable.s: TeamHashTable.cpp.s
-.PHONY : TeamHashTable.s
-
-# target to generate assembly for a file
-TeamHashTable.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\wet2.dir\build.make CMakeFiles/wet2.dir/TeamHashTable.cpp.s
-.PHONY : TeamHashTable.cpp.s
-
-UnionFind.obj: UnionFind.cpp.obj
-.PHONY : UnionFind.obj
-
-# target to build an object file
-UnionFind.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\wet2.dir\build.make CMakeFiles/wet2.dir/UnionFind.cpp.obj
-.PHONY : UnionFind.cpp.obj
-
-UnionFind.i: UnionFind.cpp.i
-.PHONY : UnionFind.i
-
-# target to preprocess a source file
-UnionFind.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\wet2.dir\build.make CMakeFiles/wet2.dir/UnionFind.cpp.i
-.PHONY : UnionFind.cpp.i
-
-UnionFind.s: UnionFind.cpp.s
-.PHONY : UnionFind.s
+WorldCupManager.s: WorldCupManager.cpp.s
+.PHONY : WorldCupManager.s
 
 # target to generate assembly for a file
-UnionFind.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\wet2.dir\build.make CMakeFiles/wet2.dir/UnionFind.cpp.s
-.PHONY : UnionFind.cpp.s
+WorldCupManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\wet2.dir\build.make CMakeFiles/wet2.dir/WorldCupManager.cpp.s
+.PHONY : WorldCupManager.cpp.s
 
 main23a2.obj: main23a2.cpp.obj
 .PHONY : main23a2.obj
@@ -305,15 +257,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... wet2
-	@echo ... PlayerHashTable.obj
-	@echo ... PlayerHashTable.i
-	@echo ... PlayerHashTable.s
-	@echo ... TeamHashTable.obj
-	@echo ... TeamHashTable.i
-	@echo ... TeamHashTable.s
-	@echo ... UnionFind.obj
-	@echo ... UnionFind.i
-	@echo ... UnionFind.s
+	@echo ... WorldCupManager.obj
+	@echo ... WorldCupManager.i
+	@echo ... WorldCupManager.s
 	@echo ... main23a2.obj
 	@echo ... main23a2.i
 	@echo ... main23a2.s

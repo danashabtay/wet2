@@ -8,9 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Users/user/Desktop/DataStructures/WET2/wet2/PlayerHashTable.cpp" "C:/Users/user/Desktop/DataStructures/WET2/wet2/cmake-build-debug/CMakeFiles/wet2.dir/PlayerHashTable.cpp.obj"
-  "C:/Users/user/Desktop/DataStructures/WET2/wet2/TeamHashTable.cpp" "C:/Users/user/Desktop/DataStructures/WET2/wet2/cmake-build-debug/CMakeFiles/wet2.dir/TeamHashTable.cpp.obj"
-  "C:/Users/user/Desktop/DataStructures/WET2/wet2/UnionFind.cpp" "C:/Users/user/Desktop/DataStructures/WET2/wet2/cmake-build-debug/CMakeFiles/wet2.dir/UnionFind.cpp.obj"
+  "C:/Users/user/Desktop/DataStructures/WET2/wet2/WorldCupManager.cpp" "C:/Users/user/Desktop/DataStructures/WET2/wet2/cmake-build-debug/CMakeFiles/wet2.dir/WorldCupManager.cpp.obj"
   "C:/Users/user/Desktop/DataStructures/WET2/wet2/main23a2.cpp" "C:/Users/user/Desktop/DataStructures/WET2/wet2/cmake-build-debug/CMakeFiles/wet2.dir/main23a2.cpp.obj"
   "C:/Users/user/Desktop/DataStructures/WET2/wet2/player.cpp" "C:/Users/user/Desktop/DataStructures/WET2/wet2/cmake-build-debug/CMakeFiles/wet2.dir/player.cpp.obj"
   "C:/Users/user/Desktop/DataStructures/WET2/wet2/team.cpp" "C:/Users/user/Desktop/DataStructures/WET2/wet2/cmake-build-debug/CMakeFiles/wet2.dir/team.cpp.obj"

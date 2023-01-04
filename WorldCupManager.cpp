@@ -234,3 +234,11 @@ void WorldCupManager::insertPlayer(playerNode** table, playerNode *newPlayer) {
     }
     table[hashIndex] = newPlayer;
 }
+
+player *WorldCupManager::findPlayer(int playerId) {
+    playerNode* node = FindPlayer(playerId);
+    if(node){
+        return node->m_data;
+    }
+    return nullptr;
+}

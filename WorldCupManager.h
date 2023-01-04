@@ -54,6 +54,7 @@ public:
     void insertTeam(teamNode** table, teamNode* newTeam);
     void insertPlayer(playerNode** table, playerNode* newPlayer);
     WorldCupManager::playerNode* FindPlayer(int playerId);
+    player* findPlayer(int playerId);
     WorldCupManager::teamNode* FindTeam(int teamId);
     void UniteTeams(int teamId1, int teamId2);
     int findNumGames(int playerId);

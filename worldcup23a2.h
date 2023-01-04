@@ -19,7 +19,7 @@
 #include "team.h"
 #include "Avltree.h"
 #include "AvlRankTree.h"
-#include "UnionFind.h"
+#include "WorldCupManager.h"
 #include <memory>
 #include "player.h"
 
@@ -29,7 +29,7 @@ private:
     AvlTree<team,int> m_all_teams_id;
     AVLRankTree<int, int> m_all_teams_ability;
     AvlTree<team,int> m_all_eligible_teams;
-    UnionFind m_game;
+    WorldCupManager m_game;
 	//
 	// Here you may add anything you want
 	//

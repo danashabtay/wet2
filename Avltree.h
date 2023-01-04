@@ -12,7 +12,8 @@ template<class T, class K>
 class node {
 public:
     K key;
-    std::shared_ptr<T> data;
+    //std::shared_ptr<T> data;
+    T* data;
     node *left;
     node *right;
     int height;
@@ -20,11 +21,12 @@ public:
    // node(std::shared_ptr<T> data, K key);
 
     ~node() {
+        delete data;
         delete left;
         delete right;
     }
 
-    node<T,K>(std::shared_ptr<T> m_data, K m_key) : key(m_key), data(m_data), right(nullptr), left(nullptr),
+    node<T,K>(T* m_data, K m_key) : key(m_key), data(m_data), right(nullptr), left(nullptr),
                                                            height(1) {
     }
 };
@@ -44,14 +46,14 @@ class AvlTree {
         int height(node<T,K> *N);
         node<T,K> * minValueNode(node<T,K>* root);
         node<T,K> * removeHelper(node<T,K>* root, K key);
-        std::shared_ptr<T>find_by_key_helper(node<T,K>* root,K key);
-        std::shared_ptr<T>find_by_key(K key);
-        node<T,K>* newNode(std::shared_ptr<T> data, K key);
+        T* find_by_key_helper(node<T,K>* root,K key);
+        T* find_by_key(K key);
+        node<T,K>* newNode(T* data, K key);
         node<T,K> *rightRotate(node<T,K> *y);
         node<T,K> *leftRotate(node<T,K> *x);
         int getBalance(node<T,K> *N);
-        void insert(std::shared_ptr<T> data, K key);
-        node<T,K>* insertHelper(node<T,K>* root, std::shared_ptr<T> data, K key);
+        void insert(T* data, K key);
+        node<T,K>* insertHelper(node<T,K>* root, T* data, K key);
         void deleteTree(node<T,K> *r);
         void remove(K key);
         node<T,K>* getRoot() const;
@@ -195,7 +197,7 @@ node<T,K> * AvlTree<T,K>::removeHelper(node<T,K>* root,K key) {
 }
 
 template<class T, class K>
-std::shared_ptr<T> AvlTree<T,K>::find_by_key_helper(node<T,K> *root, K key) {
+T* AvlTree<T,K>::find_by_key_helper(node<T,K> *root, K key) {
     if(root== nullptr){
         return nullptr;
     }
@@ -216,7 +218,7 @@ std::shared_ptr<T> AvlTree<T,K>::find_by_key_helper(node<T,K> *root, K key) {
 }
 
 template<class T, class K>
-std::shared_ptr<T> AvlTree<T,K>::find_by_key(K key) {
+T* AvlTree<T,K>::find_by_key(K key) {
     return find_by_key_helper(m_root,key);
 }
 
@@ -234,7 +236,7 @@ void AvlTree<T, K>::deleteTree(node<T,K> *r) {
    new node with the given key and
    NULL left and right pointers. */
 template<class T, class K>
-node<T, K> *AvlTree<T, K>::newNode(std::shared_ptr<T> data, K key) {
+node<T, K> *AvlTree<T, K>::newNode(T* data, K key) {
     node<T,K>* newNode = new node<T, K>(data,key);
     newNode->key = key;
     newNode->data = data;
@@ -305,7 +307,7 @@ void AvlTree<T, K>::remove(K key) {
 // in the subtree rooted with node and
 // returns the new root of the subtree.
 template<class T, class K>
-node<T, K> *AvlTree<T, K>::insertHelper(node<T,K> *root, std::shared_ptr<T> data, K key) {
+node<T, K> *AvlTree<T, K>::insertHelper(node<T,K> *root, T* data, K key) {
 /* 1. Perform the normal BST insertion */
     if (root == nullptr){
         root=newNode(data,key); //maybe fix unchanging root?
@@ -366,9 +368,8 @@ int AvlTree<T, K>::height(node<T, K> *N) {
 }
 
 template<class T, class K>
-void AvlTree<T, K>::insert(std::shared_ptr<T> data, K key) {
+void AvlTree<T, K>::insert(T* data, K key) {
     m_root = insertHelper(m_root, data, key);
-    return;
 }
 template<class T, class K>
 node<T,K>* AvlTree<T,K>::getRoot() const{

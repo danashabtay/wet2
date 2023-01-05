@@ -20,12 +20,6 @@ memory
 
 C:/Users/user/Desktop/DataStructures/WET2/wet2/HashTable.h
 
-C:/Users/user/Desktop/DataStructures/WET2/wet2/WorldCupManager.cpp
-iostream
--
-WorldCupManager.h
-C:/Users/user/Desktop/DataStructures/WET2/wet2/WorldCupManager.h
-
 C:/Users/user/Desktop/DataStructures/WET2/wet2/WorldCupManager.h
 player.h
 C:/Users/user/Desktop/DataStructures/WET2/wet2/player.h
@@ -34,25 +28,13 @@ C:/Users/user/Desktop/DataStructures/WET2/wet2/team.h
 HashTable.h
 C:/Users/user/Desktop/DataStructures/WET2/wet2/HashTable.h
 
-C:/Users/user/Desktop/DataStructures/WET2/wet2/main23a2.cpp
-worldcup23a2.h
-C:/Users/user/Desktop/DataStructures/WET2/wet2/worldcup23a2.h
-string
--
+C:/Users/user/Desktop/DataStructures/WET2/wet2/avl.h
 iostream
 -
-
-C:/Users/user/Desktop/DataStructures/WET2/wet2/player.cpp
-player.h
-C:/Users/user/Desktop/DataStructures/WET2/wet2/player.h
 
 C:/Users/user/Desktop/DataStructures/WET2/wet2/player.h
 wet2util.h
 C:/Users/user/Desktop/DataStructures/WET2/wet2/wet2util.h
-
-C:/Users/user/Desktop/DataStructures/WET2/wet2/team.cpp
-team.h
-C:/Users/user/Desktop/DataStructures/WET2/wet2/team.h
 
 C:/Users/user/Desktop/DataStructures/WET2/wet2/team.h
 memory
@@ -81,6 +63,8 @@ AvlRankTree.h
 C:/Users/user/Desktop/DataStructures/WET2/wet2/AvlRankTree.h
 WorldCupManager.h
 C:/Users/user/Desktop/DataStructures/WET2/wet2/WorldCupManager.h
+avl.h
+C:/Users/user/Desktop/DataStructures/WET2/wet2/avl.h
 memory
 -
 player.h

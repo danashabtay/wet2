@@ -3,7 +3,7 @@
 world_cup_t::world_cup_t()
 {
 	m_num_teams=0;
-    m_all_teams_id = AvlTree<team, int>();
+    m_all_teams_id =  AvlTree<team,int>();
     m_all_teams_ability = AVLRankTree<int, int>();
     m_all_eligible_teams = AvlTree<team, int>();
     m_game = WorldCupManager();
@@ -27,14 +27,10 @@ StatusType world_cup_t::add_team(int teamId)
         tmp_id=nullptr;
         return StatusType::FAILURE;
     }
-    std::cout<<"1";
     team* team1 = (new team(teamId));
-    m_all_teams_id.insert(team1, teamId);
-    std::cout<<"2";
+    m_all_teams_id.insert(team1,teamId);
     m_all_teams_ability.Insert(0, teamId);
-    std::cout<<"3";
     m_game.AddTeam(teamId, team1);
-    std::cout<<"4";
     tmp_id=nullptr;
     m_num_teams++;
     return StatusType::SUCCESS;
@@ -85,12 +81,16 @@ StatusType world_cup_t::add_player(int playerId, int teamId,
     if(newPlayer == nullptr){
         return StatusType::ALLOCATION_ERROR;
     }
+    std::cout<<"points: "<< team1->getNumPoints();
+    std::cout<<"abil: "<< team1->getTeamAbility();
     int old_ability=team1->getTeamAbility();
     m_all_teams_ability.Remove(old_ability,teamId);
     if(goalKeeper && (!team1->hasKeeper())){
         m_all_eligible_teams.insert(team1,teamId);
     }
     team1->addPlayerStats(ability, spirit, goalKeeper);
+    std::cout<<"points: "<< team1->getNumPoints();
+    std::cout<<"abil: "<< team1->getTeamAbility();
     m_game.AddPlayer(playerId, newPlayer, teamId);
     int new_ability=team1->getTeamAbility();
     m_all_teams_ability.Insert(new_ability,teamId);
@@ -111,6 +111,8 @@ output_t<int> world_cup_t::play_match(int teamId1, int teamId2)
         output_t<int> out(StatusType::FAILURE);
         return out;
     }
+    std::cout<<"points: "<< team1->getNumPoints();
+    std::cout<<"abil: "<< team1->getTeamAbility();
     team* team2 = m_all_teams_id.find_by_key(teamId2);
     if(team2 == nullptr || !team2->hasKeeper()){
         delete team2;
@@ -118,12 +120,13 @@ output_t<int> world_cup_t::play_match(int teamId1, int teamId2)
         output_t<int> out(StatusType::FAILURE);
         return out;
     }
+    std::cout<<"points: "<< team2->getNumPoints();
+    std::cout<<"abil: "<< team2->getTeamAbility();
 
-    int total_power_team1 = team1->getNumPoints() + team1->getTeamAbility();
-    int total_power_team2 = team2->getNumPoints() + team2->getTeamAbility();
+    int total_power_team1 = team1->getPlayMatchStats();
+    int total_power_team2 = team2->getPlayMatchStats();
 
     if(total_power_team1 > total_power_team2){
-        team1->addPoints(3);
         m_game.addGame(teamId1,teamId2);
         output_t<int> out(1);
         delete team1;

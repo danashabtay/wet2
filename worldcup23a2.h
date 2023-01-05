@@ -20,6 +20,7 @@
 #include "Avltree.h"
 #include "AvlRankTree.h"
 #include "WorldCupManager.h"
+#include "avl.h"
 #include <memory>
 #include "player.h"
 

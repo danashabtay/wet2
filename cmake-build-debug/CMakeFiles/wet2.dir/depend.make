@@ -13,6 +13,7 @@ CMakeFiles/wet2.dir/main23a2.cpp.obj: \
  ../Avltree.h \
  ../HashTable.h \
  ../WorldCupManager.h \
+ ../avl.h \
  ../main23a2.cpp \
  ../player.h \
  ../team.h \
@@ -31,6 +32,7 @@ CMakeFiles/wet2.dir/worldcup23a2.cpp.obj: \
  ../Avltree.h \
  ../HashTable.h \
  ../WorldCupManager.h \
+ ../avl.h \
  ../player.h \
  ../team.h \
  ../wet2util.h \

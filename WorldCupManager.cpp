@@ -31,11 +31,13 @@ void WorldCupManager::AddPlayer(int playerId, player* data, int teamId) {
     ///////////////find team
     teamNode* team1 = FindTeam(teamId);
     //////////////////////////
-    if(team1->m_rep== NULL){
+    if(team1->m_rank==0){
+        std::cout<<"first player in team! \n";
         newPlayer->m_team=team1;
         newPlayer->m_parent=newPlayer;
         newPlayer->m_rg=data->getNumGames();
         newPlayer->m_rs=data->getSpirit();
+        team1->m_rep=newPlayer;
     }
     else{
         newPlayer->m_parent=team1->m_rep;

@@ -3,17 +3,25 @@
 ///
 
 #include "team.h"
+#include "iostream"
+
 
 permutation_t team::getPermutation() const {
     return m_team_spirit;
 }
 
 
-bool team::hasKeeper() const{
-    return m_has_goalkeeper;
+bool team::hasKeeper() {
+    if(m_has_goalkeeper== true){
+        return true;
+    }
+    return false;
 }
 
 int team::getNumPoints() const{
+    if(m_has_goalkeeper== 0){
+        return 0;
+    }
     return m_points;
 }
 
@@ -25,9 +33,6 @@ void team::addPoints(int points_to_add){
     m_points += points_to_add;
 }
 
-void team::addGame(){
-    m_games_played++;
-}
 
 int team::getId() const{
     return m_team_id;
@@ -45,4 +50,10 @@ void team::addPlayerStats(int ability, permutation_t spirit, bool isKeeper){
     if(isKeeper){
         m_has_goalkeeper=true;
     }
+}
+
+int team::getPlayMatchStats() {
+    int sum = m_points+m_total_ability;
+    std::cout<<"sum: "<<sum<<"\n";
+    return sum;
 }

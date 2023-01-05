@@ -68,6 +68,6 @@ public:
     permutation_t getPartialSpirit(int playerId);
 };
 
-
+///
 #endif //WET2TEST_WORLDCUPMANAGER_H
 

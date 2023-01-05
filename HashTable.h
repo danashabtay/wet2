@@ -44,7 +44,7 @@ void HashTable<V>::rehash() {
         for(int i = 0; i < old_max; i++) {
             tmp_table[i] = m_array[i];
         }
-        //////////////////////////////delete old teams_table
+        ///////////////////////////////delete old teams_table
         /*for(int i = 0; i < m_curr_size; i++) {
             delete m_array[i];
         }

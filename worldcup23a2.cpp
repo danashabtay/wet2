@@ -1,5 +1,5 @@
 #include "worldcup23a2.h"
-
+///
 world_cup_t::world_cup_t()
 {
 	m_num_teams=0;

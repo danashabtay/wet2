@@ -158,7 +158,7 @@ void AVLRankTree<T,K>::Insert(K key, T data) {
             }
         }
         new_node->parent = parent;
-        /////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////
 
         updateHeights(new_node);
         updateRanks(new_node);

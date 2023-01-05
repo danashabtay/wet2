@@ -5,7 +5,7 @@
 #define TOTAL 2
 #include "WorldCupManager.h"
 
-WorldCupManager::WorldCupManager() : teams_table(HashTable<teamNode>(TOTAL)), players_table(HashTable<playerNode>(TOTAL)) {
+WorldCupManager::WorldCupManager() : teams_table(HashTable<teamNode>()), players_table(HashTable<playerNode>()) {
 }
 
 WorldCupManager::~WorldCupManager() = default;
@@ -122,14 +122,15 @@ bool WorldCupManager::isActive(int playerId) {
 void WorldCupManager::markDeleted(int teamId) {
 teamNode* team1 = FindTeam(teamId);
 team1->m_isDeleted= true;
+team1->m_key=-1;
 }
 
 bool WorldCupManager::doesExist(int playerId) {
     playerNode* player1 = FindPlayer(playerId);
-    if(player1== NULL){
-        return true;
+    if(player1==NULL){
+        return false;
     }
-    return false;
+    return true;
 }
 
 void WorldCupManager::addGame(int teamId1, int teamId2) {

@@ -52,7 +52,7 @@ class WorldCupManager {
     WorldCupManager::playerNode* findRep(playerNode* player);
 
 public:
-    WorldCupManager();
+    explicit WorldCupManager();
     ~WorldCupManager();
     void AddTeam(int teamId, team* data);
     void AddPlayer(int playerId, player* data, int teamId);

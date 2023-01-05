@@ -127,10 +127,10 @@ team1->m_key=-1;
 
 bool WorldCupManager::doesExist(int playerId) {
     playerNode* player1 = FindPlayer(playerId);
-    if(player1== NULL){
-        return true;
+    if(player1==NULL){
+        return false;
     }
-    return false;
+    return true;
 }
 
 void WorldCupManager::addGame(int teamId1, int teamId2) {

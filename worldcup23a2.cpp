@@ -125,9 +125,10 @@ output_t<int> world_cup_t::play_match(int teamId1, int teamId2)
 
     int total_power_team1 = team1->getPlayMatchStats();
     int total_power_team2 = team2->getPlayMatchStats();
+    m_game->addGame(teamId1,teamId2);
 
     if(total_power_team1 > total_power_team2){
-        m_game->addGame(teamId1,teamId2);
+        team1->addPoints(3);
         output_t<int> out(1);
         delete team1;
         delete team2;
@@ -135,7 +136,6 @@ output_t<int> world_cup_t::play_match(int teamId1, int teamId2)
     }
     else if(total_power_team2 > total_power_team1){
         team2->addPoints(3);
-        m_game->addGame(teamId1,teamId2);
         output_t<int> out(3);
         delete team1;
         delete team2;
@@ -146,7 +146,6 @@ output_t<int> world_cup_t::play_match(int teamId1, int teamId2)
         int team2_strength = team2->getPermutation().strength();
         if(team1_strength > team2_strength){
             team1->addPoints(3);
-            m_game->addGame(teamId1,teamId2);
             output_t<int> out(2);
             delete team1;
             delete team2;
@@ -154,7 +153,6 @@ output_t<int> world_cup_t::play_match(int teamId1, int teamId2)
         }
         else if(team2_strength > team1_strength){
             team2->addPoints(3);
-            m_game->addGame(teamId1,teamId2);
             output_t<int> out(4);
             delete team1;
             delete team2;
@@ -163,7 +161,6 @@ output_t<int> world_cup_t::play_match(int teamId1, int teamId2)
         else{
             team1->addPoints(1);
             team2->addPoints(1);
-            m_game->addGame(teamId1,teamId2);
             output_t<int> out(0);
             delete team1;
             delete team2;

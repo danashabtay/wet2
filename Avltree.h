@@ -12,7 +12,7 @@ template<class T, class K>
 class node {
 public:
     K key;
-    //std::shared_ptr<T> data;
+    ///std::shared_ptr<T> data;
     T* data;
     node *left;
     node *right;

@@ -47,8 +47,8 @@ class WorldCupManager {
         friend class WorldCupManager;
         friend class playerNode;
     };
-    HashTable<teamNode> teams_table;
-    HashTable<playerNode> players_table;
+    HashTable<teamNode>* teams_table;
+    HashTable<playerNode>* players_table;
     WorldCupManager::playerNode* findRep(playerNode* player);
 
 public:

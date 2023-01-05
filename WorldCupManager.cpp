@@ -5,7 +5,7 @@
 #define TOTAL 2
 #include "WorldCupManager.h"
 
-WorldCupManager::WorldCupManager() : teams_table(HashTable<teamNode>(TOTAL)), players_table(HashTable<playerNode>(TOTAL)) {
+WorldCupManager::WorldCupManager() : teams_table(new HashTable<teamNode>()), players_table(new HashTable<playerNode>()) {
 }
 
 WorldCupManager::~WorldCupManager() = default;
@@ -21,7 +21,7 @@ void WorldCupManager::AddTeam(int teamId, team* data) {
     teamNode *newTeam = new teamNode();
     newTeam->m_key=teamId;
     newTeam->m_data=data;
-    teams_table.insert(newTeam,newTeam->m_key);
+    teams_table->insert(newTeam,newTeam->m_key);
 }
 
 void WorldCupManager::AddPlayer(int playerId, player* data, int teamId) {
@@ -44,16 +44,16 @@ void WorldCupManager::AddPlayer(int playerId, player* data, int teamId) {
     }
     team1->m_team_spirit=team1->m_team_spirit*data->getSpirit();
     team1->m_rank++;
-    players_table.insert(newPlayer,newPlayer->m_key);
+    players_table->insert(newPlayer,newPlayer->m_key);
 }
 
 WorldCupManager::playerNode *WorldCupManager::FindPlayer(int playerId) {
-    return players_table.find(playerId);
+    return players_table->find(playerId);
 }
 
 permutation_t WorldCupManager::getPartialSpirit(int playerId) {
-playerNode* player1= FindPlayer(playerId);
-playerNode* playerParent = findRep(player1);
+    playerNode* player1= FindPlayer(playerId);
+    playerNode* playerParent = findRep(player1);
     permutation_t sum= permutation_t::neutral();
     while(player1!=playerParent){
         sum=(playerParent->m_rs)*sum;
@@ -63,18 +63,18 @@ playerNode* playerParent = findRep(player1);
 }
 
 WorldCupManager::teamNode *WorldCupManager::FindTeam(int teamId) {
-    return teams_table.find(teamId);
+    return teams_table->find(teamId);
 }
 
 void WorldCupManager::UniteTeams(int teamId1, int teamId2) {
-teamNode* team1 = FindTeam(teamId1);
-teamNode* team2 = FindTeam(teamId2);
-playerNode* ownerParent = team1->m_rep;
-playerNode* addedParent = team2->m_rep;
+    teamNode* team1 = FindTeam(teamId1);
+    teamNode* team2 = FindTeam(teamId2);
+    playerNode* ownerParent = team1->m_rep;
+    playerNode* addedParent = team2->m_rep;
     //if they are part of same set do nothing
-if(ownerParent->m_data==addedParent->m_data){
-    return;
-}
+    if(ownerParent->m_data==addedParent->m_data){
+        return;
+    }
     //else whoever rank is higher becomes parent of other
     if (ownerParent->m_team->m_rank >= addedParent->m_team->m_rank) { // add added team to owner team
         markDeleted(teamId2);
@@ -102,8 +102,8 @@ if(ownerParent->m_data==addedParent->m_data){
 }
 
 int WorldCupManager::findNumGames(int playerId) {
-playerNode* player1 = FindPlayer(playerId);
-playerNode* playerParent = findRep(player1);
+    playerNode* player1 = FindPlayer(playerId);
+    playerNode* playerParent = findRep(player1);
     int sum=0;
     while(player1!=playerParent){
         sum+=player1->m_rg;
@@ -120,16 +120,17 @@ bool WorldCupManager::isActive(int playerId) {
 }
 
 void WorldCupManager::markDeleted(int teamId) {
-teamNode* team1 = FindTeam(teamId);
-team1->m_isDeleted= true;
+    teamNode* team1 = FindTeam(teamId);
+    team1->m_isDeleted= true;
+    team1->m_key=-1;
 }
 
 bool WorldCupManager::doesExist(int playerId) {
     playerNode* player1 = FindPlayer(playerId);
-    if(player1== NULL){
-        return true;
+    if(player1==NULL){
+        return false;
     }
-    return false;
+    return true;
 }
 
 void WorldCupManager::addGame(int teamId1, int teamId2) {

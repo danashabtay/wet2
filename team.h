@@ -4,7 +4,6 @@
 
 #ifndef WET2_TEAM_H
 #define WET2_TEAM_H
-#include "wet2util.h"
 #include <memory>
 #include "wet2util.h"
 class team {

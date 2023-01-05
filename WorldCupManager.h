@@ -17,7 +17,7 @@ class WorldCupManager {
         playerNode* m_parent;
         int m_rg;
         permutation_t m_rs;
-       teamNode* m_team;
+        teamNode* m_team;
     public:
         explicit playerNode() : m_key(-1) ,m_data(NULL), m_parent(NULL), m_rg(0), m_rs(permutation_t::neutral()), m_team(
                 NULL) {}

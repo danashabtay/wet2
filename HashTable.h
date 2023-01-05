@@ -84,7 +84,7 @@ V* HashTable<V>::find(int Id) {
     int counter = 0;
     int hashIndex = ((key%m_max_size) + (counter * (1 + (key%(m_max_size-1)))))%m_max_size;
     while (m_array[hashIndex] != NULL) {
-        if (counter++ > m_max_size)
+        if (counter > m_max_size)
             return NULL;
         // if node found return its value
         if (m_array[hashIndex]->getKey() == key){

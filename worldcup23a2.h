@@ -20,17 +20,16 @@
 #include "Avltree.h"
 #include "AvlRankTree.h"
 #include "WorldCupManager.h"
-#include "avl.h"
 #include <memory>
 #include "player.h"
 
 class world_cup_t {
 private:
     int m_num_teams;
-    AvlTree<team,int> m_all_teams_id;
-    AVLRankTree<int, int> m_all_teams_ability;
-    AvlTree<team,int> m_all_eligible_teams;
-    WorldCupManager m_game;
+    AvlTree<team,int>* m_all_teams_id;
+    AVLRankTree<int, int>* m_all_teams_ability;
+    AvlTree<team,int>* m_all_eligible_teams;
+    WorldCupManager* m_game;
 	//
 	// Here you may add anything you want
 	//

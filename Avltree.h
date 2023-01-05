@@ -12,14 +12,10 @@ template<class T, class K>
 class node {
 public:
     K key;
-    ///std::shared_ptr<T> data;
     T* data;
     node *left;
     node *right;
     int height;
-
-   // node(std::shared_ptr<T> data, K key);
-
     ~node() {
         delete data;
         delete left;

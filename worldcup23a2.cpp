@@ -77,16 +77,16 @@ StatusType world_cup_t::add_player(int playerId, int teamId,
     if (newPlayer == nullptr) {
         return StatusType::ALLOCATION_ERROR;
     }
-    std::cout << "points: " << team1->getNumPoints();
-    std::cout << "abil: " << team1->getTeamAbility();
+    //std::cout << "points: " << team1->getNumPoints();
+    //std::cout << "abil: " << team1->getTeamAbility();
     int old_ability = team1->getTeamAbility();
     m_all_teams_ability->Remove(old_ability, teamId);
     if (goalKeeper && (!team1->hasKeeper())) {
         m_all_eligible_teams->insert(team1, teamId);
     }
     team1->addPlayerStats(ability, spirit, goalKeeper);
-    std::cout << "points: " << team1->getNumPoints();
-    std::cout << "abil: " << team1->getTeamAbility();
+    //std::cout << "points: " << team1->getNumPoints();
+    //std::cout << "abil: " << team1->getTeamAbility();
     m_game->AddPlayer(playerId, newPlayer, teamId);
     int new_ability = team1->getTeamAbility();
     m_all_teams_ability->Insert(new_ability, teamId);
@@ -108,8 +108,8 @@ output_t<int> world_cup_t::play_match(int teamId1, int teamId2) {
         output_t<int> out(StatusType::FAILURE);
         return out;
     }
-    std::cout << "points: " << team1->getNumPoints();
-    std::cout << "abil: " << team1->getTeamAbility();
+    //std::cout << "points: " << team1->getNumPoints();
+    //std::cout << "abil: " << team1->getTeamAbility();
     team *team2 = m_all_teams_id->find_by_key(teamId2);
     if (team2 == nullptr || !team2->hasKeeper()) {
         /*delete team2;
@@ -117,8 +117,8 @@ output_t<int> world_cup_t::play_match(int teamId1, int teamId2) {
         output_t<int> out(StatusType::FAILURE);
         return out;
     }
-    std::cout << "points: " << team2->getNumPoints();
-    std::cout << "abil: " << team2->getTeamAbility();
+    //std::cout << "points: " << team2->getNumPoints();
+    //std::cout << "abil: " << team2->getTeamAbility();
 
     int total_power_team1 = team1->getPlayMatchStats();
     int total_power_team2 = team2->getPlayMatchStats();
@@ -184,7 +184,7 @@ StatusType world_cup_t::add_player_cards(int playerId, int cards) {
     if (!m_game->doesExist(playerId)) {
         return StatusType::FAILURE;
     }
-    if (m_game->isActive(playerId)!=0) {
+    if (!m_game->isActive(playerId)) {
         return StatusType::FAILURE;
     }
     player *player1 = m_game->findPlayer(playerId);
@@ -244,12 +244,12 @@ output_t<permutation_t> world_cup_t::get_partial_spirit(int playerId) {
         return out;
     }
     if (!m_game->doesExist(playerId)) {
-        std::cout<<"mkimk";
+       // std::cout<<"mkimk";
         output_t<permutation_t> out(StatusType::FAILURE);
         return out;
     }
     if (!m_game->isActive(playerId)) {
-        std::cout<<"mkimkdschbnkjhndi";
+        //std::cout<<"mkimkdschbnkjhndi";
         output_t<permutation_t> out(StatusType::FAILURE);
         return out;
     }

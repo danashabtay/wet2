@@ -117,7 +117,6 @@ void AVLRankTree<T, K>::Reset() {
     destroy2(this->root); // release allocated memory
     this->size = 0;
     this->root = NULL;
-    return;
 }
 
 // Time complexity: O(1)
@@ -196,7 +195,6 @@ void AVLRankTree<T, K>::Remove(K key, T data) {
     Node *node = getNode(key, data);
     if (node)
         RemoveNode(node);
-    return;
 }
 
 // Time complexity: log(n)

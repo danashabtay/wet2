@@ -6,13 +6,19 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/HashTable.h
-
-C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/WorldCupManager.cpp
+C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/AvlRankTree.h
 iostream
 -
-WorldCupManager.h
-C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/WorldCupManager.h
+stdlib.h
+-
+
+C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/Avltree.h
+iostream
+-
+memory
+-
+
+C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/HashTable.h
 
 C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/WorldCupManager.h
 player.h
@@ -37,4 +43,24 @@ stdexcept
 -
 ostream
 -
+
+C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/worldcup23a2.cpp
+worldcup23a2.h
+C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/worldcup23a2.h
+
+C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/worldcup23a2.h
+wet2util.h
+C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/wet2util.h
+team.h
+C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/team.h
+Avltree.h
+C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/Avltree.h
+AvlRankTree.h
+C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/AvlRankTree.h
+WorldCupManager.h
+C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/WorldCupManager.h
+memory
+-
+player.h
+C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/player.h
 

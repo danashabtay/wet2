@@ -105,7 +105,7 @@ output_t<int> world_cup_t::play_match(int teamId1, int teamId2) {
     int total_power_team1 = team1->getPlayMatchStats();
     int total_power_team2 = team2->getPlayMatchStats();
     m_game->addGame(teamId1, teamId2);
-
+    std::cout<<"here";
     if (total_power_team1 > total_power_team2) {
         team1->addPoints(3);
         output_t<int> out(1);

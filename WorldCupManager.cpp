@@ -108,9 +108,9 @@ void WorldCupManager::UniteTeams(int teamId1, int teamId2) {
 int WorldCupManager::findNumGames(int playerId) {
     playerNode *player1 = FindPlayer(playerId);
     playerNode *playerParent = findRep(player1);
-    int sum = 0;
+    int sum = player1->m_rg;
     while (player1 != playerParent) {
-        sum += player1->m_rg;
+        sum += playerParent->m_rg;
         player1 = player1->m_parent;
     }
     return sum;

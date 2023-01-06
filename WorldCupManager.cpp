@@ -120,7 +120,7 @@ bool WorldCupManager::isActive(int playerId) {
     playerNode *player1 = FindPlayer(playerId);
     playerNode *playerParent = findRep(player1);
     teamNode *team1 = playerParent->m_team;
-    return team1->m_isDeleted;
+    return !team1->m_isDeleted;
 }
 
 void WorldCupManager::markDeleted(int teamId) {

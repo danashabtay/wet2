@@ -16,6 +16,6 @@ add_executable(wet2
         player.h
         Avltree.h
         AvlRankTree.h
-        WorldCupManager.h
         WorldCupManager.cpp
+        WorldCupManager.h
         HashTable.h)

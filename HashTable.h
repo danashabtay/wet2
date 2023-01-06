@@ -73,8 +73,7 @@ void HashTable<V>::insert(V *data, int key) {
         counter++;
         hashIndex =((key%m_max_size) + (counter * (1 + (key%(m_max_size-1)))))%m_max_size;
     }
-    m_array[hashIndex] = data;
-    std::cout<<"added key: "<<key<<" at index: "<<hashIndex<<"\n";
+    m_hashtable[hashIndex] = data;
     m_curr_size++;
 }
 
@@ -83,13 +82,12 @@ V* HashTable<V>::find(int Id) {
     int key=Id;
     int counter = 0;
     int hashIndex = ((key%m_max_size) + (counter * (1 + (key%(m_max_size-1)))))%m_max_size;
-    while (m_array[hashIndex] != NULL) {
-        if (counter > m_max_size)
+    while (m_hashtable[hashIndex] != NULL) {
+        if (counter++ > m_max_size)
             return NULL;
         // if node found return its value
-        if (m_array[hashIndex]->getKey() == key){
-            return m_array[hashIndex];
-        }
+        if (m_hashtable[hashIndex]->getKey() == key)
+            return m_hashtable[hashIndex];
         counter++;
         hashIndex =((key%m_max_size) + (counter * (1+(key%(m_max_size-1)))))%m_max_size;
     }

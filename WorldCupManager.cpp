@@ -53,7 +53,13 @@ void WorldCupManager::AddPlayer(int playerId, player *data, int teamId) {
 
 WorldCupManager::playerNode *WorldCupManager::FindPlayer(int playerId) {
     playerNode* player1 = players_table->find(playerId);
+    if(player1== nullptr){
+        return nullptr;
+    }
     playerNode* playerParent= findRep(player1);
+    if(player1->m_parent==playerParent){
+        return player1;
+    }
     playerNode* og_player=player1;
     permutation_t spirit_sum= permutation_t::neutral();
     int game_sum=0;
@@ -164,7 +170,6 @@ bool WorldCupManager::isActive(int playerId) {
 
 void WorldCupManager::markDeleted(int teamId) {
     teamNode *team1 = FindTeam(teamId);
-    std::cout << "marking as deleted team " << team1->m_key << "\n";
     team1->m_isDeleted = true;
     team1->m_key = -1;
 }

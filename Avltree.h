@@ -4,6 +4,7 @@
 
 #ifndef WET2_AVLTREE_H
 #define WET2_AVLTREE_H
+
 #include <iostream>
 #include <memory>
 
@@ -12,59 +13,74 @@ template<class T, class K>
 class node {
 public:
     K key;
-    T* data;
+    T *data;
     node *left;
     node *right;
     int height;
+
     ~node() {
         delete data;
         delete left;
         delete right;
     }
 
-    node<T,K>(T* m_data, K m_key) : key(m_key), data(m_data), right(nullptr), left(nullptr),
-                                                           height(1) {
+    node<T, K>(T *m_data, K m_key) : key(m_key), data(m_data), right(nullptr), left(nullptr),
+                                     height(1) {
     }
 };
-
 
 
 template<class T, class K>
 class AvlTree {
 
 
-    private:
-        node<T,K>* m_root;
+private:
+    node<T, K> *m_root;
 
-    public:
-        AvlTree();
-        ~AvlTree();
-        int height(node<T,K> *N);
-        node<T,K> * minValueNode(node<T,K>* root);
-        node<T,K> * removeHelper(node<T,K>* root, K key);
-        T* find_by_key_helper(node<T,K>* root,K key);
-        T* find_by_key(K key);
-        node<T,K>* newNode(T* data, K key);
-        node<T,K> *rightRotate(node<T,K> *y);
-        node<T,K> *leftRotate(node<T,K> *x);
-        int getBalance(node<T,K> *N);
-        void insert(T* data, K key);
-        node<T,K>* insertHelper(node<T,K>* root, T* data, K key);
-        void deleteTree(node<T,K> *r);
-        void remove(K key);
-        node<T,K>* getRoot() const;
-        int max2(int a, int b)
-        {
-            return (a > b)? a : b;
-        }
-    };
+public:
+    AvlTree();
+
+    ~AvlTree();
+
+    int height(node<T, K> *N);
+
+    node<T, K> *minValueNode(node<T, K> *root);
+
+    node<T, K> *removeHelper(node<T, K> *root, K key);
+
+    T *find_by_key_helper(node<T, K> *root, K key);
+
+    T *find_by_key(K key);
+
+    node<T, K> *newNode(T *data, K key);
+
+    node<T, K> *rightRotate(node<T, K> *y);
+
+    node<T, K> *leftRotate(node<T, K> *x);
+
+    int getBalance(node<T, K> *N);
+
+    void insert(T *data, K key);
+
+    node<T, K> *insertHelper(node<T, K> *root, T *data, K key);
+
+    void deleteTree(node<T, K> *r);
+
+    void remove(K key);
+
+    node<T, K> *getRoot() const;
+
+    int max2(int a, int b) {
+        return (a > b) ? a : b;
+    }
+};
 /////////////////////////////////////////////////////implementation//////////////////////////////////////////////////
 
 template<class T, class K>
-AvlTree<T,K>::AvlTree() : m_root(nullptr) {}
+AvlTree<T, K>::AvlTree() : m_root(nullptr) {}
 
 template<class T, class K>
-AvlTree<T,K>::~AvlTree() {
+AvlTree<T, K>::~AvlTree() {
     deleteTree(this->m_root);
 }
 
@@ -74,8 +90,8 @@ return the node with minimum key value
 found in that tree. Note that the entire
 tree does not need to be searched. */
 template<class T, class K>
-node<T, K> *AvlTree<T, K>::minValueNode(node<T,K> *root) {
-    node<T,K>* current = root;
+node<T, K> *AvlTree<T, K>::minValueNode(node<T, K> *root) {
+    node<T, K> *current = root;
 
     /* loop down to find the leftmost leaf */
     while (current->left != nullptr)
@@ -89,7 +105,7 @@ node<T, K> *AvlTree<T, K>::minValueNode(node<T,K> *root) {
 // given root. It returns root of the
 // modified subtree.
 template<class T, class K>
-node<T,K> * AvlTree<T,K>::removeHelper(node<T,K>* root,K key) {
+node<T, K> *AvlTree<T, K>::removeHelper(node<T, K> *root, K key) {
 
     // STEP 1: PERFORM STANDARD BST DELETE
     if (root == nullptr)
@@ -98,43 +114,37 @@ node<T,K> * AvlTree<T,K>::removeHelper(node<T,K>* root,K key) {
     // If the key to be deleted is smaller
     // than the root's key, then it lies
     // in left subtree
-    if ( key < root->key )
+    if (key < root->key)
         root->left = removeHelper(root->left, key);
 
         // If the key to be deleted is greater
         // than the root's key, then it lies
         // in right subtree
-    else if( key > root->key )
+    else if (key > root->key)
         root->right = removeHelper(root->right, key);
 
         // if key is same as root's key, then
         // This is the node to be deleted
-    else
-    {
+    else {
         // node with only one child or no child
-        if( (root->left == nullptr) ||
-            (root->right == nullptr) )
-        {
-            node<T,K> *temp = root->left ?
-                              root->left :
-                              root->right;
+        if ((root->left == nullptr) ||
+            (root->right == nullptr)) {
+            node<T, K> *temp = root->left ?
+                               root->left :
+                               root->right;
 
             // No child case
-            if (temp == nullptr)
-            {
+            if (temp == nullptr) {
                 temp = root;
                 root = nullptr;
-            }
-            else // One child case
+            } else // One child case
                 *root = *temp; // Copy the contents of
             // the non-empty child
             free(temp);
-        }
-        else
-        {
+        } else {
             // node with two children: Get the inorder
             // successor (smallest in the right subtree)
-            node<T,K>* temp = minValueNode(root->right);
+            node<T, K> *temp = minValueNode(root->right);
 
             // Copy the inorder successor's
             // data to this node
@@ -170,8 +180,7 @@ node<T,K> * AvlTree<T,K>::removeHelper(node<T,K>* root,K key) {
 
     // Left Right Case
     if (balance > 1 &&
-        getBalance(root->left) < 0)
-    {
+        getBalance(root->left) < 0) {
         root->left = leftRotate(root->left);
         return rightRotate(root);
     }
@@ -183,8 +192,7 @@ node<T,K> * AvlTree<T,K>::removeHelper(node<T,K>* root,K key) {
 
     // Right Left Case
     if (balance < -1 &&
-        getBalance(root->right) > 0)
-    {
+        getBalance(root->right) > 0) {
         root->right = rightRotate(root->right);
         return leftRotate(root);
     }
@@ -193,33 +201,30 @@ node<T,K> * AvlTree<T,K>::removeHelper(node<T,K>* root,K key) {
 }
 
 template<class T, class K>
-T* AvlTree<T,K>::find_by_key_helper(node<T,K> *root, K key) {
-    if(root== nullptr){
+T *AvlTree<T, K>::find_by_key_helper(node<T, K> *root, K key) {
+    if (root == nullptr) {
         return nullptr;
     }
-    if (key == root->key){
+    if (key == root->key) {
         return root->data;
-    }
-    else{
-        if (key < root->key){
-            return find_by_key_helper(root->left,key);
-        }
-        else if (key > root->key){
-            return find_by_key_helper(root->right,key);
-        }
-        else {
+    } else {
+        if (key < root->key) {
+            return find_by_key_helper(root->left, key);
+        } else if (key > root->key) {
+            return find_by_key_helper(root->right, key);
+        } else {
             return nullptr;
         }
     }
 }
 
 template<class T, class K>
-T* AvlTree<T,K>::find_by_key(K key) {
-    return find_by_key_helper(m_root,key);
+T *AvlTree<T, K>::find_by_key(K key) {
+    return find_by_key_helper(m_root, key);
 }
 
 template<class T, class K>
-void AvlTree<T, K>::deleteTree(node<T,K> *r) {
+void AvlTree<T, K>::deleteTree(node<T, K> *r) {
 
     if (r != nullptr) {
         deleteTree(r->left);
@@ -232,14 +237,14 @@ void AvlTree<T, K>::deleteTree(node<T,K> *r) {
    new node with the given key and
    NULL left and right pointers. */
 template<class T, class K>
-node<T, K> *AvlTree<T, K>::newNode(T* data, K key) {
-    node<T,K>* newNode = new node<T, K>(data,key);
+node<T, K> *AvlTree<T, K>::newNode(T *data, K key) {
+    node<T, K> *newNode = new node<T, K>(data, key);
     newNode->key = key;
     newNode->data = data;
     newNode->left = nullptr;
     newNode->right = nullptr;
     newNode->height = 1; // new node is initially added at leaf
-    return(newNode);
+    return (newNode);
 }
 
 // A utility function to right
@@ -247,8 +252,8 @@ node<T, K> *AvlTree<T, K>::newNode(T* data, K key) {
 // See the diagram given above.
 template<class T, class K>
 node<T, K> *AvlTree<T, K>::rightRotate(node<T, K> *y) {
-    node<T,K> *x = y->left;
-    node<T,K> *T2 = x->right;
+    node<T, K> *x = y->left;
+    node<T, K> *T2 = x->right;
 
     // Perform rotation
     x->right = y;
@@ -269,8 +274,8 @@ node<T, K> *AvlTree<T, K>::rightRotate(node<T, K> *y) {
 // See the diagram given above.
 template<class T, class K>
 node<T, K> *AvlTree<T, K>::leftRotate(node<T, K> *x) {
-    node<T,K> *y = x->right;
-    node<T,K> *T2 = y->left;
+    node<T, K> *y = x->right;
+    node<T, K> *T2 = y->left;
 
     // Perform rotation
     y->left = x;
@@ -296,24 +301,24 @@ int AvlTree<T, K>::getBalance(node<T, K> *N) {
 
 template<class T, class K>
 void AvlTree<T, K>::remove(K key) {
-    m_root=removeHelper(m_root,key);
+    m_root = removeHelper(m_root, key);
 }
 
 // Recursive function to insert a key
 // in the subtree rooted with node and
 // returns the new root of the subtree.
 template<class T, class K>
-node<T, K> *AvlTree<T, K>::insertHelper(node<T,K> *root, T* data, K key) {
+node<T, K> *AvlTree<T, K>::insertHelper(node<T, K> *root, T *data, K key) {
 /* 1. Perform the normal BST insertion */
-    if (root == nullptr){
-        root=newNode(data,key); //maybe fix unchanging root?
+    if (root == nullptr) {
+        root = newNode(data, key); //maybe fix unchanging root?
         return root;
     }
 
     if (key < root->key)
-        root->left = insertHelper(root->left, data,key);
+        root->left = insertHelper(root->left, data, key);
     else if (key > root->key)
-        root->right = insertHelper(root->right,data, key);
+        root->right = insertHelper(root->right, data, key);
     else // Equal keys are not allowed in BST
         return root;
 
@@ -338,15 +343,13 @@ node<T, K> *AvlTree<T, K>::insertHelper(node<T,K> *root, T* data, K key) {
         return leftRotate(root);
 
     // Left Right Case
-    if (balance > 1 && key > root->left->key)
-    {
+    if (balance > 1 && key > root->left->key) {
         root->left = leftRotate(root->left);
         return rightRotate(root);
     }
 
     // Right Left Case
-    if (balance < -1 && key < root->right->key)
-    {
+    if (balance < -1 && key < root->right->key) {
         root->right = rightRotate(root->right);
         return leftRotate(root);
     }
@@ -364,11 +367,12 @@ int AvlTree<T, K>::height(node<T, K> *N) {
 }
 
 template<class T, class K>
-void AvlTree<T, K>::insert(T* data, K key) {
+void AvlTree<T, K>::insert(T *data, K key) {
     m_root = insertHelper(m_root, data, key);
 }
+
 template<class T, class K>
-node<T,K>* AvlTree<T,K>::getRoot() const{
+node<T, K> *AvlTree<T, K>::getRoot() const {
     return m_root;
 }
 

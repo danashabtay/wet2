@@ -59,6 +59,9 @@ permutation_t WorldCupManager::getPartialSpirit(int playerId) {
     playerNode *player1 = FindPlayer(playerId);
     playerNode *playerParent = findRep(player1);
     permutation_t sum = permutation_t::neutral();
+    if(player1 == playerParent){
+        sum = player1->m_data->getSpirit();
+    }
     while (player1 != playerParent) {
         sum = (playerParent->m_rs) * sum;
         player1 = player1->m_parent;

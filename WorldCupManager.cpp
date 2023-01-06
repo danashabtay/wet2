@@ -52,6 +52,29 @@ void WorldCupManager::AddPlayer(int playerId, player *data, int teamId) {
 }
 
 WorldCupManager::playerNode *WorldCupManager::FindPlayer(int playerId) {
+    playerNode* player1 = players_table->find(playerId);
+    playerNode* playerParent= findRep(player1);
+    playerNode* og_player=player1;
+    permutation_t spirit_sum= permutation_t::neutral();
+    int game_sum=0;
+    while(player1!=playerParent){
+        spirit_sum=spirit_sum*player1->m_rs;
+        game_sum+=player1->m_rg;
+        player1=player1->m_parent;
+    }
+    int partial_games=0;
+    permutation_t partial_spirit=permutation_t::neutral();
+    while(og_player->m_parent!=playerParent){
+        playerNode* next=og_player->m_parent;
+        og_player->m_parent=playerParent;
+        permutation_t tmp_spirit=og_player->m_rs;
+        int tmp_games=og_player->m_rg;
+        og_player->m_rs=(partial_spirit.inv())*spirit_sum;
+        og_player->m_rg=game_sum-partial_games;
+        partial_spirit=tmp_spirit*partial_spirit;
+        partial_games+=tmp_games;
+        og_player=next;
+    }
     return players_table->find(playerId);
 }
 

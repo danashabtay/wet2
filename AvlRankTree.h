@@ -167,8 +167,9 @@ void AVLRankTree<T, K>::Insert(K key, T data) {
         // add to tree
         if (key < parent->key)
             parent->left = new_node;
-        else if (key > parent->key)
+        else if (key > parent->key){
             parent->right = new_node;
+        }
         else { //keys are equal
             if (data < parent->data) {
                 parent->left = new_node;
@@ -209,7 +210,7 @@ T AVLRankTree<T, K>::getByKey(K key, T data) {
 // Time complexity: log(n)
 template<class T, class K>
 T AVLRankTree<T, K>::getByRank(int i) {
-    return Select(this->root, i);
+    return Select(this->root, i+1);
 }
 
 // printing the tree. using the recursion print2
@@ -221,16 +222,29 @@ void AVLRankTree<T, K>::print() {
 /********************************* Private Functions *******************************/
 template<class T, class K>
 T AVLRankTree<T, K>::Select(Node *node, int k) {
-    if (node->left->rank == k + 1 || (node->left == nullptr && k == 1)) {
+    /*
+    if (node->left->rank == k-1) {
         return node->data;
     }
-    if (node->left->rank > k + 1) {
+    if (node->left->rank > k-1) {
         return Select(node->left, k);
     }
-    if (node->left->rank < k + 1) {
-        return Select(node->left, k - (node->left->rank) - 1);
+    if (node->left->rank < k-1) {
+        return Select(node->right, k -1 - (node->left->rank));
     }
-    return -1;
+    if(node->left == nullptr){
+        return Select(node->right, k -1);
+    }*/
+    if(node->rank==k){
+        return node->data;
+    }
+    else if(node->rank>k){
+        return Select(node->right,k);
+    }
+    else{
+        return Select(node->left,k);
+    }
+    return 0;
 }
 
 template<class T, class K>

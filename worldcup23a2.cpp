@@ -229,8 +229,7 @@ output_t<int> world_cup_t::get_ith_pointless_ability(int i) {
         return out;
     }
     int teamId = m_all_teams_ability->getByRank(i);
-    team *team1 = m_all_teams_id->find_by_key(teamId);
-    output_t<int> out(team1->getAbility());
+    output_t<int> out(teamId);
     //delete team1;
     return out;
 }
@@ -250,7 +249,6 @@ output_t<permutation_t> world_cup_t::get_partial_spirit(int playerId) {
         output_t<permutation_t> out(StatusType::FAILURE);
         return out;
     }
-
     output_t<permutation_t> out(m_game->getPartialSpirit(playerId));
     return out;
 }
@@ -261,18 +259,14 @@ StatusType world_cup_t::buy_team(int teamId1, int teamId2) {
     }
     team *team1 = m_all_teams_id->find_by_key(teamId1);
     if (team1 == nullptr) {
-      //  delete team1;
         return StatusType::FAILURE;
     }
     team *team2 = m_all_teams_id->find_by_key(teamId2);
     if (team2 == nullptr) {
-        /*delete team1;
-        delete team2;*/
         return StatusType::FAILURE;
     }
     m_game->UniteTeams(teamId1, teamId2);
+    std::cout<<"got here";
     remove_team(teamId2);
-    /*delete team1;
-    delete team2;*/
     return StatusType::SUCCESS;
 };

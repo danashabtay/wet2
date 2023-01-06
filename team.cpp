@@ -51,6 +51,5 @@ void team::addPlayerStats(int ability, permutation_t spirit, bool isKeeper) {
 
 int team::getPlayMatchStats() {
     int sum = m_points + m_total_ability;
-    std::cout << "sum: " << sum << "\n";
     return sum;
 }

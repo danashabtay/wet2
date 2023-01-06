@@ -36,7 +36,6 @@ void WorldCupManager::AddPlayer(int playerId, player *data, int teamId) {
     teamNode *team1 = FindTeam(teamId);
     //////////////////////////
     if (team1->m_rank == 0) {
-        std::cout << "first player in team! \n";
         newPlayer->m_team = team1;
         newPlayer->m_parent = newPlayer;
         newPlayer->m_rg = data->getNumGames();
@@ -120,13 +119,7 @@ int WorldCupManager::findNumGames(int playerId) {
 bool WorldCupManager::isActive(int playerId) {
     playerNode *player1 = FindPlayer(playerId);
     playerNode *playerParent = findRep(player1);
-    if(player1 == playerParent){
-        std::cout<<"rep is equal";
-    }
     teamNode *team1 = playerParent->m_team;
-    std::cout<<"team key: " << team1->m_key;
-    std::cout<<"team isDeleted: " << team1->m_isDeleted;
-
     return team1->m_isDeleted;
 }
 

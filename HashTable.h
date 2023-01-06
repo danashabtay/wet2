@@ -39,7 +39,6 @@ HashTable<V>::~HashTable() {
 
 template<class V>
 void HashTable<V>::rehash() {
-    std::cout << "rehashing";
     int old_max = m_max_size;
     m_max_size *= 2;
     V **new_table = new V *[m_max_size * sizeof(V *)];

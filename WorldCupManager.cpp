@@ -24,7 +24,7 @@ void WorldCupManager::AddTeam(int teamId, team *data) {
     teamNode *newTeam = new teamNode();
     newTeam->m_key = teamId;
     newTeam->m_data = data;
-    newTeam->m_isDeleted= false;
+    newTeam->m_isDeleted = false;
     teams_table->insert(newTeam, newTeam->m_key);
 }
 
@@ -44,9 +44,9 @@ void WorldCupManager::AddPlayer(int playerId, player *data, int teamId) {
     } else {
         newPlayer->m_parent = team1->m_rep;
         newPlayer->m_rg = data->getNumGames() - (newPlayer->m_parent->m_rg);
-        newPlayer->m_rs = (newPlayer->m_parent->m_rs.inv()) * (team1->m_team_spirit) * data->getSpirit();
+        newPlayer->m_rs = (team1->m_team_spirit) * data->getSpirit() * (newPlayer->m_parent->m_rs.inv());
     }
-    team1->m_team_spirit = team1->m_team_spirit * data->getSpirit();
+    team1->m_team_spirit = team1->m_team_spirit*data->getSpirit();
     team1->m_rank++;
     players_table->insert(newPlayer, newPlayer->m_key);
 }
@@ -59,11 +59,11 @@ permutation_t WorldCupManager::getPartialSpirit(int playerId) {
     playerNode *player1 = FindPlayer(playerId);
     playerNode *playerParent = findRep(player1);
     permutation_t sum = permutation_t::neutral();
-    if(player1 == playerParent){
+    if (player1 == playerParent) {
         sum = player1->m_rs;
     }
     while (player1 != playerParent) {
-        sum = (playerParent->m_rs) * sum;
+        sum = sum * (playerParent->m_rs);
         player1 = player1->m_parent;
     }
     return sum;
@@ -75,44 +75,46 @@ WorldCupManager::teamNode *WorldCupManager::FindTeam(int teamId) {
 
 void WorldCupManager::UniteTeams(int teamId1, int teamId2) {
     teamNode *team1 = FindTeam(teamId1);
-    std::cout<<"team 1 key: "<<team1->m_key<<"\n";
     teamNode *team2 = FindTeam(teamId2);
-    std::cout<<"team 2 key: "<<team2->m_key<<"\n";
     playerNode *ownerParent = team1->m_rep;
-    std::cout<<"team 1 rep: "<<team1->m_rep->m_key<<"\n";
     playerNode *addedParent = team2->m_rep;
-    std::cout<<"team 2 rep: "<<team2->m_rep->m_key<<"\n";
     //if they are part of same set do nothing
     if (ownerParent->m_data == addedParent->m_data) {
-        std::cout<<"same team"<<"\n";
         return;
     }
-    if(ownerParent->m_team->m_rank==addedParent->m_team->m_rank && addedParent->m_team->m_rank==0){
+    if (ownerParent == addedParent && addedParent == nullptr) {
         //both teams are empty
-        std::cout<<"team 1 rank = team 2 rank = 0"<<"\n";
+        return;
+    }
+    if (ownerParent == nullptr) {
+        //buying team is empty
+        team1->m_team_spirit=team2->m_team_spirit;
+        team1->m_rank=team2->m_rank;
+        team1->m_rep=team2->m_rep;
+        return;
+    } else if (addedParent == nullptr) {
+        //bought team is empty
         return;
     }
     //else whoever rank is higher becomes parent of other
     if (ownerParent->m_team->m_rank >= addedParent->m_team->m_rank) { // add added team to owner team
-        std::cout<<"team 1 rank >= team 2 rank"<<"\n";
         /// change rank
         ownerParent->m_team->m_rank += addedParent->m_team->m_rank;
-        std::cout<<"new team 1 rank:"<<ownerParent->m_team->m_rank <<"\n";
         ///change rs
-        addedParent->m_rs = (ownerParent->m_rs.inv()) * (ownerParent->m_team->m_team_spirit) * (addedParent->m_rs);
+        addedParent->m_rs = (ownerParent->m_team->m_team_spirit) * (addedParent->m_rs) * (ownerParent->m_rs.inv());
+        ownerParent->m_team->m_team_spirit=(ownerParent->m_team->m_team_spirit)*(addedParent->m_team->m_team_spirit);
         ///change rg
         addedParent->m_rg = addedParent->m_rg - ownerParent->m_rg;
         addedParent->m_parent = ownerParent;
     } else { // add owner team to added team
-        std::cout<<"team 1 rank < team 2 rank"<<"\n";
         team1->m_rep = team2->m_rep;
         addedParent->m_team = ownerParent->m_team;
         /// change rank
         addedParent->m_team->m_rank += ownerParent->m_team->m_rank;
         ///change rs
-        permutation_t temp_b = addedParent->m_rs;
-        ownerParent->m_rs = (temp_b.inv()) * ownerParent->m_rs;
-        addedParent->m_rs = temp_b * (ownerParent->m_team->m_team_spirit);
+        addedParent->m_rs = addedParent->m_rs * (ownerParent->m_team->m_team_spirit);
+        ownerParent->m_rs = ownerParent->m_rs*(addedParent->m_rs.inv());
+        ownerParent->m_team->m_team_spirit=(ownerParent->m_team->m_team_spirit)*(addedParent->m_team->m_team_spirit);
         ///change rg
         ownerParent->m_rg = ownerParent->m_rg - addedParent->m_rg;
         ownerParent->m_parent = addedParent;
@@ -139,7 +141,7 @@ bool WorldCupManager::isActive(int playerId) {
 
 void WorldCupManager::markDeleted(int teamId) {
     teamNode *team1 = FindTeam(teamId);
-    std::cout<<"marking as deleted team "<<team1->m_key<<"\n";
+    std::cout << "marking as deleted team " << team1->m_key << "\n";
     team1->m_isDeleted = true;
     team1->m_key = -1;
 }

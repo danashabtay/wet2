@@ -222,27 +222,18 @@ void AVLRankTree<T, K>::print() {
 /********************************* Private Functions *******************************/
 template<class T, class K>
 T AVLRankTree<T, K>::Select(Node *node, int k) {
-    /*
-    if (node->left->rank == k-1) {
+    int val=0;
+    if(node->left != nullptr){
+        val=node->left->rank;
+    }
+    if(val==k-1){
         return node->data;
     }
-    if (node->left->rank > k-1) {
-        return Select(node->left, k);
-    }
-    if (node->left->rank < k-1) {
-        return Select(node->right, k -1 - (node->left->rank));
-    }
-    if(node->left == nullptr){
-        return Select(node->right, k -1);
-    }*/
-    if(node->rank==k){
-        return node->data;
-    }
-    else if(node->rank>k){
-        return Select(node->right,k);
-    }
-    else{
+    else if(val>k-1){
         return Select(node->left,k);
+    }
+    else if(val<k-1){
+        return Select(node->right,k-val-1);
     }
     return 0;
 }

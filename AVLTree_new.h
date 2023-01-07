@@ -256,6 +256,20 @@ void AVLTree<K, T>::updateHeights(Node* node) {
 }
 
 template<class K, class T>
+
+void AVLTree<K, T>::updateSmallest() {
+    Node* current = root;
+    if (!current) {
+        this->smallest = NULL;
+        return; // empty tree
+    }
+    while (current->left != NULL) {
+        current = current->left;
+    }
+    this->smallest = current;
+}
+
+template<class K, class T>
 void AVLTree<K, T>::balance(Node* node) {
     int balanceFactor = node->getBalance();
     if (balanceFactor >= 2) { //left Heavy

@@ -44,7 +44,7 @@ void WorldCupManager::AddPlayer(int playerId, player *data, int teamId) {
     } else {
         newPlayer->m_parent = team1->m_rep;
         newPlayer->m_rg = data->getNumGames() - (newPlayer->m_parent->m_rg);
-        newPlayer->m_rs = (team1->m_team_spirit) * data->getSpirit() * (newPlayer->m_parent->m_rs.inv());
+        newPlayer->m_rs = (newPlayer->m_parent->m_rs.inv()) * (team1->m_team_spirit) * data->getSpirit();
     }
     team1->m_team_spirit = team1->m_team_spirit*data->getSpirit();
     team1->m_rank++;
@@ -64,7 +64,7 @@ WorldCupManager::playerNode *WorldCupManager::FindPlayer(int playerId) {
     permutation_t spirit_sum= permutation_t::neutral();
     int game_sum=0;
     while(player1!=playerParent){
-        spirit_sum=spirit_sum*player1->m_rs;
+        spirit_sum= (player1->m_rs) * spirit_sum;
         game_sum+=player1->m_rg;
         player1=player1->m_parent;
     }
@@ -75,7 +75,7 @@ WorldCupManager::playerNode *WorldCupManager::FindPlayer(int playerId) {
         og_player->m_parent=playerParent;
         permutation_t tmp_spirit=og_player->m_rs;
         int tmp_games=og_player->m_rg;
-        og_player->m_rs=(partial_spirit.inv())*spirit_sum;
+        og_player->m_rs=spirit_sum * (partial_spirit.inv());
         og_player->m_rg=game_sum-partial_games;
         partial_spirit=tmp_spirit*partial_spirit;
         partial_games+=tmp_games;
@@ -107,7 +107,6 @@ void WorldCupManager::UniteTeams(int teamId1, int teamId2) {
     teamNode *team2 = FindTeam(teamId2);
     playerNode *ownerParent = team1->m_rep;
     playerNode *addedParent = team2->m_rep;
-    //if they are part of same set do nothing
 
     if (ownerParent == addedParent && addedParent == nullptr) {
         //both teams are empty
@@ -124,6 +123,7 @@ void WorldCupManager::UniteTeams(int teamId1, int teamId2) {
         return;
     }
     if (ownerParent->m_data == addedParent->m_data) {
+        //if they are part of same set do nothing
         return;
     }
     //else whoever rank is higher becomes parent of other
@@ -131,7 +131,7 @@ void WorldCupManager::UniteTeams(int teamId1, int teamId2) {
         /// change rank
         ownerParent->m_team->m_rank += addedParent->m_team->m_rank;
         ///change rs
-        addedParent->m_rs = (ownerParent->m_team->m_team_spirit) * (addedParent->m_rs) * (ownerParent->m_rs.inv());
+        addedParent->m_rs = (ownerParent->m_rs.inv()) * (ownerParent->m_team->m_team_spirit) * (addedParent->m_rs);
         ownerParent->m_team->m_team_spirit=(ownerParent->m_team->m_team_spirit)*(addedParent->m_team->m_team_spirit);
         ///change rg
         addedParent->m_rg = addedParent->m_rg - ownerParent->m_rg;
@@ -142,8 +142,8 @@ void WorldCupManager::UniteTeams(int teamId1, int teamId2) {
         /// change rank
         addedParent->m_team->m_rank += ownerParent->m_team->m_rank;
         ///change rs
-        addedParent->m_rs = addedParent->m_rs * (ownerParent->m_team->m_team_spirit);
-        ownerParent->m_rs = ownerParent->m_rs*(addedParent->m_rs.inv());
+        addedParent->m_rs = (ownerParent->m_team->m_team_spirit) * addedParent->m_rs;
+        ownerParent->m_rs = (addedParent->m_rs.inv()) * ownerParent->m_rs;
         ownerParent->m_team->m_team_spirit=(ownerParent->m_team->m_team_spirit)*(addedParent->m_team->m_team_spirit);
         ///change rg
         ownerParent->m_rg = ownerParent->m_rg - addedParent->m_rg;
@@ -191,21 +191,6 @@ void WorldCupManager::addGame(int teamId1, int teamId2) {
     rep1->m_rg++;
     rep2->m_rg++;
 }
-
-/*
-
-void WorldCupManager::insertPlayer(playerNode** table, playerNode *newPlayer) {
-    int key=newPlayer->m_key;
-    int counter=0;
-    int hashIndex = ((key%max_size_player) + (counter * (1 + (key%(max_size_player-1)))))%max_size_player;
-    // find next free space
-    while (table[hashIndex] != NULL && table[hashIndex]->m_key != -1) {
-        counter++;
-        hashIndex =((key%max_size_player) + (counter * (1 + (key%(max_size_player-1)))))%max_size_player;
-    }
-    table[hashIndex] = newPlayer;
-}
-*/
 
 player *WorldCupManager::findPlayer(int playerId) {
     playerNode *node = FindPlayer(playerId);

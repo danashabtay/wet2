@@ -77,21 +77,15 @@ StatusType world_cup_t::add_player(int playerId, int teamId,
     if (newPlayer == nullptr) {
         return StatusType::ALLOCATION_ERROR;
     }
-    //std::cout << "points: " << team1->getNumPoints();
-    //std::cout << "abil: " << team1->getTeamAbility();
     int old_ability = team1->getTeamAbility();
     m_all_teams_ability->Remove(old_ability, teamId);
     if (goalKeeper && (!team1->hasKeeper())) {
         m_all_eligible_teams->insert(team1, teamId);
     }
     team1->addPlayerStats(ability, spirit, goalKeeper);
-    //std::cout << "points: " << team1->getNumPoints();
-    //std::cout << "abil: " << team1->getTeamAbility();
     m_game->AddPlayer(playerId, newPlayer, teamId);
     int new_ability = team1->getTeamAbility();
     m_all_teams_ability->Insert(new_ability, teamId);
-    /*delete team1;
-    delete newPlayer;*/
     return StatusType::SUCCESS;
 }
 

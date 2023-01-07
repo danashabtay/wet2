@@ -260,7 +260,7 @@ StatusType world_cup_t::buy_team(int teamId1, int teamId2) {
         return StatusType::FAILURE;
     }
     m_game->UniteTeams(teamId1, teamId2);
-    std::cout<<"got here";
+   // std::cout<<"got here";
     remove_team(teamId2);
     return StatusType::SUCCESS;
 };

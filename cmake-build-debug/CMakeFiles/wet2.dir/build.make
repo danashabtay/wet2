@@ -52,10 +52,10 @@ RM = "C:\Program Files\JetBrains\CLion 2021.2.3\bin\cmake\win\bin\cmake.exe" -E 
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\user\Desktop\DataStructures\WET2\wet2
+CMAKE_SOURCE_DIR = C:\Users\97254\OneDrive\Desktop\cs\DataStruc\wet2\wet2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\user\Desktop\DataStructures\WET2\wet2\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\97254\OneDrive\Desktop\cs\DataStruc\wet2\wet2\cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/wet2.dir/depend.make
@@ -68,72 +68,72 @@ include CMakeFiles/wet2.dir/flags.make
 CMakeFiles/wet2.dir/main23a2.cpp.obj: CMakeFiles/wet2.dir/flags.make
 CMakeFiles/wet2.dir/main23a2.cpp.obj: CMakeFiles/wet2.dir/includes_CXX.rsp
 CMakeFiles/wet2.dir/main23a2.cpp.obj: ../main23a2.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\user\Desktop\DataStructures\WET2\wet2\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/wet2.dir/main23a2.cpp.obj"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\wet2.dir\main23a2.cpp.obj -c C:\Users\user\Desktop\DataStructures\WET2\wet2\main23a2.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\97254\OneDrive\Desktop\cs\DataStruc\wet2\wet2\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/wet2.dir/main23a2.cpp.obj"
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\wet2.dir\main23a2.cpp.obj -c C:\Users\97254\OneDrive\Desktop\cs\DataStruc\wet2\wet2\main23a2.cpp
 
 CMakeFiles/wet2.dir/main23a2.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/wet2.dir/main23a2.cpp.i"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\user\Desktop\DataStructures\WET2\wet2\main23a2.cpp > CMakeFiles\wet2.dir\main23a2.cpp.i
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\97254\OneDrive\Desktop\cs\DataStruc\wet2\wet2\main23a2.cpp > CMakeFiles\wet2.dir\main23a2.cpp.i
 
 CMakeFiles/wet2.dir/main23a2.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/wet2.dir/main23a2.cpp.s"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\user\Desktop\DataStructures\WET2\wet2\main23a2.cpp -o CMakeFiles\wet2.dir\main23a2.cpp.s
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\97254\OneDrive\Desktop\cs\DataStruc\wet2\wet2\main23a2.cpp -o CMakeFiles\wet2.dir\main23a2.cpp.s
 
 CMakeFiles/wet2.dir/worldcup23a2.cpp.obj: CMakeFiles/wet2.dir/flags.make
 CMakeFiles/wet2.dir/worldcup23a2.cpp.obj: CMakeFiles/wet2.dir/includes_CXX.rsp
 CMakeFiles/wet2.dir/worldcup23a2.cpp.obj: ../worldcup23a2.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\user\Desktop\DataStructures\WET2\wet2\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/wet2.dir/worldcup23a2.cpp.obj"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\wet2.dir\worldcup23a2.cpp.obj -c C:\Users\user\Desktop\DataStructures\WET2\wet2\worldcup23a2.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\97254\OneDrive\Desktop\cs\DataStruc\wet2\wet2\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/wet2.dir/worldcup23a2.cpp.obj"
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\wet2.dir\worldcup23a2.cpp.obj -c C:\Users\97254\OneDrive\Desktop\cs\DataStruc\wet2\wet2\worldcup23a2.cpp
 
 CMakeFiles/wet2.dir/worldcup23a2.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/wet2.dir/worldcup23a2.cpp.i"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\user\Desktop\DataStructures\WET2\wet2\worldcup23a2.cpp > CMakeFiles\wet2.dir\worldcup23a2.cpp.i
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\97254\OneDrive\Desktop\cs\DataStruc\wet2\wet2\worldcup23a2.cpp > CMakeFiles\wet2.dir\worldcup23a2.cpp.i
 
 CMakeFiles/wet2.dir/worldcup23a2.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/wet2.dir/worldcup23a2.cpp.s"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\user\Desktop\DataStructures\WET2\wet2\worldcup23a2.cpp -o CMakeFiles\wet2.dir\worldcup23a2.cpp.s
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\97254\OneDrive\Desktop\cs\DataStruc\wet2\wet2\worldcup23a2.cpp -o CMakeFiles\wet2.dir\worldcup23a2.cpp.s
 
 CMakeFiles/wet2.dir/team.cpp.obj: CMakeFiles/wet2.dir/flags.make
 CMakeFiles/wet2.dir/team.cpp.obj: CMakeFiles/wet2.dir/includes_CXX.rsp
 CMakeFiles/wet2.dir/team.cpp.obj: ../team.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\user\Desktop\DataStructures\WET2\wet2\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/wet2.dir/team.cpp.obj"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\wet2.dir\team.cpp.obj -c C:\Users\user\Desktop\DataStructures\WET2\wet2\team.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\97254\OneDrive\Desktop\cs\DataStruc\wet2\wet2\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/wet2.dir/team.cpp.obj"
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\wet2.dir\team.cpp.obj -c C:\Users\97254\OneDrive\Desktop\cs\DataStruc\wet2\wet2\team.cpp
 
 CMakeFiles/wet2.dir/team.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/wet2.dir/team.cpp.i"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\user\Desktop\DataStructures\WET2\wet2\team.cpp > CMakeFiles\wet2.dir\team.cpp.i
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\97254\OneDrive\Desktop\cs\DataStruc\wet2\wet2\team.cpp > CMakeFiles\wet2.dir\team.cpp.i
 
 CMakeFiles/wet2.dir/team.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/wet2.dir/team.cpp.s"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\user\Desktop\DataStructures\WET2\wet2\team.cpp -o CMakeFiles\wet2.dir\team.cpp.s
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\97254\OneDrive\Desktop\cs\DataStruc\wet2\wet2\team.cpp -o CMakeFiles\wet2.dir\team.cpp.s
 
 CMakeFiles/wet2.dir/player.cpp.obj: CMakeFiles/wet2.dir/flags.make
 CMakeFiles/wet2.dir/player.cpp.obj: CMakeFiles/wet2.dir/includes_CXX.rsp
 CMakeFiles/wet2.dir/player.cpp.obj: ../player.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\user\Desktop\DataStructures\WET2\wet2\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/wet2.dir/player.cpp.obj"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\wet2.dir\player.cpp.obj -c C:\Users\user\Desktop\DataStructures\WET2\wet2\player.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\97254\OneDrive\Desktop\cs\DataStruc\wet2\wet2\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/wet2.dir/player.cpp.obj"
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\wet2.dir\player.cpp.obj -c C:\Users\97254\OneDrive\Desktop\cs\DataStruc\wet2\wet2\player.cpp
 
 CMakeFiles/wet2.dir/player.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/wet2.dir/player.cpp.i"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\user\Desktop\DataStructures\WET2\wet2\player.cpp > CMakeFiles\wet2.dir\player.cpp.i
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\97254\OneDrive\Desktop\cs\DataStruc\wet2\wet2\player.cpp > CMakeFiles\wet2.dir\player.cpp.i
 
 CMakeFiles/wet2.dir/player.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/wet2.dir/player.cpp.s"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\user\Desktop\DataStructures\WET2\wet2\player.cpp -o CMakeFiles\wet2.dir\player.cpp.s
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\97254\OneDrive\Desktop\cs\DataStruc\wet2\wet2\player.cpp -o CMakeFiles\wet2.dir\player.cpp.s
 
 CMakeFiles/wet2.dir/WorldCupManager.cpp.obj: CMakeFiles/wet2.dir/flags.make
 CMakeFiles/wet2.dir/WorldCupManager.cpp.obj: CMakeFiles/wet2.dir/includes_CXX.rsp
 CMakeFiles/wet2.dir/WorldCupManager.cpp.obj: ../WorldCupManager.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\user\Desktop\DataStructures\WET2\wet2\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/wet2.dir/WorldCupManager.cpp.obj"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\wet2.dir\WorldCupManager.cpp.obj -c C:\Users\user\Desktop\DataStructures\WET2\wet2\WorldCupManager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\97254\OneDrive\Desktop\cs\DataStruc\wet2\wet2\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/wet2.dir/WorldCupManager.cpp.obj"
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\wet2.dir\WorldCupManager.cpp.obj -c C:\Users\97254\OneDrive\Desktop\cs\DataStruc\wet2\wet2\WorldCupManager.cpp
 
 CMakeFiles/wet2.dir/WorldCupManager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/wet2.dir/WorldCupManager.cpp.i"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\user\Desktop\DataStructures\WET2\wet2\WorldCupManager.cpp > CMakeFiles\wet2.dir\WorldCupManager.cpp.i
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\97254\OneDrive\Desktop\cs\DataStruc\wet2\wet2\WorldCupManager.cpp > CMakeFiles\wet2.dir\WorldCupManager.cpp.i
 
 CMakeFiles/wet2.dir/WorldCupManager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/wet2.dir/WorldCupManager.cpp.s"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\user\Desktop\DataStructures\WET2\wet2\WorldCupManager.cpp -o CMakeFiles\wet2.dir\WorldCupManager.cpp.s
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\97254\OneDrive\Desktop\cs\DataStruc\wet2\wet2\WorldCupManager.cpp -o CMakeFiles\wet2.dir\WorldCupManager.cpp.s
 
 # Object files for target wet2
 wet2_OBJECTS = \
@@ -155,7 +155,7 @@ wet2.exe: CMakeFiles/wet2.dir/build.make
 wet2.exe: CMakeFiles/wet2.dir/linklibs.rsp
 wet2.exe: CMakeFiles/wet2.dir/objects1.rsp
 wet2.exe: CMakeFiles/wet2.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\user\Desktop\DataStructures\WET2\wet2\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable wet2.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\97254\OneDrive\Desktop\cs\DataStruc\wet2\wet2\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable wet2.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\wet2.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -167,6 +167,6 @@ CMakeFiles/wet2.dir/clean:
 .PHONY : CMakeFiles/wet2.dir/clean
 
 CMakeFiles/wet2.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\user\Desktop\DataStructures\WET2\wet2 C:\Users\user\Desktop\DataStructures\WET2\wet2 C:\Users\user\Desktop\DataStructures\WET2\wet2\cmake-build-debug C:\Users\user\Desktop\DataStructures\WET2\wet2\cmake-build-debug C:\Users\user\Desktop\DataStructures\WET2\wet2\cmake-build-debug\CMakeFiles\wet2.dir\DependInfo.cmake --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\97254\OneDrive\Desktop\cs\DataStruc\wet2\wet2 C:\Users\97254\OneDrive\Desktop\cs\DataStruc\wet2\wet2 C:\Users\97254\OneDrive\Desktop\cs\DataStruc\wet2\wet2\cmake-build-debug C:\Users\97254\OneDrive\Desktop\cs\DataStruc\wet2\wet2\cmake-build-debug C:\Users\97254\OneDrive\Desktop\cs\DataStruc\wet2\wet2\cmake-build-debug\CMakeFiles\wet2.dir\DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/wet2.dir/depend
 

@@ -26,7 +26,7 @@
 class world_cup_t {
 private:
     int m_num_teams;
-    AvlTree<team, int> *m_all_teams_id;
+    AvlTree<team, int> *m_all_teams_id; //its an avl tree
     AVLRankTree<int, int> *m_all_teams_ability;
     AvlTree<team, int> *m_all_eligible_teams;
     WorldCupManager *m_game;

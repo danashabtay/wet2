@@ -3,7 +3,7 @@
 ////
 world_cup_t::world_cup_t() {
     m_num_teams = 0;
-    m_all_teams_id = new AvlTree<team, int>();
+    m_all_teams_id = new AvlTree<team, int>(); //its an avl tree
     m_all_teams_ability = new AVLRankTree<int, int>();
     m_all_eligible_teams = new AvlTree<team, int>();
     m_game = new WorldCupManager();

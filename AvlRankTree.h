@@ -1,6 +1,6 @@
 //
 // Created by user on 28/12/2022.
-//
+///
 
 #ifndef WET2_AVLRANKTREE_H
 #define WET2_AVLRANKTREE_H

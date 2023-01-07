@@ -89,13 +89,13 @@ permutation_t WorldCupManager::getPartialSpirit(int playerId) {
     playerNode *playerParent = findRep(player1);
     permutation_t sum = permutation_t::neutral();
     if (player1 == playerParent) {
-        sum = player1->m_rs.inv();
+        sum = player1->m_rs;
     }
     while (player1 != playerParent) {
-        sum = sum * (playerParent->m_rs).inv();
+        sum = (playerParent->m_rs) * sum;
         player1 = player1->m_parent;
     }
-    return sum.inv();
+    return sum;
 }
 
 WorldCupManager::teamNode *WorldCupManager::FindTeam(int teamId) {

@@ -82,6 +82,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/user/Desktop/DataStructures/WET2/wet2/AVLTree_new.h">
+			<Option target="wet2"/>
+		</Unit>
 		<Unit filename="C:/Users/user/Desktop/DataStructures/WET2/wet2/AvlRankTree.h">
 			<Option target="wet2"/>
 		</Unit>

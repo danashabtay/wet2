@@ -219,7 +219,7 @@ output_t<int> world_cup_t::get_team_points(int teamId) {
 
 output_t<int> world_cup_t::get_ith_pointless_ability(int i) {
     if (m_num_teams <= 0 || i < 0 || i >= m_num_teams) {
-        output_t<int> out(StatusType::INVALID_INPUT);
+        output_t<int> out(StatusType::FAILURE);
         return out;
     }
     int teamId = m_all_teams_ability->getByRank(i);

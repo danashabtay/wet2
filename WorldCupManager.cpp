@@ -108,9 +108,7 @@ void WorldCupManager::UniteTeams(int teamId1, int teamId2) {
     playerNode *ownerParent = team1->m_rep;
     playerNode *addedParent = team2->m_rep;
     //if they are part of same set do nothing
-    if (ownerParent->m_data == addedParent->m_data) {
-        return;
-    }
+
     if (ownerParent == addedParent && addedParent == nullptr) {
         //both teams are empty
         return;
@@ -123,6 +121,9 @@ void WorldCupManager::UniteTeams(int teamId1, int teamId2) {
         return;
     } else if (addedParent == nullptr) {
         //bought team is empty
+        return;
+    }
+    if (ownerParent->m_data == addedParent->m_data) {
         return;
     }
     //else whoever rank is higher becomes parent of other

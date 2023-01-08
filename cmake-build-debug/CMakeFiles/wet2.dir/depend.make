@@ -9,8 +9,8 @@ CMakeFiles/wet2.dir/WorldCupManager.cpp.obj: \
  ../team.h \
  ../wet2util.h
 CMakeFiles/wet2.dir/main23a2.cpp.obj: \
- ../AVLTree_new.h \
  ../AvlRankTree.h \
+ ../Avltree.h \
  ../HashTable.h \
  ../WorldCupManager.h \
  ../main23a2.cpp \
@@ -27,8 +27,8 @@ CMakeFiles/wet2.dir/team.cpp.obj: \
  ../team.h \
  ../wet2util.h
 CMakeFiles/wet2.dir/worldcup23a2.cpp.obj: \
- ../AVLTree_new.h \
  ../AvlRankTree.h \
+ ../Avltree.h \
  ../HashTable.h \
  ../WorldCupManager.h \
  ../player.h \

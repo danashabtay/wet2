@@ -223,6 +223,9 @@ void AVLRankTree<T, K>::print() {
 template<class T, class K>
 T AVLRankTree<T, K>::Select(Node *node, int k) {
     int val=0;
+    if(node == nullptr){
+        return 0;
+    }
     if(node->left != nullptr){
         val=node->left->rank;
     }

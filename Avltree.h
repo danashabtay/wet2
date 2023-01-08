@@ -8,14 +8,14 @@
 #include <iostream>
 #include <memory>
 
-
 template<class T, class K>
+
 class node {
 public:
     K key;
     T *data;
-    node *left;
-    node *right;
+    node<T,K> *left;
+    node<T,K> *right;
     int height;
 
     ~node() {
@@ -24,7 +24,7 @@ public:
         delete right;
     }
 
-    node<T, K>(T *m_data, K m_key) : key(m_key), data(m_data), right(nullptr), left(nullptr),
+    node<T,K>(T *m_data, K m_key) : key(m_key), data(m_data), right(nullptr), left(nullptr),
                                      height(1) {
     }
 };
@@ -35,14 +35,14 @@ class AvlTree {
 
 
 private:
-    node<T, K> *m_root;
+    node<T,K> *m_root;
 
 public:
-    AvlTree();
+    AvlTree<T,K>();
 
-    ~AvlTree();
+    ~AvlTree<T,K>();
 
-    int height(node<T, K> *N);
+    int height(node<T,K> *N);
 
     node<T, K> *minValueNode(node<T, K> *root);
 
@@ -141,7 +141,8 @@ node<T, K> *AvlTree<T, K>::removeHelper(node<T, K> *root, K key) {
                 *root = *temp; // Copy the contents of
             // the non-empty child
             free(temp);
-        } else {
+        }
+        else {
             // node with two children: Get the inorder
             // successor (smallest in the right subtree)
             node<T, K> *temp = minValueNode(root->right);
@@ -149,7 +150,9 @@ node<T, K> *AvlTree<T, K>::removeHelper(node<T, K> *root, K key) {
             // Copy the inorder successor's
             // data to this node
             root->key = temp->key;
-
+            /////////////////////////////////todo
+            root->data = temp->data;
+            /////////////////////////////////todo
             // Delete the inorder successor
             root->right = removeHelper(root->right,
                                        temp->key);

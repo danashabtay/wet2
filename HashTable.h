@@ -69,12 +69,14 @@ void HashTable<V>::insert(V *data, int key) {
     if (m_max_size == m_curr_size) {
         rehash();
     }
-    int counter = 0;
-    int hashIndex = ((key % m_max_size) + (counter * (1 + (key % (m_max_size - 1))))) % m_max_size;
+    //int counter = 0;
+    int hashIndex = key%m_max_size;
+    //int hashIndex = ((key % m_max_size) + (counter * (1 + (key % (m_max_size - 1))))) % m_max_size;
     // find next free space
     while (m_array[hashIndex] != NULL) {
-        counter++;
-        hashIndex = ((key % m_max_size) + (counter * (1 + (key % (m_max_size - 1))))) % m_max_size;
+        //counter++;
+        hashIndex = (++hashIndex)%m_max_size;
+       // hashIndex = ((key % m_max_size) + (counter * (1 + (key % (m_max_size - 1))))) % m_max_size;
     }
     m_array[hashIndex] = data;
     m_curr_size++;
@@ -84,7 +86,7 @@ template<class V>
 V *HashTable<V>::find(int Id) {
     int key = Id;
     int counter = 0;
-    int hashIndex = ((key % m_max_size) + (counter * (1 + (key % (m_max_size - 1))))) % m_max_size;
+    int hashIndex = key%m_max_size; //int hashIndex = ((key % m_max_size) + (counter * (1 + (key % (m_max_size - 1))))) % m_max_size;
     while (m_array[hashIndex] != NULL) {
         if (counter > m_max_size)
             return NULL;
@@ -92,7 +94,7 @@ V *HashTable<V>::find(int Id) {
         if (m_array[hashIndex]->getKey() == key)
             return m_array[hashIndex];
         counter++;
-        hashIndex = ((key % m_max_size) + (counter * (1 + (key % (m_max_size - 1))))) % m_max_size;
+        hashIndex = (++hashIndex)%m_max_size;//hashIndex = ((key % m_max_size) + (counter * (1 + (key % (m_max_size - 1))))) % m_max_size;
     }
     return NULL;
 }

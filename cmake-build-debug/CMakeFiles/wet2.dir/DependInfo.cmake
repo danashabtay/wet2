@@ -8,11 +8,11 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Users/user/Desktop/DataStructures/WET2/wet2/WorldCupManager.cpp" "C:/Users/user/Desktop/DataStructures/WET2/wet2/cmake-build-debug/CMakeFiles/wet2.dir/WorldCupManager.cpp.obj"
-  "C:/Users/user/Desktop/DataStructures/WET2/wet2/main23a2.cpp" "C:/Users/user/Desktop/DataStructures/WET2/wet2/cmake-build-debug/CMakeFiles/wet2.dir/main23a2.cpp.obj"
-  "C:/Users/user/Desktop/DataStructures/WET2/wet2/player.cpp" "C:/Users/user/Desktop/DataStructures/WET2/wet2/cmake-build-debug/CMakeFiles/wet2.dir/player.cpp.obj"
-  "C:/Users/user/Desktop/DataStructures/WET2/wet2/team.cpp" "C:/Users/user/Desktop/DataStructures/WET2/wet2/cmake-build-debug/CMakeFiles/wet2.dir/team.cpp.obj"
-  "C:/Users/user/Desktop/DataStructures/WET2/wet2/worldcup23a2.cpp" "C:/Users/user/Desktop/DataStructures/WET2/wet2/cmake-build-debug/CMakeFiles/wet2.dir/worldcup23a2.cpp.obj"
+  "C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/WorldCupManager.cpp" "C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/cmake-build-debug/CMakeFiles/wet2.dir/WorldCupManager.cpp.obj"
+  "C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/main23a2.cpp" "C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/cmake-build-debug/CMakeFiles/wet2.dir/main23a2.cpp.obj"
+  "C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/player.cpp" "C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/cmake-build-debug/CMakeFiles/wet2.dir/player.cpp.obj"
+  "C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/team.cpp" "C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/cmake-build-debug/CMakeFiles/wet2.dir/team.cpp.obj"
+  "C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/worldcup23a2.cpp" "C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/cmake-build-debug/CMakeFiles/wet2.dir/worldcup23a2.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

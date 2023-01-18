@@ -17,8 +17,7 @@
 
 #include "wet2util.h"
 #include "team.h"
-//#include "Avltree.h"
-#include "AVLTree_new.h"
+#include "Avltree.h"
 #include "AvlRankTree.h"
 #include "WorldCupManager.h"
 #include <memory>
@@ -27,8 +26,9 @@
 class world_cup_t {
 private:
     int m_num_teams;
-    AVLTree<int,team> *m_all_teams_id; //its an avl tree
+    AvlTree<team, int> *m_all_teams_id; //its an avl tree
     AVLRankTree<int, int> *m_all_teams_ability;
+    AvlTree<team, int> *m_all_eligible_teams;
     WorldCupManager *m_game;
     //
     // Here you may add anything you want

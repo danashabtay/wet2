@@ -26,7 +26,7 @@ class WorldCupManager {
 
         ~playerNode() = default;
 
-        int getKey() {
+        int getKey() const{
             return m_key;
         }
 
@@ -50,8 +50,9 @@ class WorldCupManager {
 
         ~teamNode() = default;
 
-        int getKey() {
-            return m_key;
+        int getKey() const{
+            int k = m_data->getId();
+            return k;
         }
 
         friend class WorldCupManager;

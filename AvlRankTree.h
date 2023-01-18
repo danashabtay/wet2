@@ -465,7 +465,7 @@ void AVLRankTree<T, K>::rlRotation(Node *node) {
 template<class T, class K>
 typename AVLRankTree<T, K>::Node *AVLRankTree<T, K>::getNode(K key, T data) {
     Node *current = root;
-    while ((current != nullptr) && (current->key != key) && (current->data != data)) { // while wasn't placed yet
+    while ((current != nullptr) && ((current->key != key) || (current->data != data)) ) { // while wasn't placed yet
         if (key < current->key) { // left subtree
             current = current->left;
         } else if (key > current->key) { // right subtree

@@ -260,6 +260,9 @@ StatusType world_cup_t::buy_team(int teamId1, int teamId2) {
     if (team2 == nullptr) {
         return StatusType::FAILURE;
     }
+    m_all_teams_ability->Remove(team1->getTeamAbility(), teamId1);
+    team1->addPlayerStats(team2->getTeamAbility(), team2->getPermutation(), team2->hasKeeper());
+    m_all_teams_ability->Insert(team1->getTeamAbility(), teamId1);
     m_game->UniteTeams(teamId1, teamId2);
    // std::cout<<"got here";
     remove_team(teamId2);

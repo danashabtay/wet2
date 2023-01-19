@@ -6,18 +6,27 @@
 
 #IncludeRegexTransform: 
 
+<<<<<<< HEAD
 C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/AvlRankTree.h
+=======
+C:/Users/user/Desktop/DataStructures/WET2/wet2/AvlRankTree.h
+>>>>>>> origin/main
 iostream
 -
 stdlib.h
 -
 
+<<<<<<< HEAD
 C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/Avltree.h
+=======
+C:/Users/user/Desktop/DataStructures/WET2/wet2/Avltree.h
+>>>>>>> origin/main
 iostream
 -
 memory
 -
 
+<<<<<<< HEAD
 C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/HashTable.h
 
 C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/WorldCupManager.cpp
@@ -37,11 +46,27 @@ C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/HashTable.h
 C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/main23a2.cpp
 worldcup23a2.h
 C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/worldcup23a2.h
+=======
+C:/Users/user/Desktop/DataStructures/WET2/wet2/HashTable.h
+
+C:/Users/user/Desktop/DataStructures/WET2/wet2/WorldCupManager.h
+player.h
+C:/Users/user/Desktop/DataStructures/WET2/wet2/player.h
+team.h
+C:/Users/user/Desktop/DataStructures/WET2/wet2/team.h
+HashTable.h
+C:/Users/user/Desktop/DataStructures/WET2/wet2/HashTable.h
+
+C:/Users/user/Desktop/DataStructures/WET2/wet2/main23a2.cpp
+worldcup23a2.h
+C:/Users/user/Desktop/DataStructures/WET2/wet2/worldcup23a2.h
+>>>>>>> origin/main
 string
 -
 iostream
 -
 
+<<<<<<< HEAD
 C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/player.cpp
 player.h
 C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/player.h
@@ -63,11 +88,25 @@ wet2util.h
 C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/wet2util.h
 
 C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/wet2util.h
+=======
+C:/Users/user/Desktop/DataStructures/WET2/wet2/player.h
+wet2util.h
+C:/Users/user/Desktop/DataStructures/WET2/wet2/wet2util.h
+
+C:/Users/user/Desktop/DataStructures/WET2/wet2/team.h
+memory
+-
+wet2util.h
+C:/Users/user/Desktop/DataStructures/WET2/wet2/wet2util.h
+
+C:/Users/user/Desktop/DataStructures/WET2/wet2/wet2util.h
+>>>>>>> origin/main
 stdexcept
 -
 ostream
 -
 
+<<<<<<< HEAD
 C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/worldcup23a2.cpp
 worldcup23a2.h
 C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/worldcup23a2.h
@@ -87,4 +126,25 @@ memory
 -
 player.h
 C:/Users/97254/OneDrive/Desktop/cs/DataStruc/wet2/wet2/player.h
+=======
+C:/Users/user/Desktop/DataStructures/WET2/wet2/worldcup23a2.cpp
+worldcup23a2.h
+C:/Users/user/Desktop/DataStructures/WET2/wet2/worldcup23a2.h
+
+C:/Users/user/Desktop/DataStructures/WET2/wet2/worldcup23a2.h
+wet2util.h
+C:/Users/user/Desktop/DataStructures/WET2/wet2/wet2util.h
+team.h
+C:/Users/user/Desktop/DataStructures/WET2/wet2/team.h
+Avltree.h
+C:/Users/user/Desktop/DataStructures/WET2/wet2/Avltree.h
+AvlRankTree.h
+C:/Users/user/Desktop/DataStructures/WET2/wet2/AvlRankTree.h
+WorldCupManager.h
+C:/Users/user/Desktop/DataStructures/WET2/wet2/WorldCupManager.h
+memory
+-
+player.h
+C:/Users/user/Desktop/DataStructures/WET2/wet2/player.h
+>>>>>>> origin/main
 

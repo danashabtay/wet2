@@ -117,6 +117,7 @@ void WorldCupManager::UniteTeams(int teamId1, int teamId2) {
         team1->m_team_spirit=team2->m_team_spirit;
         team1->m_rank=team2->m_rank;
         team1->m_rep=team2->m_rep;
+        team1->m_rep->m_team=team1;
         return;
     } else if (addedParent == nullptr) {
         //bought team is empty

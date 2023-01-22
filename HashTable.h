@@ -69,12 +69,12 @@ void HashTable<V>::insert(V *data, int key) {
     if (m_max_size == m_curr_size) {
         rehash();
     }
-    //int counter = 0;
+    int counter = 0;
     int hashIndex = key%m_max_size;
     //int hashIndex = ((key % m_max_size) + (counter * (1 + (key % (m_max_size - 1))))) % m_max_size;
     // find next free space
     while (m_array[hashIndex] != NULL) {
-        //counter++;
+        counter++;
         hashIndex = (++hashIndex)%m_max_size;
        // hashIndex = ((key % m_max_size) + (counter * (1 + (key % (m_max_size - 1))))) % m_max_size;
     }
